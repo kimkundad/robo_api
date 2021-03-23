@@ -14,7 +14,7 @@ class BanerSeeder extends Seeder
         DB::table('banners')->insert([
             [
             'name' => 'ชำระเงิน 1',
-            'image' => 'ThaiQR-Logo.pngr',
+            'image' => 'ThaiQR-Logo.png',
             'sort' => 1
             ],
             [
