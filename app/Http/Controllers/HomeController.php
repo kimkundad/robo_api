@@ -33,4 +33,8 @@ class HomeController extends Controller
         $obj = banner::all();
         return response()->json($obj);
     }
+
+    public function post_blog(Request $request){
+        return 200;
+    }
 }
