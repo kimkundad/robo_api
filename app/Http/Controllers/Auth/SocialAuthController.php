@@ -65,9 +65,9 @@ class SocialAuthController extends Controller
     {
       if(Session::has('status_user') == 1){
        return redirect()->to('/shipping');
-    }else{
-      return redirect()->intended('/');
-    }
+        }else{
+        return redirect()->intended('/');
+        }
 
     }
     protected function sendFailedResponse($msg = null)
@@ -123,9 +123,9 @@ class SocialAuthController extends Controller
 
 
         // login the user
-        Auth::login($user, true);
+        $user = Auth::login($user, true);
 
-
+        dd($user);
 
         return $this->sendSuccessResponse();
     }
