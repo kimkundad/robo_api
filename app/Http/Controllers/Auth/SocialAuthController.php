@@ -125,7 +125,7 @@ class SocialAuthController extends Controller
         // login the user
         $user = Auth::login($user, true);
        
-        return redirect()->intended('http://localhost:3000/get_api/socialauth?id='.$user);
+        return redirect()->intended('https://www.robotel.co.th/get_api/socialauth?id='.$user);
        // dd($user);
 
        // return $this->sendSuccessResponse();
