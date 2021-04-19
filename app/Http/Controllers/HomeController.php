@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\banner;
+use App\package;
+use App\option_package;
+
 use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
@@ -31,6 +34,19 @@ class HomeController extends Controller
     public function get_banner_index()
     {
         $obj = banner::all();
+        return response()->json($obj);
+    }
+
+    public function get_package(){
+        $obj = package::all();
+
+        if(isset($obj)){
+            foreach($obj as $u){
+                $option = option_package::where('p_id', $u->id)->get();
+                $u->option = $option;
+            }
+        }
+
         return response()->json($obj);
     }
 

@@ -24,7 +24,12 @@ class CreateUsersTable extends Migration
             $table->integer('status')->default('0');
             $table->string('code_user')->nullable();
             $table->string('idcard')->nullable();
+            $table->string('hbd')->nullable();
+            $table->string('career')->nullable();
             $table->string('provider')->nullable();
+            $table->string('provider_id')->nullable();
+            $table->string('access_token')->nullable();
+            $table->integer('sex')->default('0');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
