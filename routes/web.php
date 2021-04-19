@@ -25,6 +25,8 @@ Route::get('oauth/{driver}/callback', 'Auth\SocialAuthController@handleProviderC
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::post('/send_mail_to_contact', 'HomeController@send_mail_to_contact')->name('send_mail_to_contact');
+
 Route::post('/post_blog', 'HomeController@post_blog')->name('post_blog');
 Route::get('/get_banner_index', 'HomeController@get_banner_index')->name('get_banner_index');
 

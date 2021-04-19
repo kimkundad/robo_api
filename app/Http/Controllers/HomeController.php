@@ -53,4 +53,24 @@ class HomeController extends Controller
     public function post_blog(Request $request){
         return 200;
     }
+
+
+    public function send_mail_to_contact(Request $request){
+
+        $details = [
+            'title' => 'คุณได้รับข้อความจาก : '.$request['name'],
+            'email' => $request['email'],
+            'phone' => $request['phone'],
+            'subject' => $request['subject'],
+            'body' => $request['detail']
+        ];
+       
+        \Mail::to('kim.kundad@gmail.com')->send(new \App\Mail\ContactMail($details));
+       
+        return response()->json([
+            'message' => 'ส่งอีเมล เรียบร้อยแล้ว',
+            'status ' => 200
+        ]);
+
+    }
 }

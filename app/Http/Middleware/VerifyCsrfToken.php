@@ -15,6 +15,7 @@ class VerifyCsrfToken extends Middleware
         //
         'get_login',
         'get_register',
-        'update_profile'
+        'update_profile',
+        'send_mail_to_contact'
     ];
 }
