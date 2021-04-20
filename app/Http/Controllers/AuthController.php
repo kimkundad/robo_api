@@ -32,7 +32,7 @@ class AuthController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return response()->json($validator->errors(), 422);
+            return response()->json(['status'=> 100, 'email' => 'The email must be a valid email address.', 'password' => 'The password must be at least 8 characters.']);
         }
 
         if (! $token = auth()->attempt($validator->validated())) {
@@ -58,6 +58,7 @@ class AuthController extends Controller
 
      }
 
+     
 
     public function register(Request $request) {
        // dd($request->all());
@@ -138,7 +139,7 @@ class AuthController extends Controller
         return response()->json([
             'access_token' => $token,
             'token_type' => 'bearer',
-            'status ' => 200,
+            'status' => 200,
             'expires_in' => auth()->factory()->getTTL() * 60,
             'user' => auth()->user()
         ]);
