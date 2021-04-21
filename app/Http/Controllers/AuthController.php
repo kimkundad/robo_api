@@ -58,7 +58,7 @@ class AuthController extends Controller
 
      }
 
-     
+
 
     public function register(Request $request) {
        // dd($request->all());
@@ -118,7 +118,11 @@ class AuthController extends Controller
      * @return \Illuminate\Http\JsonResponse
      */
     public function userProfile() {
-        return response()->json(auth()->user());
+        return response()->json([
+            'status'=>200,
+            'data' => auth()->user()
+        ]
+        );
     }
 
     public function get_tex_address(){
