@@ -26,6 +26,7 @@ class AuthController extends Controller
      * @return \Illuminate\Http\JsonResponse
      */
     public function login(Request $request){
+        
     	$validator = Validator::make($request->all(), [
             'email' => 'required|email',
             'password' => 'required|string|min:6',
@@ -62,17 +63,54 @@ class AuthController extends Controller
 
     public function register(Request $request) {
        // dd($request->all());
+
+       $validator = Validator::make($request->all(), [
+            'phone' => 'required|regex:/[0-9]{10}/'
+        ]);
+
+        if ($validator->fails()) {
+
+            return response()->json([
+                'status'=> 100,
+                'msg' => 'เบอร์โทรของท่านไม่ถูกต้อง'
+            ]);
+
+        }
+
         $validator = Validator::make($request->all(), [
-            'name' => 'required|string|between:2,100',
-            'email' => 'required|string|email|max:100|unique:users',
+            'name' => 'required',
+            'email' => 'required',
             'password' => 'required',
         ]);
 
-        if($validator->fails()){
-            return response()->json($validator->errors()->toJson(), 400);
+        $check_email = User::where('email', $request['email'])->count();
+        if($check_email > 0){
+            return response()->json([
+                'status'=> 100,
+                'msg' => 'อีเมลนี้ถูกใช้งานไปแล้ว'
+            ]);
         }
 
-                $ran = array("1483537975.png","1483556517.png","1483556686.png");
+        $check_phone = User::where('phone', $request['phone'])->count();
+        if($check_phone > 0){
+            return response()->json([
+                'status'=> 100,
+                'msg' => 'เบอร์โทรนี้ถูกใช้งานไปแล้ว'
+            ]);
+        }
+
+        $check_valid = preg_match("/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix", $request['email']);
+
+        if($check_valid == 0){
+            return response()->json([
+                'status'=> 100,
+                'msg' => 'รูปแบบอีเมล ของท่านไมาถูกต้อง'
+            ]);
+        }
+
+        if($check_phone == 0 && $check_email == 0){
+
+            $ran = array("1483537975.png","1483556517.png","1483556686.png");
                 $user = User::create([
                     'name' => $request->name,
                     'email' => $request->email,
@@ -84,11 +122,15 @@ class AuthController extends Controller
                     'avatar' => $ran[array_rand($ran, 1)]
                 ]);
 
-        return response()->json([
-            'message' => 'User successfully registered',
-            'status ' => 200,
-            'user' => $user
-        ], 200);
+                return response()->json([
+                    'msg' => 'User successfully registered',
+                    'status' => 200,
+                    'user' => $user
+                ]);
+
+        }
+
+        
     }
 
 

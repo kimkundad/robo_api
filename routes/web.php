@@ -31,6 +31,7 @@ Route::post('/post_blog', 'HomeController@post_blog')->name('post_blog');
 Route::get('/get_banner_index', 'HomeController@get_banner_index')->name('get_banner_index');
 
 Route::get('/get_package', 'HomeController@get_package')->name('get_package');
+Route::post('/check_name_user', 'HomeController@check_name_user')->name('check_name_user');
 
 Route::post('/get_login', [AuthController::class, 'login']);
 Route::post('/get_register', [AuthController::class, 'register']);

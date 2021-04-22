@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\banner;
 use App\package;
+use App\User;
 use App\option_package;
+use Validator;
 
 use Illuminate\Support\Facades\DB;
 
@@ -28,6 +30,9 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $str = 'kim@gmail.com';
+        $check = preg_match("/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix", $str);
+        dd($check);
         return view('home');
     }
 
@@ -52,6 +57,35 @@ class HomeController extends Controller
 
     public function post_blog(Request $request){
         return 200;
+    }
+
+    public function check_name_user(Request $request){
+
+        $count = User::where('name', $request['name'])->count();
+        if($count == 0){
+
+            $validator = Validator::make($request->all(), [
+                'password' => 'required|string|min:8',
+            ]);
+    
+            if ($validator->fails()) {
+                return response()->json(['status'=> 100, 'password' => 'The password must be at least 8 characters.']);
+            }else{
+
+                return response()->json([
+                    'message' => 'คุณสามารถใช้งานชื่อผู้ใช้งานนี้ได้',
+                    'status ' => 200
+                ]);
+
+            }
+
+        }else{
+            return response()->json([
+                'message' => 'ชื่อผู้ใช้นี้ถูกใช้งานไปแล้ว',
+                'status ' => 100
+            ]);
+        }
+
     }
 
 
