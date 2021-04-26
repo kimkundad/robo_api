@@ -24,6 +24,7 @@ Route::get('oauth/{driver}', 'Auth\SocialAuthController@redirectToProvider')->na
 Route::get('oauth/{driver}/callback', 'Auth\SocialAuthController@handleProviderCallback')->name('social.callback');
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/call_user', 'HomeController@call_user')->name('call_user');
 
 Route::post('/send_mail_to_contact', 'HomeController@send_mail_to_contact')->name('send_mail_to_contact');
 

@@ -36,6 +36,11 @@ class HomeController extends Controller
         return view('home');
     }
 
+    public function call_user(){
+        $user = User::all();
+        dd($user);
+    }
+
     public function get_banner_index()
     {
         $obj = banner::all();
