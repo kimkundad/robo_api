@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\User;
 use Validator;
 use App\text_address;
+use Illuminate\Support\Facades\Hash;
 
 
 class AuthController extends Controller
@@ -56,6 +57,41 @@ class AuthController extends Controller
             DB::table('users')->where('id', auth()->user()->id)->update($input);
             return response()->json(['status'=>200, 'message' => 'Update profile success']);
         }
+
+     }
+
+
+
+     public function reset_password(Request $request){
+
+        if(isset(auth()->user()->id)){
+
+            if (Hash::check($request->old_password, auth()->user()->password)) { 
+
+                $id = auth()->user()->id;
+
+                $package = User::find($id);
+                $package->password = bcrypt($request->password);
+                $package->save();
+
+                return response()->json([
+                    'status'=> 200,
+                    'msg' => 'old password ถูกต้องนะ'
+                ]);
+
+            }else{
+
+                return response()->json([
+                    'status'=> 100,
+                    'msg' => 'รหัสผ่านปัจจุบัน ไม่ถูกต้องนะ'
+                ]);
+
+            }
+
+            
+
+        }
+
 
      }
 

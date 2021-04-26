@@ -17,6 +17,7 @@ class VerifyCsrfToken extends Middleware
         'get_register',
         'update_profile',
         'send_mail_to_contact',
-        'check_name_user'
+        'check_name_user',
+        'reset_password'
     ];
 }
