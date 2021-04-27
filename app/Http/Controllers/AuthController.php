@@ -159,10 +159,10 @@ class AuthController extends Controller
         if($check_phone > 0){
             return response()->json([
                 'status'=> 100,
-                'msg' => 'เบอร์โทรนี้ถูกใช้งานไปแล้ว'
+                'msg' => 'เบอร์โทรนี้มีการลงทะเบียนแล้ว'
             ]);
         }
-        
+
 
         $check_valid = preg_match("/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix", $request['email']);
 
