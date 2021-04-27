@@ -54,8 +54,26 @@ class AuthController extends Controller
 
         if(isset(auth()->user()->id)){
             
-            $input = $request->all();
-            DB::table('users')->where('id', auth()->user()->id)->update($input);
+            if($request->age == null){
+                $age = 0;
+            }else{
+                $age = $request->age;
+            }
+        //    $input = $request->all();
+                $id = auth()->user()->id;
+
+                $package = User::find($id);
+                $package->age = $age;
+                $package->first_name = $request->first_name;
+                $package->hbd = $request->hbd;
+                $package->last_name = $request->last_name;
+                $package->phone = $request->phone;
+                $package->sex = $request->sex;
+                $package->career = $request->career;
+                $package->save();
+
+
+           // DB::table('users')->where('id', auth()->user()->id)->update($input);
             return response()->json(['status'=>200, 'message' => 'Update profile success']);
         }
 
