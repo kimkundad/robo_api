@@ -8,6 +8,7 @@ use App\package;
 use App\User;
 use App\option_package;
 use Validator;
+use Intervention\Image\ImageManagerStatic as Image;
 
 use Illuminate\Support\Facades\DB;
 
@@ -35,6 +36,30 @@ class HomeController extends Controller
         dd($check);
         return view('home');
     }
+
+    public function update_profile_avatar(Request $request){
+
+
+            $image = $request->file('image');
+            $input['imagename'] = time().'.'.$image->getClientOriginalExtension();
+            $img = Image::make($image->getRealPath());
+            $img->resize(500, 500, function ($constraint) {
+            $constraint->aspectRatio();
+            })->save('assets/img/avatar/'.$input['imagename']);
+            $id = $request['uid'];
+
+            $package = User::find($id);
+            $package->avatar = $input['imagename'];
+            $package->save();
+
+            return response()->json([
+                'image' => $input['imagename'],
+                'status ' => 200
+            ]);
+        
+    
+
+     }
 
     public function call_user(){
         $user = User::all();
@@ -104,7 +129,7 @@ class HomeController extends Controller
             'body' => $request['detail']
         ];
        
-        \Mail::to('kim.kundad@gmail.com')->send(new \App\Mail\ContactMail($details));
+        \Mail::to('admin@robotel.co.th')->send(new \App\Mail\ContactMail($details));
        
         return response()->json([
             'message' => 'ส่งอีเมล เรียบร้อยแล้ว',

@@ -53,7 +53,7 @@ class AuthController extends Controller
      public function update_profile(Request $request){
 
         if(isset(auth()->user()->id)){
-            dd($request->file('avatar'));
+            
             $input = $request->all();
             DB::table('users')->where('id', auth()->user()->id)->update($input);
             return response()->json(['status'=>200, 'message' => 'Update profile success']);
