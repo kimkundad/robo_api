@@ -151,7 +151,7 @@ class AuthController extends Controller
         if($check_email > 0){
             return response()->json([
                 'status'=> 100,
-                'msg' => 'อีเมลนี้ถูกใช้งานไปแล้ว'
+                'msg' => 'อีเมลนี้มีการลงทะเบียนแล้ว'
             ]);
         }
 
@@ -162,6 +162,7 @@ class AuthController extends Controller
                 'msg' => 'เบอร์โทรนี้ถูกใช้งานไปแล้ว'
             ]);
         }
+        
 
         $check_valid = preg_match("/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix", $request['email']);
 
