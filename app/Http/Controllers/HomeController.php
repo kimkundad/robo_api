@@ -50,6 +50,7 @@ class HomeController extends Controller
 
             $package = User::find($id);
             $package->avatar = $input['imagename'];
+            $package->provider = 'email';
             $package->save();
 
             return response()->json([
