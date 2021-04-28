@@ -54,7 +54,7 @@ return [
 
     'url' => env('APP_URL', 'http://localhost'),
 
-    'url2' => 'http://localhost:3000',
+    'url2' => 'https://www.robotel.co.th',
 
     'asset_url' => env('ASSET_URL', null),
 
