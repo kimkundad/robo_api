@@ -8,6 +8,7 @@ use App\package;
 use App\User;
 use App\option_package;
 use Validator;
+use Password;
 use Intervention\Image\ImageManagerStatic as Image;
 
 use Illuminate\Support\Facades\DB;
@@ -35,6 +36,66 @@ class HomeController extends Controller
         $check = preg_match("/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix", $str);
         dd($check);
         return view('home');
+    }
+
+    public function myreset(Request $request){
+
+        $check_email = DB::table('users')
+                ->where('email', $request->email)
+                ->count();
+
+        if($check_email == 0){
+
+            return response()->json(['status'=> 100, 'msg' => 'อีเมลนี้ไม่ได้อยู่ในระบบ กรุณาตรวจสอบอีเมลอีกครั้ง']);
+
+        }else{
+
+        $credentials = request()->validate([
+            'email' => 'required|email',
+            'token' => 'required|string',
+            'password' => 'required'
+        ]);
+
+        $reset_password_status = Password::reset($credentials, function ($user, $password) {
+            $user->password = bcrypt($password);
+            $user->save();
+        });
+
+        if ($reset_password_status == Password::INVALID_TOKEN) {
+            return response()->json(['status'=> 100, 'msg' => 'ระบุโทเค็นไม่ถูกต้อง!']);
+        }
+
+        return response()->json(['status'=> 200, 'msg' => 'การรีเซ็ตรหัสผ่านสำเร็จ!']);
+
+    }
+
+
+    }
+
+    public function forgot(Request $request){
+
+        $check_email = DB::table('users')
+                ->where('email', $request->email)
+                ->count();
+
+        if($check_email == 0){
+
+            return response()->json(['status'=> 100, 'msg' => 'อีเมลนี้ไม่ได้อยู่ในระบบ กรุณาตรวจสอบอีเมลอีกครั้ง']);
+
+        }else{
+
+            $credentials = request()->validate(['email' => 'required|email']);
+            Password::sendResetLink($credentials);
+
+            return response()->json(['status'=> 200, 'msg' => 'เราได้ส่งลิงก์รีเซ็ตรหัสผ่านของคุณทางอีเมลแล้ว!']);
+
+        }
+
+        
+
+      /*  Password::sendResetLink($credentials);
+
+        return response()->json(["msg" => 'Reset password link sent on your email id.']); */
     }
 
     public function update_profile_avatar(Request $request){

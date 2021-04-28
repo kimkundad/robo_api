@@ -33,15 +33,30 @@ class AuthController extends Controller
             'password' => 'required|string|min:6',
         ]);
 
-        if ($validator->fails()) {
-            return response()->json(['status'=> 100, 'email' => 'The email must be a valid email address.', 'password' => 'The password must be at least 8 characters.']);
+        $check_email = DB::table('users')
+                ->where('email', $request->email)
+                ->count();
+
+        if($check_email == 0){
+
+            return response()->json(['status'=> 100, 'email' => 'อีเมลนี้ไม่ได้อยู่ในระบบ กรุณาตรวจสอบอีเมลอีกครั้ง', 'password' => '']);
+
+        }else{
+
+            if ($validator->fails()) {
+                return response()->json(['status'=> 100, 'email' => '', 'password' => 'รหัสผ่านไม่ถูกต้อง']);
+            }
+            if (! $token = auth()->attempt($validator->validated())) {
+                return response()->json(['status'=> 100, 'email' => '', 'password' => 'อีเมล หรือ รหัสผ่าน ของคุณไม่ถูกต้อง ']);
+                //return response()->json(['error' => 'Unauthorized'], 401);
+            }
+    
+            return $this->createNewToken($token);
+
         }
 
-        if (! $token = auth()->attempt($validator->validated())) {
-            return response()->json(['error' => 'Unauthorized'], 401);
-        }
-
-        return $this->createNewToken($token);
+        
+        
     }
 
     /**

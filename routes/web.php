@@ -26,6 +26,9 @@ Route::get('oauth/{driver}/callback', 'Auth\SocialAuthController@handleProviderC
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/call_user', 'HomeController@call_user')->name('call_user');
 
+Route::post('password/email', 'HomeController@forgot');
+
+Route::post('password/myreset', 'HomeController@myreset');
 
 Route::post('/update_profile_avatar', 'HomeController@update_profile_avatar')->name('update_profile_avatar');
 
