@@ -78,10 +78,11 @@ class AuthController extends Controller
             if($request->hbd != null){
                 $pieces = explode("-", $request->hbd);
                 $age = date("Y") - $pieces[0];
+            }else{
+                $age = 0;
             }
 
-            
-
+        
 
         //    $input = $request->all();
                 $id = auth()->user()->id;
