@@ -72,6 +72,26 @@ class HomeController extends Controller
 
     }
 
+
+    public function check_username(Request $request){
+
+        $validator = Validator::make($request->all(), [
+            'name' => 'required'
+        ]);
+
+        $check_name = DB::table('users')
+                ->where('name', $request->name)
+                ->count();
+
+        if($check_name == 0){
+            return response()->json(['status'=> 200, 'msg' => 'คุณสามารถใช้ ชื่อบัญชีผู้ใช้งานนี้']);
+        }else{
+            return response()->json(['status'=> 100, 'msg' => 'ชื่อบัญชีผู้ใช้งานนี้ ได้ถูกใช้ไปแล้ว']);
+        }
+
+
+    }
+
     public function forgot(Request $request){
 
         $check_email = DB::table('users')

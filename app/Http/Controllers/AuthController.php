@@ -29,17 +29,17 @@ class AuthController extends Controller
     public function login(Request $request){
         
     	$validator = Validator::make($request->all(), [
-            'email' => 'required|email',
+            'name' => 'required',
             'password' => 'required|string|min:6',
         ]);
 
         $check_email = DB::table('users')
-                ->where('email', $request->email)
+                ->where('name', $request->name)
                 ->count();
 
         if($check_email == 0){
 
-            return response()->json(['status'=> 100, 'email' => 'อีเมลนี้ไม่ได้อยู่ในระบบ กรุณาตรวจสอบอีเมลอีกครั้ง', 'password' => '']);
+            return response()->json(['status'=> 100, 'email' => 'บัญชีผู้ใช้งานไม่ได้อยู่ในระบบ กรุณาตรวจสอบอีกครั้ง', 'password' => '']);
 
         }else{
 
@@ -47,7 +47,7 @@ class AuthController extends Controller
                 return response()->json(['status'=> 100, 'email' => '', 'password' => 'รหัสผ่านไม่ถูกต้อง']);
             }
             if (! $token = auth()->attempt($validator->validated())) {
-                return response()->json(['status'=> 100, 'email' => '', 'password' => 'อีเมล หรือ รหัสผ่าน ของคุณไม่ถูกต้อง ']);
+                return response()->json(['status'=> 100, 'email' => '', 'password' => 'บัญชีผู้ใช้งาน หรือ รหัสผ่าน ของคุณไม่ถูกต้อง ']);
                 //return response()->json(['error' => 'Unauthorized'], 401);
             }
     
@@ -59,6 +59,8 @@ class AuthController extends Controller
         
     }
 
+    
+
     /**
      * Register a User.
      *
@@ -67,13 +69,20 @@ class AuthController extends Controller
 
      public function update_profile(Request $request){
 
+        
+
         if(isset(auth()->user()->id)){
             
-            if($request->age == null){
-                $age = 0;
-            }else{
-                $age = $request->age;
+            
+
+            if($request->hbd != null){
+                $pieces = explode("-", $request->hbd);
+                $age = date("Y") - $pieces[0];
             }
+
+            
+
+
         //    $input = $request->all();
                 $id = auth()->user()->id;
 
@@ -89,7 +98,7 @@ class AuthController extends Controller
 
 
            // DB::table('users')->where('id', auth()->user()->id)->update($input);
-            return response()->json(['status'=>200, 'message' => 'Update profile success']);
+            return response()->json(['status'=>200, 'message' => 'Update profile success', 'age' => $package->age]);
         }
 
      }
@@ -184,13 +193,17 @@ class AuthController extends Controller
         if($check_valid == 0){
             return response()->json([
                 'status'=> 100,
-                'msg' => 'รูปแบบอีเมล ของท่านไมาถูกต้อง'
+                'msg' => 'รูปแบบอีเมล ของท่านไม่ถูกต้อง'
             ]);
         }
 
         if($check_phone == 0 && $check_email == 0){
 
-            $ran = array("1483537975.png","1483556517.png","1483556686.png");
+            $check_fname = User::where('first_name', $request['first_name'])->Where('last_name', $request['last_name'])->count();
+        
+            if($check_fname == 0){
+
+                $ran = array("1483537975.png","1483556517.png","1483556686.png");
                 $user = User::create([
                     'name' => $request->name,
                     'email' => $request->email,
@@ -207,6 +220,21 @@ class AuthController extends Controller
                     'status' => 200,
                     'user' => $user
                 ]);
+
+            }else{
+
+             
+                    return response()->json([
+                        'status'=> 100,
+                        'msg' => 'ชื่อ - นามสกุล นี้ได้ถูกใช้ไปแล้ว'
+                    ]);
+                
+
+            }
+
+            /*
+
+             */
 
         }
 

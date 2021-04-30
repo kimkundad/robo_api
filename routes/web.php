@@ -27,6 +27,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/call_user', 'HomeController@call_user')->name('call_user');
 
 Route::post('password/email', 'HomeController@forgot');
+Route::post('check_username', 'HomeController@check_username');
 
 Route::post('password/myreset', 'HomeController@myreset');
 
