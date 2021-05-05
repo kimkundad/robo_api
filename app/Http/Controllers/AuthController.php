@@ -99,7 +99,7 @@ class AuthController extends Controller
 
 
            // DB::table('users')->where('id', auth()->user()->id)->update($input);
-            return response()->json(['status'=>200, 'message' => 'Update profile success', 'age' => $package->age]);
+            return response()->json(['status'=>200, 'message' => 'Update profile success', 'data' => auth()->user() ]);
         }
 
      }
