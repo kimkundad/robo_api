@@ -200,9 +200,7 @@ class AuthController extends Controller
 
         if($check_phone == 0 && $check_email == 0){
 
-            $check_fname = User::where('first_name', $request['first_name'])->Where('last_name', $request['last_name'])->count();
-        
-            if($check_fname == 0){
+           
 
                 $ran = array("1483537975.png","1483556517.png","1483556686.png");
                 $user = User::create([
@@ -222,16 +220,7 @@ class AuthController extends Controller
                     'user' => $user
                 ]);
 
-            }else{
-
-             
-                    return response()->json([
-                        'status'=> 100,
-                        'msg' => 'ชื่อ - นามสกุล นี้ได้ถูกใช้ไปแล้ว'
-                    ]);
-                
-
-            }
+            
 
             /*
 
