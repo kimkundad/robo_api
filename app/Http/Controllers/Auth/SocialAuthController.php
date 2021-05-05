@@ -85,11 +85,10 @@ class SocialAuthController extends Controller
         if( $user ) {
             // update the avatar and provider that might have changed
             $user->update([
-                'avatar' => $providerUser->avatar,
-                'provider' => $driver,
                 'provider_id' => $providerUser->id,
                 'access_token' => $providerUser->token
             ]);
+            
         } else {
             // create a new user
             $user = User::create([
