@@ -47,7 +47,7 @@ class HomeController extends Controller
             'Content-Type' => 'application/pdf',
          ];
 
-        return response::download($file, 'filename.pdf', $headers);
+        return response::download($file, 'promptRUB_API_Document.pdf', $headers);
     }
 
     public function myreset(Request $request){
