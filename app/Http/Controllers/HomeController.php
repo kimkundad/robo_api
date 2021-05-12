@@ -9,6 +9,7 @@ use App\User;
 use App\option_package;
 use Validator;
 use Password;
+use Response;
 use Intervention\Image\ImageManagerStatic as Image;
 
 use Illuminate\Support\Facades\DB;
@@ -36,6 +37,17 @@ class HomeController extends Controller
         $check = preg_match("/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix", $str);
         dd($check);
         return view('home');
+    }
+
+
+    public function get_document(){
+
+        $file= public_path(). "/assets/api_document/promptRUB_API_Document.pdf";
+        $headers = [
+            'Content-Type' => 'application/pdf',
+         ];
+
+        return response::download($file, 'filename.pdf', $headers);
     }
 
     public function myreset(Request $request){
