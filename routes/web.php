@@ -15,10 +15,12 @@ use App\Http\Controllers\AuthController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect(url('login'));
 });
 
 Auth::routes();
+
+Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
 Route::get('/get_document', 'HomeController@get_document')->name('get_document');
 
