@@ -46,7 +46,7 @@ class AuthController extends Controller
             if ($validator->fails()) {
                 return response()->json(['status'=> 100, 'email' => '', 'password' => 'รหัสผ่านไม่ถูกต้อง']);
             }
-            if (! $token = auth()->attempt($validator->validated())) {
+            if (! $token = auth('api')->attempt($validator->validated())) {
                 return response()->json(['status'=> 100, 'email' => '', 'password' => 'บัญชีผู้ใช้งาน หรือ รหัสผ่าน ของคุณไม่ถูกต้อง ']);
                 //return response()->json(['error' => 'Unauthorized'], 401);
             }
@@ -71,7 +71,7 @@ class AuthController extends Controller
 
         
 
-        if(isset(auth()->user()->id)){
+        if(isset(auth('api')->user()->id)){
             
             
 
@@ -85,7 +85,7 @@ class AuthController extends Controller
         
 
         //    $input = $request->all();
-                $id = auth()->user()->id;
+                $id = auth('api')->user()->id;
 
                 $package = User::find($id);
                 $package->age = $age;
@@ -98,7 +98,7 @@ class AuthController extends Controller
                 $package->save();
 
 
-           // DB::table('users')->where('id', auth()->user()->id)->update($input);
+           // DB::table('users')->where('id', auth('api')->user()->id)->update($input);
             return response()->json(['status'=>200, 'message' => 'Update profile success', 'data' => $package ]);
         }
 
@@ -107,7 +107,7 @@ class AuthController extends Controller
 
      public function update_profile_avatar(Request $request){
 
-        if(isset(auth()->user()->id)){
+        if(isset(auth('api')->user()->id)){
             dd($request->all());
         }
 
@@ -117,11 +117,11 @@ class AuthController extends Controller
 
      public function reset_password(Request $request){
 
-        if(isset(auth()->user()->id)){
+        if(isset(auth('api')->user()->id)){
 
-            if (Hash::check($request->old_password, auth()->user()->password)) { 
+            if (Hash::check($request->old_password, auth('api')->user()->password)) { 
 
-                $id = auth()->user()->id;
+                $id = auth('api')->user()->id;
 
                 $package = User::find($id);
                 $package->password = bcrypt($request->password);
@@ -238,7 +238,7 @@ class AuthController extends Controller
      * @return \Illuminate\Http\JsonResponse
      */
     public function logout() {
-        auth()->logout();
+        auth('api')->logout();
 
         return response()->json(['message' => 'User successfully signed out']);
     }
@@ -260,14 +260,14 @@ class AuthController extends Controller
     public function userProfile() {
         return response()->json([
             'status'=>200,
-            'data' => auth()->user()
+            'data' => auth('api')->user()
         ]
         );
     }
 
     public function get_tex_address(){
 
-        $cat = DB::table('text_addresses')->where('user_id', auth()->user()->id)->get();
+        $cat = DB::table('text_addresses')->where('user_id', auth('api')->user()->id)->get();
 
         return response()->json(['status'=>200, 'message' => 'get tex address success', 'data' => $cat]);
     }
