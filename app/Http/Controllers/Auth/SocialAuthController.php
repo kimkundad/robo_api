@@ -111,7 +111,7 @@ class SocialAuthController extends Controller
 
         }
 
-        dd($user);
+      //  dd($user);
 
         $objs = DB::table('role_user')
             ->where('user_id', $user->id)
