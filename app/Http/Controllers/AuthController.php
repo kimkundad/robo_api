@@ -205,6 +205,8 @@ class AuthController extends Controller
            
 
                 $ran = array("1483537975.png","1483556517.png","1483556686.png");
+                $randomSixDigitInt = 'RBT-'.(\random_int(10000, 99999)).'-'.(\random_int(10000, 99999)).'-'.(\random_int(10000, 99999));
+
                 $user = User::create([
                     'name' => $request->name,
                     'email' => $request->email,
@@ -213,7 +215,8 @@ class AuthController extends Controller
                     'phone' => $request->phone,
                     'password' => bcrypt($request->password),
                     'provider' => 'email',
-                    'avatar' => $ran[array_rand($ran, 1)]
+                    'avatar' => $ran[array_rand($ran, 1)],
+                    'code_user' => $randomSixDigitInt,
                 ]);
 
                 $objs = DB::table('role_user')

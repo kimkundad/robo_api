@@ -92,6 +92,9 @@ class SocialAuthController extends Controller
             
         } else {
             // create a new user
+
+            $randomSixDigitInt = 'RBT-'.(\random_int(10000, 99999)).'-'.(\random_int(10000, 99999)).'-'.(\random_int(10000, 99999));
+
             $user = User::create([
                 'name' => $providerUser->getName(),
                 'email' => $providerUser->getEmail(),
@@ -99,6 +102,7 @@ class SocialAuthController extends Controller
                 'provider' => $driver,
                 'provider_id' => $providerUser->getId(),
                 'access_token' => $providerUser->token,
+                'code_user' => $randomSixDigitInt,
                 // user can use reset password to create a password
                 'password' => ''
             ]);
