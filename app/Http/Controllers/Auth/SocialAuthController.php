@@ -92,7 +92,7 @@ class SocialAuthController extends Controller
             ]);
             
            $user = Auth::login($user, true);
-           dd($user);
+            dd($user);
             return redirect()->intended('https://www.robotel.co.th/get_api/socialauth?id='.$user);
 
            // dd($user);
