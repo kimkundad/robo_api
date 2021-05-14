@@ -24,8 +24,8 @@ Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
 Route::get('/get_document', 'HomeController@get_document')->name('get_document');
 
-Route::get('oauth/{driver}', 'Auth\SocialAuthController@redirectToProvider')->middleware('middleware:api');
-Route::get('oauth/{driver}/callback', 'Auth\SocialAuthController@handleProviderCallback')->middleware('middleware:api');
+Route::get('oauth/{driver}', 'Auth\SocialAuthController@redirectToProvider')->middleware('auth:api');
+Route::get('oauth/{driver}/callback', 'Auth\SocialAuthController@handleProviderCallback')->middleware('auth:api');
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/call_user', 'HomeController@call_user')->name('call_user');
