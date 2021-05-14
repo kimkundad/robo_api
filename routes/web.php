@@ -64,4 +64,7 @@ Route::group(['middleware' => ['UserRole:manager|employee']], function() {
     Route::resource('admin/user', 'UserController');
 
     Route::get('api/del_user/{id}', 'UserController@del_user')->name('del_user');
+
+    Route::get('admin/setting', 'SettingController@setting')->name('setting');
+    Route::post('api/post_setting', 'SettingController@post_setting')->name('post_setting');
 });
