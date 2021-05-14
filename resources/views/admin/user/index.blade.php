@@ -48,7 +48,7 @@
                             @if($u->provider == 'email')
                             <img src="{{ url('assets/img/avatar/'.$u->avatar) }}" alt="{{$u->name}}"> 
                             @else
-                            <img src="{{ url('//'.$u->avatar) }}" alt="{{$u->name}}"> 
+                            <img src="{{ url($u->avatar) }}" alt="{{$u->name}}"> 
                             @endif
                             {{$u->name}}</td>
                             <td>
