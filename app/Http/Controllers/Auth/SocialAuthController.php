@@ -108,12 +108,7 @@ class SocialAuthController extends Controller
                 'password' => ''
             ]);
 
-
-        }
-
-      //  dd($user);
-
-        $objs = DB::table('role_user')
+            $objs = DB::table('role_user')
             ->where('user_id', $user->id)
             ->first();
 
@@ -138,11 +133,18 @@ class SocialAuthController extends Controller
             $obj->save();
 
 
+        }
+
+      //  dd($user);
+
+        
+
+
 
         // login the user
         $user = Auth::login($user, true);
         
-        return redirect()->intended('https://www.robotel.co.th/get_api/socialauth?id='.$user->access_token);
+        return redirect()->intended('https://www.robotel.co.th/get_api/socialauth?id='.$user);
        // dd($user);
 
        // return $this->sendSuccessResponse();
