@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
+use Jenssegers\Agent\Agent;
+use App\logsys;
 
 class SocialAuthController extends Controller
 {
@@ -80,18 +82,22 @@ class SocialAuthController extends Controller
     {
         // check for already has account
         $user = User::where('email', $providerUser->getEmail())->first();
-
+        
         // if user already found
         if( $user ) {
             // update the avatar and provider that might have changed
             $user->update([
-                'avatar' => $providerUser->avatar,
-                'provider' => $driver,
                 'provider_id' => $providerUser->id,
                 'access_token' => $providerUser->token
             ]);
+
+            dd($user);
+            
         } else {
             // create a new user
+
+            $randomSixDigitInt = 'RBT-'.(\random_int(10000, 99999)).'-'.(\random_int(10000, 99999)).'-'.(\random_int(10000, 99999));
+
             $user = User::create([
                 'name' => $providerUser->getName(),
                 'email' => $providerUser->getEmail(),
@@ -99,14 +105,12 @@ class SocialAuthController extends Controller
                 'provider' => $driver,
                 'provider_id' => $providerUser->getId(),
                 'access_token' => $providerUser->token,
+                'code_user' => $randomSixDigitInt,
                 // user can use reset password to create a password
                 'password' => ''
             ]);
 
-
-        }
-
-        $objs = DB::table('role_user')
+            $objs = DB::table('role_user')
             ->where('user_id', $user->id)
             ->first();
 
@@ -120,12 +124,30 @@ class SocialAuthController extends Controller
 
         }
 
+        $agent = new Agent();
+
+            $obj = new logsys();
+            $obj->user_id = $user->id;
+            $obj->detail = 'ได้ทำการเข้าสุ่ระบบเพื่อใช้งานผ่าน :'.$agent->device().' Operating system name : '.$agent->platform();
+            $obj->ip_address = \Request::ip();
+            $obj->browser = $agent->browser();
+            $obj->status = 1;
+            $obj->save();
+
+            $user = Auth::login($user, true);
+        
+            return redirect()->intended('https://www.robotel.co.th/get_api/socialauth?id='.$user);
+
+        }
+
+      //  dd($user);
+
+        
+
 
 
         // login the user
-        $user = Auth::login($user, true);
-       
-        return redirect()->intended('https://www.robotel.co.th/get_api/socialauth?id='.$user);
+        
        // dd($user);
 
        // return $this->sendSuccessResponse();
