@@ -91,9 +91,9 @@ class SocialAuthController extends Controller
                 'access_token' => $providerUser->token
             ]);
 
-           // $user = Auth::login($user, true);
+           $user = Auth::login($user, true);
         
-            return redirect()->intended('https://www.robotel.co.th/get_api/socialauth?id='.$user->access_token);
+            return redirect()->intended('https://www.robotel.co.th/get_api/socialauth?id='.$user);
 
            // dd($user);
             
