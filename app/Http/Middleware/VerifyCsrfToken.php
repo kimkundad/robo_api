@@ -22,6 +22,7 @@ class VerifyCsrfToken extends Middleware
         'update_profile_avatar',
         'password/email',
         'password/myreset',
-        'check_username'
+        'check_username',
+        'check_logout'
     ];
 }

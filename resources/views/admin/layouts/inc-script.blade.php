@@ -11,6 +11,8 @@
   <script src="{{ url('back/js/todolist.js') }}"></script>
   <script src="{{ url('back/vendors/summernote/dist/summernote-bs4.min.js') }}"></script>
 <script src="{{ url('back/js/dropify.js') }}"></script>
+<script src="{{ url('back/js/formpickers.js') }}"></script>
+  <script src="{{ url('back/js/form-addons.js') }}"></script>
 
   <!-- End custom js for this page-->
   <script>

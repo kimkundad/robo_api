@@ -10,7 +10,9 @@ use App\option_package;
 use Validator;
 use Password;
 use Response;
+use App\logsys;
 use Intervention\Image\ImageManagerStatic as Image;
+use Jenssegers\Agent\Agent;
 
 use Illuminate\Support\Facades\DB;
 
@@ -81,6 +83,20 @@ class HomeController extends Controller
 
     }
 
+
+    }
+
+    public function check_logout(Request $request){
+
+        $agent = new Agent();
+
+            $obj = new logsys();
+            $obj->user_id = $request->id;
+            $obj->detail = 'ผู้ใช้งานได้ทำการออกจากระบบ :'.$agent->device().' Operating system name : '.$agent->platform();
+            $obj->ip_address = \Request::ip();
+            $obj->browser = $agent->browser();
+            $obj->status = 2;
+            $obj->save();
 
     }
 

@@ -5,9 +5,11 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use App\User;
+use App\logsys;
 use Validator;
 use App\text_address;
 use Illuminate\Support\Facades\Hash;
+use Jenssegers\Agent\Agent;
 
 
 class AuthController extends Controller
@@ -214,6 +216,28 @@ class AuthController extends Controller
                     'avatar' => $ran[array_rand($ran, 1)]
                 ]);
 
+                $objs = DB::table('role_user')
+                    ->where('user_id', $user->id)
+                    ->first();
+
+                if($objs != null){
+
+                }else{
+
+                DB::table('role_user')->insert(
+                    ['role_id' => 3, 'user_id' => $user->id]
+                );
+
+                }
+                $agent = new Agent();
+                $obj = new logsys();
+            $obj->user_id = auth('api')->user()->id;
+            $obj->detail = 'ได้ทำการสมัครสมาชิกเข้าระบบเพื่อใช้งานผ่าน :'.$agent->device().' Operating system name : '.$agent->platform();
+            $obj->ip_address = \Request::ip();
+            $obj->browser = $agent->browser();
+            $obj->status = 3;
+            $obj->save();
+
                 return response()->json([
                     'msg' => 'User successfully registered',
                     'status' => 200,
@@ -280,6 +304,16 @@ class AuthController extends Controller
      * @return \Illuminate\Http\JsonResponse
      */
     protected function createNewToken($token){
+        $agent = new Agent();
+
+            $obj = new logsys();
+            $obj->user_id = auth('api')->user()->id;
+            $obj->detail = 'ได้ทำการเข้าสุ่ระบบเพื่อใช้งานผ่าน :'.$agent->device().' Operating system name : '.$agent->platform();
+            $obj->ip_address = \Request::ip();
+            $obj->browser = $agent->browser();
+            $obj->status = 1;
+            $obj->save();
+
         return response()->json([
             'access_token' => $token,
             'token_type' => 'bearer',

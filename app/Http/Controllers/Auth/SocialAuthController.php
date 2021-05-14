@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
+use Jenssegers\Agent\Agent;
 
 class SocialAuthController extends Controller
 {
@@ -118,6 +119,16 @@ class SocialAuthController extends Controller
           );
 
         }
+
+        $agent = new Agent();
+
+            $obj = new logsys();
+            $obj->user_id = $user->id;
+            $obj->detail = 'ได้ทำการเข้าสุ่ระบบเพื่อใช้งานผ่าน :'.$agent->device().' Operating system name : '.$agent->platform();
+            $obj->ip_address = \Request::ip();
+            $obj->browser = $agent->browser();
+            $obj->status = 1;
+            $obj->save();
 
 
 
