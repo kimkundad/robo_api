@@ -24,8 +24,10 @@ Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
 Route::get('/get_document', 'HomeController@get_document')->name('get_document');
 
-Route::get('oauth/{driver}', 'Auth\SocialAuthController@redirectToProvider')->middleware('auth:api');
-Route::get('oauth/{driver}/callback', 'Auth\SocialAuthController@handleProviderCallback')->middleware('auth:api');
+Route::group(['middleware' => 'auth:api'], function () {
+Route::get('oauth/{driver}', 'Auth\SocialAuthController@redirectToProvider')->name('social.oauth');
+Route::get('oauth/{driver}/callback', 'Auth\SocialAuthController@handleProviderCallback')->name('social.callback');
+});
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/call_user', 'HomeController@call_user')->name('call_user');
@@ -63,7 +65,4 @@ Route::group(['middleware' => ['UserRole:manager|employee']], function() {
     Route::resource('admin/user', 'UserController');
 
     Route::get('api/del_user/{id}', 'UserController@del_user')->name('del_user');
-
-    Route::get('admin/setting', 'SettingController@setting')->name('setting');
-    Route::post('api/post_setting', 'SettingController@post_setting')->name('post_setting');
 });
