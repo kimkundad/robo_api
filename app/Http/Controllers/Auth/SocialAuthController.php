@@ -152,6 +152,7 @@ class SocialAuthController extends Controller
      * @param $driver
      * @return bool
      */
+    
     private function isProviderAllowed($driver)
     {
 
