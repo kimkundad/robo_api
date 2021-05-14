@@ -82,7 +82,7 @@ class SocialAuthController extends Controller
     {
         // check for already has account
         $user = User::where('email', $providerUser->getEmail())->first();
-        dd($user);
+        
         // if user already found
         if( $user ) {
             // update the avatar and provider that might have changed
@@ -139,7 +139,7 @@ class SocialAuthController extends Controller
 
         // login the user
         $user = Auth::login($user, true);
-       
+        dd($user);
       //  return redirect()->intended('https://www.robotel.co.th/get_api/socialauth?id='.$user);
        // dd($user);
 
