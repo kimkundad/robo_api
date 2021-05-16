@@ -26,43 +26,47 @@ window.gaTitle = 'หน้าแรก';
 										<div class="ml-3">
 											<h6>เพิ่ม Biller ID ใหม่</h6>
 											<p class="text-muted">Biller ID ใหม่ต่างธนาคารที่มีอยู่</p>
-											<button class="add btn btn-primary font-weight-bold todo-list-add-btn">Create Biller ID</button>
+											<a class="add btn btn-primary font-weight-bold " href="{{ url('admin/create_biller_id/'.$objs->id) }}">Create Biller ID</a>
 										</div>
 									</div>
 								</div>
 							</div>
 						</div>
 
+            
 
-                        <div class="col-md-4 grid-margin stretch-card">
+            @if(isset($bill))
+            @foreach($bill as $u)
+            <div class="col-md-4 grid-margin stretch-card">
+              
 							<div class="card">
+              <a href="{{ url('admin/edit_biller_id/'.$u->idb) }}" style="text-decoration:none">
 								<div class="card-body">
 									<div class="d-flex flex-row">
-										<img src="{{ url('img/bank/scb.png') }}" class="img-lg rounded" alt="profile image">
+										<img src="{{ url('img/bank/'.$u->bank_img) }}" class="img-lg rounded" >
 										<div class="ml-3">
-											<h6>BID14526985263</h6>
-											<p class="text-muted">ธนาคารไทยพาณิชย์</p>
-											<p class="mt-2 text-success font-weight-bold">Biller ID</p>
+											<h6>{{ $u->biller_id }}</h6>
+											<p class="text-muted">{{ $u->name_bank }}</p>
+                                                        @if( $u->process == 0)
+                                                        <p class="mt-2 text-warning font-weight-bold">เจ้าหน้าที่ติดต่อกลับ</p>
+                                                        @elseif($u->process == 1)
+                                                        <p class="mt-2 text-info font-weight-bold">ส่งเรื่องให้กับธนาคาร</p>
+                                                        @elseif($u->process == 2)
+                                                        <p class="mt-2 text-success font-weight-bold">ผ่าน</p>
+                                                        @else
+                                                        <p class="mt-2 text-danger  font-weight-bold">ไม่ผ่าน</p>
+														                            @endif
 										</div>
 									</div>
 								</div>
+                </a>
 							</div>
+              
 						</div>
+            @endforeach
+            @endif
 
-                        <div class="col-md-4 grid-margin stretch-card">
-							<div class="card">
-								<div class="card-body">
-									<div class="d-flex flex-row">
-										<img src="{{ url('img/bank/krungsri.png') }}" class="img-lg rounded" alt="profile image">
-										<div class="ml-3">
-											<h6>BID14526985263</h6>
-											<p class="text-muted">ธนาคารกรุงศรีอยุธยา</p>
-											<p class="mt-2 text-success font-weight-bold">Biller ID</p>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
+            
 
 
 <div class="col-md-12">

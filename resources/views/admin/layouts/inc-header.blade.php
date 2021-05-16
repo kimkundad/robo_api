@@ -39,11 +39,31 @@
         <div class="container">
           <ul class="nav page-navigation">
             <li class="nav-item">
-              <a href="{{ url('admin/dashboard') }}" class="nav-link"><i class="link-icon icon-pie-chart"></i><span class="menu-title">หน้าแรก</span></a>
+              <a href="{{ url('admin/dashboard') }}" class="nav-link"><i class="link-icon icon-screen-desktop"></i><span class="menu-title">Dashboard</span></a>
             </li>
 
             <li class="nav-item">
               <a href="{{ url('admin/user') }}" class="nav-link"><i class="link-icon icon-user"></i><span class="menu-title">ผู้ใช้งาน</span></a>
+            </li>
+
+            <li class="nav-item">
+              <a href="{{ url('admin/bank') }}" class="nav-link"><i class="link-icon icon-briefcase"></i><span class="menu-title">ธนาคาร</span></a>
+            </li>
+
+            <li class="nav-item">
+              <a href="#" class="nav-link"><i class="link-icon icon-bag"></i><span class="menu-title">สินค้า</span></a>
+            </li>
+
+            <li class="nav-item">
+              <a href="#" class="nav-link"><i class="link-icon icon-basket-loaded"></i><span class="menu-title">การสั่งซื้อ</span></a>
+            </li>
+
+            <li class="nav-item">
+              <a href="#" class="nav-link"><i class="link-icon icon-present"></i><span class="menu-title">โค้ดส่วนลด</span></a>
+            </li>
+
+            <li class="nav-item">
+              <a href="{{ url('admin/banner') }}" class="nav-link"><i class="link-icon icon-badge"></i><span class="menu-title">แบนเนอร์</span></a>
             </li>
  
             <li class="nav-item">

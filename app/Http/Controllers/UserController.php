@@ -65,7 +65,23 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        //name_bank
+
+        $bill = DB::table('billers')->select(
+            'billers.*',
+            'billers.created_at as create',
+            'billers.id as idb',
+            'users.*',
+            'banks.*'
+            )
+            ->leftjoin('users', 'users.code_user',  'billers.user_id')
+            ->leftjoin('banks', 'banks.id',  'billers.bank_id')
+            ->where('users.id', $id)
+            ->get();
+
+        $data['bill'] = $bill;   
+
+
         $log = DB::table('logsys')->select(
             'logsys.*',
             'logsys.created_at as create',
@@ -102,6 +118,7 @@ class UserController extends Controller
         if($request->hbd != null){
             $pieces = explode("-", $request->hbd);
             $age = date("Y") - $pieces[0];
+            $age += 543;
         }else{
             $age = 0;
         }
@@ -109,7 +126,7 @@ class UserController extends Controller
 
 
             $package = User::find($id);
-            $package->age = $age+543;
+            $package->age = $age;
             $package->first_name = $request->first_name;
             $package->hbd = $request->hbd;
             $package->last_name = $request->last_name;

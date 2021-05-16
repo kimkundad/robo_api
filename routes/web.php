@@ -62,9 +62,39 @@ Route::group(['middleware' => ['UserRole:manager|employee']], function() {
 
     Route::get('admin/dashboard', 'DashboardController@index');
     Route::resource('admin/user', 'UserController');
+    Route::resource('admin/bank', 'BankController');
+    
+    Route::get('api/del_bank/{id}', 'BankController@del_bank')->name('del_bank');
+    Route::post('api/bank_status', 'BankController@bank_status')->name('bank_status');
 
     Route::get('api/del_user/{id}', 'UserController@del_user')->name('del_user');
 
     Route::get('admin/setting', 'SettingController@setting')->name('setting');
     Route::post('api/post_setting', 'SettingController@post_setting')->name('post_setting');
+
+    Route::get('admin/create_biller_id/{id}', 'BillerController@create_biller_id')->name('create_biller_id');
+    Route::post('api/add_new_biller_id/', 'BillerController@add_new_biller_id')->name('add_new_biller_id');
+    Route::get('admin/edit_biller_id/{id}', 'BillerController@edit_biller_id')->name('edit_biller_id');
+
+    Route::post('api/add_file1/', 'BillerController@add_file1')->name('add_file1');
+    Route::get('api/get_document_1/{id}', 'BillerController@get_document_1')->name('get_document_1');
+    Route::post('api/add_file2/', 'BillerController@add_file2')->name('add_file2');
+    Route::get('api/get_document_2/{id}', 'BillerController@get_document_2')->name('get_document_2');
+    Route::post('api/add_file3/', 'BillerController@add_file3')->name('add_file3');
+    Route::get('api/get_document_3/{id}', 'BillerController@get_document_3')->name('get_document_3');
+    Route::get('api/del_image_3/{id}', 'BillerController@del_image_3')->name('del_image_3');
+
+    Route::post('api/post_edit_biller_id/{id}', 'BillerController@post_edit_biller_id')->name('post_edit_biller_id');
+
+    Route::resource('admin/banner', 'BannerController');
+    Route::get('api/del_banner/{id}', 'BannerController@del_banner')->name('del_banner');
+    Route::post('api/banner_status', 'BannerController@banner_status')->name('banner_status');
+
+
 });
+
+
+
+
+
+
