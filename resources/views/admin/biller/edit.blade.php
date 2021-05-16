@@ -413,7 +413,7 @@ window.gaTitle = 'หน้าแรก';
                         <div class="form-group row">
                           <label class="col-sm-3 col-form-label">เบอร์โทร <span class="text-danger">*</span></label>
                           <div class="col-sm-9">
-                            <input type="text" class="form-control" value="{{ $bill->phone }}" name="phone">
+                            <input type="text" class="form-control" value="{{ $bill->phone1 }}" name="phone">
                           </div>
                         </div>
                     </div>

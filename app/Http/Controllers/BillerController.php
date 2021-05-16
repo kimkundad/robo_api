@@ -40,6 +40,7 @@ class BillerController extends Controller
             'billers.*',
             'billers.created_at as create',
             'billers.id as idb',
+            'billers.phone as phone1',
             'users.*',
             'banks.*',
             'users.id as idu',
