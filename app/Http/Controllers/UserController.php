@@ -88,6 +88,7 @@ class UserController extends Controller
             'users.*'
             )
             ->leftjoin('users', 'users.id',  'logsys.user_id')
+            ->where('users.id',  $id)
             ->paginate(10);
 
             $data['log'] = $log;
