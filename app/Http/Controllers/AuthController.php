@@ -10,6 +10,7 @@ use Validator;
 use App\text_address;
 use Illuminate\Support\Facades\Hash;
 use Jenssegers\Agent\Agent;
+use App\biller;
 
 
 class AuthController extends Controller
@@ -69,21 +70,45 @@ class AuthController extends Controller
      * @return \Illuminate\Http\JsonResponse
      */
 
-     public function update_profile(Request $request){
+     public function add_my_biller_id(Request $request){
 
-        
+        if(isset(auth('api')->user()->id)){
+
+
+            $randomSixDigitInt = (\random_int(1000, 9999)).''.(\random_int(1000, 9999)).''.(\random_int(10, 99));
+
+            $objs = new biller();
+            $objs->biller_id = $randomSixDigitInt;
+            $objs->f_name = $request['first_name'];
+            $objs->l_name = $request['last_name'];
+            $objs->email = $request['email'];
+            $objs->phone = $request['phone'];
+            $objs->company_name = $request['company_name'];
+            $objs->company_type = $request['type_company'];
+            $objs->business_type = $request['type_bu'];
+            $objs->id_card = $request['id_card'];
+            $objs->bank_id = $request['checkBank'];
+            $objs->user_id = $request['user_id'];
+            $objs->admin_id = 1;
+            $objs->status = 1;
+            $objs->save();
+
+            return response()->json(['status'=>200, 'message' => 'Update profile success' ]);
+
+        }
+
+     }
+
+     public function update_profile(Request $request){
 
         if(isset(auth('api')->user()->id)){
             
-            
-
             if($request->hbd != null){
                 $pieces = explode("-", $request->hbd);
                 $age = date("Y") - $pieces[0];
             }else{
                 $age = 0;
             }
-
         
 
         //    $input = $request->all();

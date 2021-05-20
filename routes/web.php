@@ -48,7 +48,7 @@ Route::get('/get_banner_index', 'HomeController@get_banner_index')->name('get_ba
 Route::get('/get_package', 'HomeController@get_package')->name('get_package');
 Route::post('/check_name_user', 'HomeController@check_name_user')->name('check_name_user');
 
-
+Route::get('/get_banks', 'HomeController@get_banks')->name('get_banks');
 
 Route::post('/reset_password', [AuthController::class, 'reset_password']);
 
@@ -57,6 +57,7 @@ Route::post('/get_register', [AuthController::class, 'register']);
 Route::get('/get-user-profile', [AuthController::class, 'userProfile']);  
 Route::get('/get_tex_address', [AuthController::class, 'get_tex_address']); 
 Route::post('/update_profile', [AuthController::class, 'update_profile']); 
+Route::post('/add_my_biller_id', [AuthController::class, 'add_my_biller_id']); 
 
 Route::group(['middleware' => ['UserRole:manager|employee']], function() {
 

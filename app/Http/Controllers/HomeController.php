@@ -11,6 +11,7 @@ use Validator;
 use Password;
 use Response;
 use App\logsys;
+use App\bank;
 use Intervention\Image\ImageManagerStatic as Image;
 use Jenssegers\Agent\Agent;
 
@@ -193,6 +194,13 @@ class HomeController extends Controller
         }
 
         return response()->json($obj);
+    }
+
+    public function get_banks(){
+
+        $obj = bank::where('bank_status', 1)->get();
+        return response()->json($obj);
+
     }
 
     public function post_blog(Request $request){
