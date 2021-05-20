@@ -17,7 +17,7 @@ class UserController extends Controller
     public function index()
     {
         //
-        dd(User::all());
+      //  dd(User::all());
         $objs = DB::table('users')
                 ->Orderby('id', 'desc')
                 ->paginate(15);

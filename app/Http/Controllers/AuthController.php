@@ -259,7 +259,7 @@ class AuthController extends Controller
                 }
                 $agent = new Agent();
                 $obj = new logsys();
-            $obj->user_id = auth('api')->user()->id;
+            $obj->user_id = $user->id;
             $obj->detail = 'ได้ทำการสมัครสมาชิกเข้าระบบเพื่อใช้งานผ่าน :'.$agent->device().' Operating system name : '.$agent->platform();
             $obj->ip_address = \Request::ip();
             $obj->browser = $agent->browser();
