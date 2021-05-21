@@ -23,6 +23,7 @@ Auth::routes();
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
 Route::get('/get_document', 'HomeController@get_document')->name('get_document');
+Route::get('/get_document_page/{id}', 'HomeController@get_document_page')->name('get_document_page');
 
 
 Route::get('oauth/{driver}', 'Auth\SocialAuthController@redirectToProvider')->name('social.oauth');

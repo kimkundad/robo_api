@@ -186,12 +186,24 @@ class HomeController extends Controller
 
     }
 
+    public function get_document_page($id){
+
+        $objs = DB::table('get_files')
+            ->where('id', $id)
+            ->first();
+
+        $file= public_path(). "/img/doc_download/".$objs->store_file;
+
+        return response::download($file);
+    }
+
 
     public function get_file_index(){
 
         $obj = cat_file::where('status', 1)->orderby('id', 'asc')->first();
         $file = get_file::where('status', 1)->where('cat_id', $obj->id)->get();
-        $file->header = $obj->cat_name;
+        
+        
         return response()->json([$file]);
    
     }
