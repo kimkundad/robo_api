@@ -11,6 +11,7 @@ use Validator;
 use Password;
 use Response;
 use App\logsys;
+use App\cat_file;
 use App\bank;
 use Intervention\Image\ImageManagerStatic as Image;
 use Jenssegers\Agent\Agent;
@@ -175,6 +176,13 @@ class HomeController extends Controller
     public function call_user(){
         $user = User::all();
         dd($user);
+    }
+
+    public function get_cat_menu(){
+
+        $obj = cat_file::where('status', 1)->get();
+        return response()->json($obj);
+
     }
 
     public function get_banner_index()
