@@ -25,6 +25,8 @@ class VerifyCsrfToken extends Middleware
         'check_username',
         'check_logout',
         'add_my_biller_id',
-        'add_my_biller_file'
+        'add_my_biller_file',
+        'get_document_page/*',
+        'get_document'
     ];
 }
