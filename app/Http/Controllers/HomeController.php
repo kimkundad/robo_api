@@ -197,7 +197,6 @@ class HomeController extends Controller
 
         $file = get_file::where('status', 1)->where('cat_id', $id)->get();
         return response()->json($file);
-
     }
 
     public function get_document_page($id){
