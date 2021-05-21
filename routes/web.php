@@ -35,7 +35,7 @@ Route::get('/call_user', 'HomeController@call_user')->name('call_user');
 Route::get('/get_cat_menu', 'HomeController@get_cat_menu')->name('get_cat_menu');
 Route::get('/get_file_index', 'HomeController@get_file_index')->name('get_file_index');
 Route::get('/get_first_menu', 'HomeController@get_first_menu')->name('get_first_menu');
-
+Route::get('/get_file_id/{id}', 'HomeController@get_file_id')->name('get_file_id');
 
 Route::post('check_logout', 'HomeController@check_logout');
 

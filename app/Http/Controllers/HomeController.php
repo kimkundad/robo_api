@@ -193,6 +193,13 @@ class HomeController extends Controller
 
     }
 
+    public function get_file_id($id){
+
+        $file = get_file::where('status', 1)->where('cat_id', $id)->get();
+        return response()->json($file);
+
+    }
+
     public function get_document_page($id){
 
         $objs = DB::table('get_files')
