@@ -185,6 +185,12 @@ class HomeController extends Controller
 
     }
 
+
+    public function get_file_index(){
+        $obj = cat_file::where('status', 1)->first();
+        return response()->json($obj);
+    }
+
     public function get_banner_index()
     {
         $obj = banner::all();
