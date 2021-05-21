@@ -191,7 +191,7 @@ class HomeController extends Controller
 
         $obj = cat_file::where('status', 1)->orderby('id', 'asc')->first();
         $file = get_file::where('status', 1)->where('cat_id', $obj->id)->get();
-       
+        $file->header = $obj->cat_name;
         return response()->json([$file]);
    
     }
