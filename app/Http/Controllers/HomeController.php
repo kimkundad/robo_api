@@ -186,6 +186,13 @@ class HomeController extends Controller
 
     }
 
+    public function get_first_menu(){
+
+        $obj = cat_file::where('status', 1)->orderby('id', 'asc')->first();
+        return response()->json($obj);
+
+    }
+
     public function get_document_page($id){
 
         $objs = DB::table('get_files')
