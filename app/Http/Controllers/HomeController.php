@@ -204,7 +204,7 @@ class HomeController extends Controller
         $file = get_file::where('status', 1)->where('cat_id', $obj->id)->get();
         
         
-        return response()->json([$file]);
+        return response()->json($file);
    
     }
 
