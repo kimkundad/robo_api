@@ -192,8 +192,8 @@ class HomeController extends Controller
         $obj = cat_file::where('status', 1)->orderby('id', 'asc')->first();
         $file = get_file::where('status', 1)->where('cat_id', $obj->id)->get();
        
-
-        return response()->json($file);
+        return response()->json([$file, 'menu' => $obj]);
+   
     }
 
     public function get_banner_index()
