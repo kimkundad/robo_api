@@ -11,6 +11,8 @@ use App\text_address;
 use Illuminate\Support\Facades\Hash;
 use Jenssegers\Agent\Agent;
 use App\biller;
+use App\biller_file;
+
 
 
 class AuthController extends Controller
@@ -70,6 +72,37 @@ class AuthController extends Controller
      * @return \Illuminate\Http\JsonResponse
      */
 
+    public function add_my_biller_file(Request $request){
+
+        if(isset(auth('api')->user()->id)){
+
+           
+            
+  
+          $image = $request->file('image');
+          
+            $path = 'img/doc/';
+            $filename = time().'.'.$image->getClientOriginalExtension();
+            $image->move($path, $filename);
+  
+            $id = $request['bill_id'];
+
+         //   dd($filename);
+     
+          $objs = new biller_file();
+          $objs->file_name = $filename;
+          $objs->type = 3;
+          $objs->biller_id = $id;
+          $objs->save();
+
+
+
+            return response()->json(['status'=>200, 'message' => 'Insert biller id success' ]);
+
+
+        }
+    }
+
      public function add_my_biller_id(Request $request){
 
         if(isset(auth('api')->user()->id)){
@@ -93,7 +126,7 @@ class AuthController extends Controller
             $objs->status = 1;
             $objs->save();
 
-            return response()->json(['status'=>200, 'message' => 'Update profile success' ]);
+            return response()->json(['status'=>200, 'message' => 'Insert biller id success', 'bill_id'=> $objs->id ]);
 
         }
 

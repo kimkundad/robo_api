@@ -24,6 +24,7 @@ class VerifyCsrfToken extends Middleware
         'password/myreset',
         'check_username',
         'check_logout',
-        'add_my_biller_id'
+        'add_my_biller_id',
+        'add_my_biller_file'
     ];
 }

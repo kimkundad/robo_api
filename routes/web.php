@@ -58,6 +58,8 @@ Route::get('/get-user-profile', [AuthController::class, 'userProfile']);
 Route::get('/get_tex_address', [AuthController::class, 'get_tex_address']); 
 Route::post('/update_profile', [AuthController::class, 'update_profile']); 
 Route::post('/add_my_biller_id', [AuthController::class, 'add_my_biller_id']); 
+Route::post('/add_my_biller_file', [AuthController::class, 'add_my_biller_file']); 
+
 
 Route::group(['middleware' => ['UserRole:manager|employee']], function() {
 
