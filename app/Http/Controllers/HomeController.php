@@ -12,6 +12,7 @@ use Password;
 use Response;
 use App\logsys;
 use App\cat_file;
+use App\get_file;
 use App\bank;
 use Intervention\Image\ImageManagerStatic as Image;
 use Jenssegers\Agent\Agent;
@@ -187,8 +188,12 @@ class HomeController extends Controller
 
 
     public function get_file_index(){
+
         $obj = cat_file::where('status', 1)->orderby('id', 'asc')->first();
-        return response()->json($obj);
+        $file = get_file::where('status', 1)->where('cat_id', $obj->id)->get();
+       
+
+        return response()->json($file);
     }
 
     public function get_banner_index()
