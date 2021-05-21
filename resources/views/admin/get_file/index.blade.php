@@ -59,7 +59,7 @@ window.gaTitle = 'หน้าแรก';
                             <td>
                               <div class="form-check form-check-flat">
                               <label class="form-check-label">
-                                <input class="checkbox" type="checkbox" @if($u->status == 1)
+                                <input class="checkbox" type="checkbox" @if($u->statusg == 1)
                                   checked="checked"
                                   @endif>
                                 ปิด / เปิด

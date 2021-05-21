@@ -20,12 +20,13 @@ class GetFileController extends Controller
      */
     public function index()
     {
-        //
+        //status
 
         $cat = DB::table('get_files')->select(
             'get_files.*',
             'get_files.created_at as create',
             'get_files.id as idg',
+            'get_files.status as statusg',
             'cat_files.*',
             'cat_files.id as idc',
             )
