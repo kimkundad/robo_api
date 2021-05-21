@@ -67,7 +67,16 @@
             </li>
  
             <li class="nav-item">
-              <a href="{{ url('admin/setting') }}" class="nav-link"><i class="link-icon icon-settings"></i><span class="menu-title">ตั้งค่า</span></a>
+
+              <a href="{{ url('admin/setting') }}" class="nav-link"><i class="link-icon icon-settings"></i><span class="menu-title">ตั้งค่าเว็บ</span> <i class="menu-arrow"></i></a>
+              <div class="submenu">
+                <ul class="submenu-item">
+                  <li class="nav-item"> <a href="{{ url('admin/setting') }}" class="nav-link"> ตั้งค่าเว็บไซต์ </a></li>
+                  <li class="nav-item"><a class="nav-link" href="{{ url('admin/cat_file') }}"> หมวดหมู่ไฟล์</a></li>
+                  <li class="nav-item"><a class="nav-link" href="{{ url('admin/get_file') }}"> ไฟล์เอกสาร </a></li>
+                </ul>
+              </div>
+              
             </li>
             
 

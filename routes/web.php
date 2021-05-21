@@ -93,6 +93,14 @@ Route::group(['middleware' => ['UserRole:manager|employee']], function() {
     Route::get('api/del_banner/{id}', 'BannerController@del_banner')->name('del_banner');
     Route::post('api/banner_status', 'BannerController@banner_status')->name('banner_status');
 
+    Route::resource('admin/cat_file', 'CatFileController');
+    Route::get('api/del_cat_file/{id}', 'CatFileController@del_cat_file')->name('del_cat_file');
+    Route::post('api/cat_file_status', 'CatFileController@cat_file_status')->name('cat_file_status');
+
+    Route::resource('admin/get_file', 'GetFileController');
+    Route::get('api/del_get_file/{id}', 'GetFileController@del_get_file')->name('del_get_file');
+    Route::post('api/get_file_status', 'GetFileController@get_file_status')->name('get_file_status');
+    Route::get('api/get_file_upload/{id}', 'GetFileController@get_file_upload')->name('get_file_upload');
 
 });
 
