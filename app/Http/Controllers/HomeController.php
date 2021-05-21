@@ -180,14 +180,14 @@ class HomeController extends Controller
 
     public function get_cat_menu(){
 
-        $obj = cat_file::where('status', 1)->get();
+        $obj = cat_file::where('status', 1)->orderby('id', 'desc')->get();
         return response()->json($obj);
 
     }
 
 
     public function get_file_index(){
-        $obj = cat_file::where('status', 1)->first();
+        $obj = cat_file::where('status', 1)->orderby('id', 'desc')->first();
         return response()->json($obj);
     }
 
