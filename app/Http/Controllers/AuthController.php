@@ -76,28 +76,25 @@ class AuthController extends Controller
 
         if(isset(auth('api')->user()->id)){
 
-           
-            
-  
-          $image = $request->file('image');
-          
-            $path = 'img/doc/';
-            $filename = time().'.'.$image->getClientOriginalExtension();
-            $image->move($path, $filename);
-  
-            $id = $request['bill_id'];
-
-         //   dd($filename);
+        
      
-          $objs = new biller_file();
-          $objs->file_name = $filename;
-          $objs->type = 3;
-          $objs->biller_id = $id;
-          $objs->save();
+          $gallary = $request->file('image');
+          $id = $request['bill_id'];
+          if (sizeof($gallary) > 0) {
+            for ($i = 0; $i < sizeof($gallary); $i++) {
+              $path = 'img/doc/';
+              $filename = time().$i.'.'.$gallary[$i]->getClientOriginalExtension();
+              $gallary[$i]->move($path, $filename);
+              $admins[] = [
+                  'file_name' => $filename,
+                  'type' => 3,
+                  'biller_id' => $id
+              ];
+            }
+            biller_file::insert($admins);
+          }
 
-
-
-            return response()->json(['status'=>200, 'message' => 'Insert biller id success' ]);
+          return response()->json(['status'=>200, 'message' => 'Insert biller id success' ]);
 
 
         }
