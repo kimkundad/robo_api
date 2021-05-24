@@ -23,6 +23,10 @@ Auth::routes();
 Route::get('/get_province', 'HomeController@get_province')->name('get_province');
 Route::get('/get_dist/{id}', 'HomeController@get_dist')->name('get_dist');
 Route::get('/get_subdist/{id}', 'HomeController@get_subdist')->name('get_subdist');
+
+Route::get('/get_img_bank/{id}', 'HomeController@get_img_bank')->name('get_img_bank');
+
+
 Route::get('/get_postal_codes/{id}/pro/{provi}/dist/{mydist}', 'HomeController@get_postal_codes')->name('get_postal_codes');
 
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');

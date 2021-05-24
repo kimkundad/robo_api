@@ -68,6 +68,11 @@ class HomeController extends Controller
         return response()->json($subdist);
     }
 
+    public function get_img_bank($id){
+        $bank = DB::table('banks')->where('id', $id)->first();
+        return response()->json($bank);
+    }
+
 
     public function get_document(){
 
