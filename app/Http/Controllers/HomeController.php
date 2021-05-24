@@ -45,6 +45,30 @@ class HomeController extends Controller
     }
 
 
+    public function get_province(){
+
+        $provinces = DB::table('provinces')->get();
+        return response()->json($provinces);
+
+    }
+    public function get_dist($id){
+        $districts = DB::table('districts')->where('province_id', $id)->get();
+        return response()->json($districts);
+    }
+
+    public function get_postal_codes($id = 0, $provi = 0, $mydist = 0){
+        
+        $postal = DB::table('postal_codes')->where('sub_district_id', $id)->where('district_id', $mydist)->where('province_id', $provi)->first();
+        return response()->json($postal->code);
+    }
+
+
+    public function get_subdist($id){
+        $subdist = DB::table('sub_districts')->where('district_id', $id)->get();
+        return response()->json($subdist);
+    }
+
+
     public function get_document(){
 
         $file= public_path(). "/assets/api_document/promptRUB_API_Document.pdf";

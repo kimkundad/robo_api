@@ -77,7 +77,8 @@ class BankController extends Controller
         //
         $this->validate($request, [
             'image' => 'required',
-            'name_bank' => 'required'
+            'name_bank' => 'required',
+            'bank_option' => 'required'
           ]);
 
           $image = $request->file('image');
@@ -85,8 +86,13 @@ class BankController extends Controller
           $filename = time().'.'.$image->getClientOriginalExtension();
           $image->move($path, $filename);
 
+          $bank_option = $request->file('bank_option');
+          $filename2 = time().'.'.$bank_option->getClientOriginalExtension();
+          $bank_option->move($path, $filename2);
+
         $package = new bank();
         $package->bank_img = $filename;
+        $package->bank_option = $filename2;
         $package->name_bank = $request['name_bank'];
         $package->save();
 
@@ -152,13 +158,37 @@ class BankController extends Controller
                  unlink($file_path);
               }
 
-              $path = 'img/bank/';
+       $path = 'img/bank/';
        $filename = time().'.'.$image->getClientOriginalExtension();
        $image->move($path, $filename);
 
         $package = bank::find($id);
         $package->name_bank = $request['name_bank'];
         $package->bank_img = $filename;
+        $package->save();
+
+        }
+
+        $bank_option = $request->file('bank_option');
+
+        if($bank_option != NULL){
+
+          $objs = DB::table('banks')
+               ->where('id', $id)
+               ->first();
+
+               if(isset($objs->bank_option)){
+                $file_path = 'img/bank/'.$objs->bank_option;
+                 unlink($file_path);
+              }
+
+       $path = 'img/bank/';
+       $filename2 = time().'.'.$bank_option->getClientOriginalExtension();
+       $bank_option->move($path, $filename2);
+
+        $package = bank::find($id);
+        $package->name_bank = $request['name_bank'];
+        $package->bank_option = $filename2;
         $package->save();
 
         }

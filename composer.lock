@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "02e21852812086c1c8409c9428541fd3",
+    "content-hash": "75ba69de679bb9a84fc273fd139329d7",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -61,6 +61,43 @@
                 "source": "https://github.com/asm89/stack-cors/tree/v2.0.3"
             },
             "time": "2021-03-11T06:42:03+00:00"
+        },
+        {
+            "name": "baraear/laravel-thailand",
+            "version": "v1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/HiQStd/laravel-thailand.git",
+                "reference": "4ce4266948d846ee9f419d0d57a4830f34cc4b16"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/HiQStd/laravel-thailand/zipball/4ce4266948d846ee9f419d0d57a4830f34cc4b16",
+                "reference": "4ce4266948d846ee9f419d0d57a4830f34cc4b16",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Baraear\\ThaiAddress\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "baraear",
+                    "email": "baraear@gmail.com"
+                }
+            ],
+            "description": "The package may help Laravel developer store user address by easily way",
+            "support": {
+                "issues": "https://github.com/HiQStd/laravel-thailand/issues",
+                "source": "https://github.com/HiQStd/laravel-thailand/tree/v1.0.0"
+            },
+            "time": "2018-02-12T06:53:59+00:00"
         },
         {
             "name": "barryvdh/laravel-cors",

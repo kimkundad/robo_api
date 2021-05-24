@@ -49,6 +49,18 @@ window.gaTitle = 'หน้าแรก';
         </div>
 
 
+        <div class="form-group">
+          <br />
+          <label for="exampleInputUsername1">การชำระเงินที่รองรับ <span class="text-danger">*</span></label>
+          <br />
+          <img src="{{ url('img/bank/'.$objs->bank_option) }}" style="width: 250px; border: 2px solid #439aff;" >
+          <br />
+          <br />
+          <input type="file" class="dropify"  name="bank_option" />
+          <br />
+        </div>
+
+
         <div style="text-align: right;">
         <br /><br /><br />
         <button type="submit" class="btn btn-primary mr-2">บันทึก</button>

@@ -100,6 +100,34 @@ class AuthController extends Controller
         }
     }
 
+
+    public function add_new_address(Request $request){
+
+        if(isset(auth('api')->user()->id)){
+
+            
+
+            $objs = new text_address();
+            $objs->fname = $request['fname'];
+            $objs->phone = $request['phone'];
+            $objs->province = $request['provi'];
+            $objs->address_no = $request['address_no'];
+            $objs->address_name = $request['address_name'];
+            $objs->soi = $request['soi'];
+            $objs->road = $request['road'];
+            $objs->county = $request['mydist'];
+            $objs->district = $request['mySubDist'];
+            $objs->postal_code = $request['postal_codes'];
+            $objs->company = $request['user_id'];
+            $objs->status = 3;
+            $objs->save();
+
+            return response()->json(['status'=>300, 'message' => 'Insert new Address success' ]);
+
+        }
+
+    }
+
      public function add_my_biller_id(Request $request){
 
         if(isset(auth('api')->user()->id)){
@@ -349,8 +377,7 @@ class AuthController extends Controller
 
     public function get_tex_address(){
 
-        $cat = DB::table('text_addresses')->where('user_id', auth('api')->user()->id)->get();
-
+        $cat = DB::table('text_addresses')->where('company', auth('api')->user()->code_user)->get();
         return response()->json(['status'=>200, 'message' => 'get tex address success', 'data' => $cat]);
     }
 

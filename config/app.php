@@ -167,6 +167,7 @@ return [
         FruitCake\Cors\CorsServiceProvider::class,
         Laravel\Socialite\SocialiteServiceProvider::class,
         Jenssegers\Agent\AgentServiceProvider::class,
+        Baraear\ThaiAddress\ThaiAddressServiceProvider::class,
 
         /*
          * Package Service Providers...

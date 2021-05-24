@@ -20,6 +20,11 @@ Route::get('/', function () {
 
 Auth::routes();
 
+Route::get('/get_province', 'HomeController@get_province')->name('get_province');
+Route::get('/get_dist/{id}', 'HomeController@get_dist')->name('get_dist');
+Route::get('/get_subdist/{id}', 'HomeController@get_subdist')->name('get_subdist');
+Route::get('/get_postal_codes/{id}/pro/{provi}/dist/{mydist}', 'HomeController@get_postal_codes')->name('get_postal_codes');
+
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
 Route::get('/get_document', 'HomeController@get_document')->name('get_document');
@@ -65,6 +70,7 @@ Route::get('/get_tex_address', [AuthController::class, 'get_tex_address']);
 Route::post('/update_profile', [AuthController::class, 'update_profile']); 
 Route::post('/add_my_biller_id', [AuthController::class, 'add_my_biller_id']); 
 Route::post('/add_my_biller_file', [AuthController::class, 'add_my_biller_file']); 
+Route::post('/add_new_address', [AuthController::class, 'add_new_address']); 
 
 
 Route::group(['middleware' => ['UserRole:manager|employee']], function() {

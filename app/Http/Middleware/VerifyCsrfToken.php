@@ -27,6 +27,7 @@ class VerifyCsrfToken extends Middleware
         'add_my_biller_id',
         'add_my_biller_file',
         'get_document_page/*',
-        'get_document'
+        'get_document',
+        'add_new_address'
     ];
 }
