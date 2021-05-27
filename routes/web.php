@@ -75,6 +75,10 @@ Route::post('/update_profile', [AuthController::class, 'update_profile']);
 Route::post('/add_my_biller_id', [AuthController::class, 'add_my_biller_id']); 
 Route::post('/add_my_biller_file', [AuthController::class, 'add_my_biller_file']); 
 Route::post('/add_new_address', [AuthController::class, 'add_new_address']); 
+Route::get('/get_my_biller_id', [AuthController::class, 'get_my_biller_id']); 
+Route::get('/get_biller_by_id/{id}', [AuthController::class, 'get_biller_by_id']); 
+Route::post('/change_status_biller_by_id', [AuthController::class, 'change_status_biller_by_id']); 
+Route::post('/add_new_biller', [AuthController::class, 'add_new_biller']); 
 
 
 Route::group(['middleware' => ['UserRole:manager|employee']], function() {

@@ -42,7 +42,7 @@
                       
 						@if(isset($objs))
                       @foreach($objs as $u)
-                          @if($u->id != 1 && $u->id != 2)
+                         
                           <tr>
                             <td>
                             @if($u->provider == 'email')
@@ -82,7 +82,7 @@
                               <a href="{{ url('api/del_user/'.$u->id) }}" onclick="return confirm('Are you sure?')" class="btn btn-outline-danger btn-sm">ลบ</a>
                             </td>
                           </tr>
-                          @endif
+                    
 
                           @endforeach
                           @endif

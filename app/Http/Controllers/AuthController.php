@@ -130,17 +130,73 @@ class AuthController extends Controller
 
      public function add_my_biller_id(Request $request){
 
+       // dd($request->all());
+
         if(isset(auth('api')->user()->id)){
+
+            $path = 'img/doc/';
+
+            $image1 = $request->file('file_1'); // สำเนาหนังสือทะเบียนพาณิชย์อิเล็กทรอนิกส์
+            if($image1 != null){
+            $filename1 = time().'-'.(\random_int(1000, 9999)).'.'.$image1->getClientOriginalExtension();
+            $image1->move($path, $filename1);
+            }else{
+                $filename1 = null;
+            }
+
+            $image2 = $request->file('file_2'); //สำเนาบัตรประชาชนผู้มีอำนาจลงนาม
+            if($image2 != null){
+            $filename2 = time().'-'.(\random_int(1000, 9999)).'.'.$image2->getClientOriginalExtension();
+            $image2->move($path, $filename2);
+            }else{
+                $filename2 = null;
+            }
+
+            $image3 = $request->file('file_4'); //หน้าสมุดบัญชีธนาคารที่จะใช้ในการรับเงิน
+            if($image3 != null){
+            $filename3 = time().'-'.(\random_int(1000, 9999)).'.'.$image3->getClientOriginalExtension();
+            $image3->move($path, $filename3);
+            }else{
+                $filename3 = null;
+            }
+
+            $image4 = $request->file('file_5'); //หนังสือมอบอำนาจ (กรณีผู้ที่มีอำนาจไม่ได้มาด้วยตนเอง)
+            if($image4 != null){
+            $filename4 = time().'-'.(\random_int(1000, 9999)).'.'.$image4->getClientOriginalExtension();
+            $image4->move($path, $filename4);
+            }else{
+                $filename4 = null;
+            }
+
+            $image5 = $request->file('file_6'); // หนังสือรับรองบริษัท อายุไม่เกิน 3 เดือน
+            if($image5 != null){
+            $filename5 = time().'-'.(\random_int(1000, 9999)).'.'.$image5->getClientOriginalExtension();
+            $image5->move($path, $filename5);
+            }else{
+                $filename5 = null;
+            }
+
+            $image6 = $request->file('file_7'); //ทะเบียนภาษีมูลค่าเพิ%ม (ภพ.20)
+            if($image6 != null){
+            $filename6 = time().'-'.(\random_int(1000, 9999)).'.'.$image6->getClientOriginalExtension();
+            $image6->move($path, $filename6);
+            }else{
+                $filename6 = null;
+            }
 
 
             $randomSixDigitInt = (\random_int(1000, 9999)).''.(\random_int(1000, 9999)).''.(\random_int(10, 99));
 
             $objs = new biller();
+            $objs->file_1 = $filename1;
+            $objs->file_2 = $filename2;
+            $objs->file_3 = $filename3;
+            $objs->file_4 = $filename4;
+            $objs->file_5 = $filename5;
+            $objs->file_6 = $filename6;
             $objs->biller_id = $randomSixDigitInt;
-            $objs->f_name = $request['first_name'];
-            $objs->l_name = $request['last_name'];
-            $objs->email = $request['email'];
-            $objs->phone = $request['phone'];
+            $objs->address_id = $request['id_address'];
+            $objs->url_domain_name = $request['user_domain_name'];
             $objs->company_name = $request['company_name'];
             $objs->company_type = $request['type_company'];
             $objs->business_type = $request['type_bu'];
@@ -373,6 +429,119 @@ class AuthController extends Controller
             'data' => auth('api')->user()
         ]
         );
+    }
+
+
+    public function get_my_biller_id(){
+
+        if(isset(auth('api')->user()->id)){
+
+            $bill = DB::table('billers')->select(
+                'billers.*',
+                'billers.created_at as create',
+                'billers.id as idb',
+                'billers.phone as phone1',
+                'billers.status as status_bill',
+                'banks.*'
+                )
+                ->leftjoin('banks', 'banks.id',  'billers.bank_id')
+                ->where('billers.user_id', auth('api')->user()->code_user)
+                ->orderby('billers.created_at', 'desc')
+                ->paginate(15);
+
+                return response()->json([
+                    'status'=>200,
+                    'data' => $bill
+                ]
+                );
+                
+
+        }
+
+    }
+
+    public function add_new_biller(Request $request){
+
+       
+        if(isset(auth('api')->user()->id)){
+
+        $objs = new biller();
+        $objs->biller_id = $request['biller_id'];
+        $objs->merchant_id = $request['merchant_id'];
+        $objs->terminal_id = $request['terminal_id'];
+        $objs->bank_no = $request['bank_no'];
+        $objs->bank_name = $request['bank_name'];
+        $objs->user_id = $request['user_id'];
+        $objs->bank_id = $request['checkBank'];
+        $objs->status = 1;
+        $objs->save();
+
+        return response()->json([
+            'status'=>200,
+            'data' => 'เพิ่มข้อมูล Biller ID สำเร็จ รอเจ้าหน้าที่ติดต่อกลับ'
+        ]
+        );
+
+        }  
+
+    }
+
+
+    public function change_status_biller_by_id(Request $request){
+
+        
+
+        if(isset(auth('api')->user()->id)){
+
+            $id = $request['user_id'];
+       
+            $user = biller::findOrFail($id);
+
+                if($user->status == 1){
+                    $user->status = 0;
+                } else {
+                    $user->status = 1;
+                }
+                $user->save();
+
+                return response()->json([
+                    'status'=>200,
+                    'data' => $user
+                ]
+                );
+                
+
+        }
+
+
+    }
+
+    public function get_biller_by_id($id){
+
+        if(isset(auth('api')->user()->id)){
+
+            $bill = DB::table('billers')->select(
+                'billers.*',
+                'billers.created_at as create',
+                'billers.id as idb',
+                'billers.phone as phone1',
+                'billers.status as status_bill',
+                'banks.*'
+                )
+                ->leftjoin('banks', 'banks.id',  'billers.bank_id')
+                ->where('billers.id', $id)
+                ->first();
+
+                return response()->json([
+                    'status'=>200,
+                    'data' => $bill
+                ]
+                );
+                
+
+        }
+
+
     }
 
     public function get_tex_address(){

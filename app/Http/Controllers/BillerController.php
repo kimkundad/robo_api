@@ -113,8 +113,7 @@ class BillerController extends Controller
                unlink($file_path);
             }
 
-        $image = $request->file('file2');
-        
+          $image = $request->file('file2');
           $path = 'img/doc/';
           $filename = time().'.'.$image->getClientOriginalExtension();
           $image->move($path, $filename);
