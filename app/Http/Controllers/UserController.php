@@ -136,6 +136,7 @@ class UserController extends Controller
             $package->phone = $request->phone;
             $package->sex = $request->sex;
             $package->career = $request->career;
+            $package->code_user = $request->code_user;
             $package->save();
 
             return redirect(url('admin/user/'.$id.'/edit'))->with('edit_success','Edit successful');
