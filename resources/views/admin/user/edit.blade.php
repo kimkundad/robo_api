@@ -206,9 +206,10 @@ window.gaTitle = 'หน้าแรก';
 
                     <div class="col-md-6">
                         <div class="form-group row">
-                          <label class="col-sm-3 col-form-label">user code (*ไม่ต้องสนใจ ห้ามยุ่ง dev รู้พอ)</label>
+                          <label class="col-sm-3 col-form-label">user code</label>
                           <div class="col-sm-9">
                             <input type="text" class="form-control" value="{{ $objs->code_user }}" name="code_user">
+                            <p class="text-danger">(*ไม่ต้องสนใจ ห้ามยุ่ง dev รู้พอ)</p>
                           </div>
                         </div>
                       </div>
