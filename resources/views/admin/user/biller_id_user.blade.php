@@ -48,11 +48,7 @@
                               {{$u->name_bank}}
                             </td>
                             <td>
-                            @if($u->provider == 'email')
-                            <img src="{{ url('assets/img/avatar/'.$u->avatar) }}" > 
-                            @else
-                            <img src="{{ url($u->avatar) }}" > 
-                            @endif
+                            
                             
                             </td>
                             <td>
