@@ -9,6 +9,7 @@ use App\User;
 use App\bank;
 use App\biller;
 use App\biller_file;
+use App\text_address;
 use Auth;
 use Response;
 use Redirect;
@@ -23,6 +24,11 @@ class BillerController extends Controller
         $data['bank'] = $bank;
 
         $objs = User::find($id);
+
+        $address = text_address::where('company', $objs->code_user)->get();
+        $data['address'] = $address;
+
+        
         $data['objs'] = $objs;
         return view('admin.biller.create', $data);
 
@@ -195,7 +201,8 @@ class BillerController extends Controller
             'business_type' => 'required',
             'id_card' => 'required',
             'bank_id' => 'required',
-            'user_id' => 'required'
+            'user_id' => 'required',
+            't_com' => 'required'
         ]);
 
     
@@ -216,6 +223,11 @@ class BillerController extends Controller
         $objs->bank_name = $request['bank_name'];
         $objs->bank_no = $request['bank_no'];
         $objs->bank_major = $request['bank_major'];
+        $objs->domain = $request['domain'];
+        $objs->bill_type = $request['t_com'];
+        $objs->merchant_id = $request['merchant_id'];
+        $objs->terminal_id = $request['terminal_id'];
+        $objs->address_id = $request['address'];
         $objs->save();
 
         return redirect(url('admin/edit_biller_id/'.$id))->with('add_success','Edit successful');
@@ -235,7 +247,8 @@ class BillerController extends Controller
             'business_type' => 'required',
             'id_card' => 'required',
             'bank_id' => 'required',
-            'user_id' => 'required'
+            'user_id' => 'required',
+            't_com' => 'required'
         ]);
 
         $randomSixDigitInt = (\random_int(1000, 9999)).''.(\random_int(1000, 9999)).''.(\random_int(10, 99));
@@ -253,6 +266,11 @@ class BillerController extends Controller
         $objs->bank_id = $request['bank_id'];
         $objs->user_id = $request['user_id'];
         $objs->admin_id = Auth::user()->id;
+        $objs->domain = $request['domain'];
+        $objs->bill_type = $request['t_com'];
+        $objs->merchant_id = $request['merchant_id'];
+        $objs->terminal_id = $request['terminal_id'];
+        $objs->address_id = $request['address'];
         $objs->status = 1;
         $objs->save();
 

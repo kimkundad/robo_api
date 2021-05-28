@@ -302,6 +302,34 @@ window.gaTitle = 'หน้าแรก';
                 <br>
                 <div class="row">
                         
+                      <div class="col-md-12">
+                        <div class="form-group row">
+                          <label class="col-sm-3 col-form-label">ประเภทบริษัท <span class="text-danger">*</span></label>
+                          <div class="col-sm-9">
+                          <select class="form-control" name="t_com">
+                                    <option value="" > เลือกประเภทบริษัท </option>
+                                    <option value="0" > บุคคลธรรมดา </option>
+                                    <option value="1" > นิติบุคคล </option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="col-md-12">
+                        <div class="form-group row">
+                          <label class="col-sm-3 col-form-label">ที่อยู่บริษัท/ร้านค้า <span class="text-danger">*</span></label>
+                          <div class="col-sm-9">
+                          <select class="form-control" name="address">
+                                  @if(isset($address))
+                                    @foreach($address as $u)
+                                    <option value="{{$u->id}}" > {{$u->fname}} {{$u->address_no}} {{$u->address_name}}</option>
+                                    @endforeach
+                                  @endif
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+                      
                     <div class="col-md-12">
                         <div class="form-group row">
                           <label class="col-sm-3 col-form-label">ชื่อบริษัท <span class="text-danger">*</span></label>
@@ -335,7 +363,36 @@ window.gaTitle = 'หน้าแรก';
                             <input type="text" class="form-control" value="{{ old('business_type') }}" name="business_type">
                           </div>
                         </div>
-                    </div>
+                      </div>
+
+
+                      <div class="col-md-12">
+                        <div class="form-group row">
+                          <label class="col-sm-3 col-form-label">Website, URL, Domain (ถ้ามี) <span class="text-danger">*</span></label>
+                          <div class="col-sm-9">
+                            <input type="text" class="form-control" value="{{ old('domain') }}" name="domain">
+                          </div>
+                        </div>
+                      </div>
+
+
+                      <div class="col-md-12">
+                        <div class="form-group row">
+                          <label class="col-sm-3 col-form-label">Merchant id <span class="text-danger">*</span></label>
+                          <div class="col-sm-9">
+                            <input type="text" class="form-control" value="{{ old('merchant_id') }}" name="merchant_id">
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="col-md-12">
+                        <div class="form-group row">
+                          <label class="col-sm-3 col-form-label">Terminal id <span class="text-danger">*</span></label>
+                          <div class="col-sm-9">
+                            <input type="text" class="form-control" value="{{ old('terminal_id') }}" name="terminal_id">
+                          </div>
+                        </div>
+                      </div>
 
                 </div>
 
