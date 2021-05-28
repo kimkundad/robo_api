@@ -30,7 +30,7 @@
                           <tr>
                             <th>ชื่อธนาคาร</th>
                             <th>ชื่อ-นามสกุล</th>
-							<th>สถานะ</th>
+							              <th>สถานะ</th>
                             <th>เบอร์โทร</th>
                             <th>ชื่อบัญชี</th>
                             <th>Biller ID</th>
@@ -53,9 +53,10 @@
                             @else
                             <img src="{{ url($u->avatar) }}" > 
                             @endif
-                            {{$u->name}}</td>
+                            {{$u->first_name}} {{$u->last_name}}
+                            </td>
                             <td>
-                              {{$u->first_name}} {{$u->last_name}}
+                              
                             </td>
                             
                             
