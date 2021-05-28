@@ -73,12 +73,13 @@
                               {{$u->phone1}}
                             </td>
                             <td>
-                              {{$u->bank_name}}
+                              {{$u->name_bank}}
                             </td>
                             <td>
+                              {{$u->biller_id}}
                             </td>
                             <td>
-                              
+                              {{$u->create}}
                             </td>
                             <td>
                               <a href="{{ url('admin/edit_biller_id/'.$u->idb) }}" class="btn btn-outline-primary btn-sm">แก้ไข</a>
