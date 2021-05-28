@@ -53,7 +53,7 @@
                             @else
                             <img src="{{ url($u->avatar) }}" > 
                             @endif
-                            {{$u->first_name}} {{$u->last_name}}
+                            
                             </td>
                             <td>
                               
