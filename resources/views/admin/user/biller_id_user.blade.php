@@ -67,9 +67,9 @@
                                 <p class="mt-2 text-success font-weight-bold">ผ่าน</p>
                             @else
                                 <p class="mt-2 text-danger  font-weight-bold">ไม่ผ่าน</p>
-							@endif
+							              @endif
                             </td>
-							<td>
+							                <td>
                               {{$u->phone1}}
                             </td>
                             <td>
@@ -79,7 +79,7 @@
                               {{$u->biller_id}}
                             </td>
                             <td>
-                              {{formatDateThat($u->create)}}
+                              {{($u->create)}}
                             </td>
                             <td>
                               <a href="{{ url('admin/edit_biller_id/'.$u->idb) }}" class="btn btn-outline-primary btn-sm">แก้ไข</a>
