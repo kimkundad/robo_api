@@ -69,17 +69,7 @@
                                 <p class="mt-2 text-danger  font-weight-bold">ไม่ผ่าน</p>
 							              @endif
                             </td>
-							                <td>
-                             
-                            </td>
-                            <td>
-                            </td>
-                            <td>
-                              {{$u->biller_id}}
-                            </td>
-                            <td>
-                              {{$u->create}}
-                            </td>
+							                
                             <td>
                               <a href="{{ url('admin/edit_biller_id/'.$u->idb) }}" class="btn btn-outline-primary btn-sm">แก้ไข</a>
                               <a href="{{ url('api/del_user_biller_id/'.$u->idb) }}" onclick="return confirm('Are you sure?')" class="btn btn-outline-danger btn-sm">ลบ</a>
