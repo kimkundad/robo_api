@@ -76,7 +76,6 @@
                               {{$u->bank_name}}
                             </td>
                             <td>
-                              {{$u->biller_id}}
                             </td>
                             <td>
                               
