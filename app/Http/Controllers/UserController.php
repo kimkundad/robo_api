@@ -26,6 +26,28 @@ class UserController extends Controller
         return view('admin.user.index', $data);
     }
 
+    public function biller_id_user(){
+
+
+        $bill = DB::table('billers')->select(
+            'billers.*',
+            'billers.created_at as create',
+            'billers.id as idb',
+            'users.*',
+            'users.phone as phone1',
+            'banks.*',
+            'users.id as idu',
+            )
+            ->leftjoin('users', 'users.code_user',  'billers.user_id')
+            ->leftjoin('banks', 'banks.id',  'billers.bank_id')
+            ->Orderby('billers.id', 'desc')
+            ->paginate(15);
+
+        $data['objs'] = $bill;  
+        return view('admin.user.biller_id_user', $data);
+
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -157,5 +179,60 @@ class UserController extends Controller
         DB::table('logsys')->where('user_id', $id)->delete();
         DB::table('users')->where('id', $id)->delete();
         return redirect(url('admin/user'))->with('del_success','คุณทำการเพิ่มอสังหา สำเร็จ');
+    }
+
+    public function del_user_biller_id($id){
+
+        $bill = DB::table('billers')
+            ->where('id', $id)
+            ->first();
+
+            if(isset($bill->file_1)){
+               $file_path = 'img/doc/'.$bill->file_1;
+               unlink($file_path);
+            }
+            if(isset($bill->file_2)){
+                $file_path = 'img/doc/'.$bill->file_2;
+                unlink($file_path);
+            }
+            if(isset($bill->file_3)){
+                $file_path = 'img/doc/'.$bill->file_3;
+                unlink($file_path);
+            }
+            if(isset($bill->file_4)){
+                $file_path = 'img/doc/'.$bill->file_4;
+                unlink($file_path);
+            }
+            if(isset($bill->file_5)){
+                $file_path = 'img/doc/'.$bill->file_5;
+                unlink($file_path);
+            }
+            if(isset($bill->file_6)){
+                $file_path = 'img/doc/'.$bill->file_6;
+                unlink($file_path);
+            } 
+
+            $file = DB::table('biller_files')
+            ->where('biller_id', $id)
+            ->get();
+
+           if(sizeof($file) > 0){
+            for ($i = 0; $i < sizeof($file); $i++) {
+
+                $file_path = 'img/doc/'.$file[$i]->file_name;
+                unlink($file_path);
+
+            }
+           }
+
+           
+
+
+
+            DB::table('billers')->where('id', $id)->delete();
+            DB::table('biller_files')->where('biller_id', $id)->delete();
+
+        return redirect(url('admin/biller_id_user'))->with('del_success','คุณทำการเพิ่มอสังหา สำเร็จ'); 
+
     }
 }

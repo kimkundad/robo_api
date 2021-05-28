@@ -19,7 +19,7 @@
                 <div class="col-md-12 grid-margin stretch-card">
                   <div class="card">
                     <div class="card-body">
-                      <h4 class="card-title">ผู้ใช้งานทั้งหมด ( {{ count($objs)-2 }} )</h4>
+                      <h4 class="card-title">Biller ID ทั้งหมด ( {{ count($objs) }} )</h4>
 
                       <div class="table-responsive">
 
@@ -28,12 +28,12 @@
                         <thead>
 
                           <tr>
-                            <th>บัญชีผู้ใช้</th>
+                            <th>ชื่อธนาคาร</th>
                             <th>ชื่อ-นามสกุล</th>
-							<th>อีเมล</th>
+							<th>สถานะ</th>
                             <th>เบอร์โทร</th>
-                            <th>อายุ</th>
-                            <th>เพศ</th>
+                            <th>ชื่อบัญชี</th>
+                            <th>Biller ID</th>
                             <th>วันที่สมัคร</th>
                             <th>ดำเนินการ</th>
                           </tr>
@@ -42,8 +42,11 @@
                       
 						@if(isset($objs))
                       @foreach($objs as $u)
-                      
+                         
                           <tr>
+                            <td>
+                              {{$u->name_bank}}
+                            </td>
                             <td>
                             @if($u->provider == 'email')
                             <img src="{{ url('assets/img/avatar/'.$u->avatar) }}" alt="{{$u->name}}"> 
@@ -55,34 +58,35 @@
                               {{$u->first_name}} {{$u->last_name}}
                             </td>
                             <td>
-                              {{$u->email}}
+                             
+                            @if( $u->process == 0)
+                                <p class="mt-2 text-warning font-weight-bold">เจ้าหน้าที่ติดต่อกลับ</p>
+                            @elseif($u->process == 1)
+                                <p class="mt-2 text-info font-weight-bold">ส่งเรื่องให้กับธนาคาร</p>
+                            @elseif($u->process == 2)
+                                <p class="mt-2 text-success font-weight-bold">ผ่าน</p>
+                            @else
+                                <p class="mt-2 text-danger  font-weight-bold">ไม่ผ่าน</p>
+							@endif
                             </td>
-							              <td>
-                              {{$u->phone}}
-                            </td>
-                            <td>
-                              {{$u->age}}
-                            </td>
-                            <td>
-                              @if($u->sex == 0)
-                              ไม่ระบุ
-                              @elseif($u->sex == 1)
-                              ไม่ระบุ
-                              @elseif($u->sex == 2)
-                              ชาย
-                              @else
-                              หญิง
-                              @endif
+							<td>
+                              {{$u->phone1}}
                             </td>
                             <td>
-                              {{formatDateThat($u->created_at)}}
+                              {{$u->bank_name}}
                             </td>
                             <td>
-                              <a href="{{ url('admin/user/'.$u->id.'/edit') }}" class="btn btn-outline-primary btn-sm">แก้ไข</a>
-                              <a href="{{ url('api/del_user/'.$u->id) }}" onclick="return confirm('Are you sure?')" class="btn btn-outline-danger btn-sm">ลบ</a>
+                              {{$u->biller_id}}
+                            </td>
+                            <td>
+                              {{formatDateThat($u->create)}}
+                            </td>
+                            <td>
+                              <a href="{{ url('admin/edit_biller_id/'.$u->idb) }}" class="btn btn-outline-primary btn-sm">แก้ไข</a>
+                              <a href="{{ url('api/del_user_biller_id/'.$u->idb) }}" onclick="return confirm('Are you sure?')" class="btn btn-outline-danger btn-sm">ลบ</a>
                             </td>
                           </tr>
-                       
+                    
 
                           @endforeach
                           @endif

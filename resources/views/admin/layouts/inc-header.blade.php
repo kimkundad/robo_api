@@ -42,9 +42,19 @@
               <a href="{{ url('admin/dashboard') }}" class="nav-link"><i class="link-icon icon-screen-desktop"></i><span class="menu-title">Dashboard</span></a>
             </li>
 
+
             <li class="nav-item">
-              <a href="{{ url('admin/user') }}" class="nav-link"><i class="link-icon icon-user"></i><span class="menu-title">ผู้ใช้งาน</span></a>
+
+              <a href="#" class="nav-link"><i class="link-icon icon-user"></i><span class="menu-title">ข้อมูลผู้ใช้งาน</span> <i class="menu-arrow"></i></a>
+              <div class="submenu">
+                <ul class="submenu-item">
+                  <li class="nav-item"> <a href="{{ url('admin/user') }}" class="nav-link"> รายชื่อผู้ใช้งาน </a></li>
+                  <li class="nav-item"><a class="nav-link" href="{{ url('admin/biller_id_user') }}"> Biller ID</a></li>
+                </ul>
+              </div>
+              
             </li>
+
 
             <li class="nav-item">
               <a href="{{ url('admin/bank') }}" class="nav-link"><i class="link-icon icon-briefcase"></i><span class="menu-title">ธนาคาร</span></a>

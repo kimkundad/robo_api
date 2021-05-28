@@ -203,6 +203,7 @@ class AuthController extends Controller
             $objs->id_card = $request['id_card'];
             $objs->bank_id = $request['checkBank'];
             $objs->user_id = $request['user_id'];
+            $objs->data1_id = $request['t_com'];
             $objs->admin_id = 1;
             $objs->status = 1;
             $objs->save();
