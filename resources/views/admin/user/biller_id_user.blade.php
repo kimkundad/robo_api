@@ -70,10 +70,9 @@
 							              @endif
                             </td>
 							                <td>
-                              {{$u->phone1}}
+                             
                             </td>
                             <td>
-                              {{$u->name_bank}}
                             </td>
                             <td>
                               {{$u->biller_id}}
