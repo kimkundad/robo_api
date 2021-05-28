@@ -223,7 +223,7 @@ class BillerController extends Controller
         $objs->bank_name = $request['bank_name'];
         $objs->bank_no = $request['bank_no'];
         $objs->bank_major = $request['bank_major'];
-        $objs->domain = $request['domain'];
+        $objs->url_domain_name = $request['domain'];
         $objs->bill_type = $request['t_com'];
         $objs->merchant_id = $request['merchant_id'];
         $objs->terminal_id = $request['terminal_id'];
@@ -266,7 +266,7 @@ class BillerController extends Controller
         $objs->bank_id = $request['bank_id'];
         $objs->user_id = $request['user_id'];
         $objs->admin_id = Auth::user()->id;
-        $objs->domain = $request['domain'];
+        $objs->url_domain_name = $request['domain'];
         $objs->bill_type = $request['t_com'];
         $objs->merchant_id = $request['merchant_id'];
         $objs->terminal_id = $request['terminal_id'];
