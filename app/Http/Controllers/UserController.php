@@ -43,7 +43,7 @@ class UserController extends Controller
             ->Orderby('billers.id', 'desc')
             ->paginate(15);
 
-            dd($bill);
+            //dd($bill);
 
         $data['objs'] = $bill;  
         return view('admin.user.biller_id_user', $data);
