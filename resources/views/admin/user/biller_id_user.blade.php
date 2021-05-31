@@ -15,6 +15,22 @@
 
 <div class="row">
                 
+              <div class="col-md-6"> </div>
+                <div class="col-md-6">
+                    
+                            <div class="form-group">
+                              <form class="form-horizontal" action="{{url('admin/biller_search')}}" method="GET" enctype="multipart/form-data">
+                                  {{ csrf_field() }}
+                                <div class="input-group">
+                                    <input type="text" class="form-control" name="search" placeholder="ชื่อ - นามสกุล, อีเมล, เบอร์ติดต่อ" aria-label="Recipient's username">
+                                    <div class="input-group-append">
+                                      <button class="btn btn-sm btn-primary" type="submit">ค้นหา</button>
+                                    </div>
+                                  </div>
+                                </form>
+                            </div>
+                       
+                </div>
                 
                 <div class="col-md-12 grid-margin stretch-card">
                   <div class="card">

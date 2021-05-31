@@ -18,12 +18,15 @@
                 <div class="col-md-6">
                     
                             <div class="form-group">
+                              <form class="form-horizontal" action="{{url('admin/user_search')}}" method="GET" enctype="multipart/form-data">
+                                  {{ csrf_field() }}
                                 <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="ชื่อ - นามสกุล, อีเมล, เบอร์ติดต่อ" aria-label="Recipient's username">
+                                    <input type="text" class="form-control" name="search" placeholder="ชื่อ - นามสกุล, อีเมล, เบอร์ติดต่อ" aria-label="Recipient's username">
                                     <div class="input-group-append">
-                                      <button class="btn btn-sm btn-primary" type="button">ค้นหา</button>
+                                      <button class="btn btn-sm btn-primary" type="submit">ค้นหา</button>
                                     </div>
                                   </div>
+                                </form>
                             </div>
                        
                 </div>

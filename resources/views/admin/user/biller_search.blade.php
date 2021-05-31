@@ -14,12 +14,12 @@
 
 
 <div class="row">
-
-<div class="col-md-6"> </div>
+                
+              <div class="col-md-6"> </div>
                 <div class="col-md-6">
                     
                             <div class="form-group">
-                            <form class="form-horizontal" action="{{url('admin/user_search')}}" method="GET" enctype="multipart/form-data">
+                              <form class="form-horizontal" action="{{url('admin/biller_search')}}" method="GET" enctype="multipart/form-data">
                                   {{ csrf_field() }}
                                 <div class="input-group">
                                     <input type="text" class="form-control" value="{{$search}}" name="search" placeholder="ชื่อ - นามสกุล, อีเมล, เบอร์ติดต่อ" aria-label="Recipient's username">
@@ -32,11 +32,10 @@
                        
                 </div>
                 
-                
                 <div class="col-md-12 grid-margin stretch-card">
                   <div class="card">
                     <div class="card-body">
-                      <h4 class="card-title">ผู้ใช้งานทั้งหมด ( {{ count($objs)-2 }} )</h4>
+                      <h4 class="card-title">Biller ID ทั้งหมด ( {{ count($objs) }} )</h4>
 
                       <div class="table-responsive">
 
@@ -45,13 +44,13 @@
                         <thead>
 
                           <tr>
-                            <th>#</th>
-                            <th>บัญชีผู้ใช้</th>
+                          <th>#</th>
+                            <th>ชื่อธนาคาร</th>
                             <th>ชื่อ-นามสกุล</th>
-							<th>อีเมล</th>
+						              	<th>สถานะ</th>
                             <th>เบอร์โทร</th>
-                            <th>อายุ</th>
-                            <th>เพศ</th>
+                            <th>ชื่อบัญชี</th>
+                            <th>Biller ID</th>
                             <th>วันที่สมัคร</th>
                             <th>ดำเนินการ</th>
                           </tr>
@@ -60,55 +59,64 @@
                       
 						@if(isset($objs))
                       @foreach($objs as $index => $u)
-                      
+                         
                           <tr>
-                            <td>{{ ( $currentPage - 1 ) * $perPage + $index + 1 }}</td>
+                          <td>
+                          {{ ( $currentPage - 1 ) * $perPage + $index + 1 }}
+                            </td>
+                            <td>
+                              {{$u->name_bank}}
+                            </td>
                             <td>
                             @if($u->provider == 'email')
-                            <img src="{{ url('assets/img/avatar/'.$u->avatar) }}" alt="{{$u->name}}"> 
+                            <img src="{{ url('assets/img/avatar/'.$u->avatar) }}" > 
                             @else
-                            <img src="{{ url($u->avatar) }}" alt="{{$u->name}}"> 
+                            <img src="{{ url($u->avatar) }}" > 
                             @endif
-                            {{$u->name}}</td>
+                            {{$u->first_name}} {{$u->last_name}}</td>
+
+                            
+
+
                             <td>
-                              {{$u->first_name}} {{$u->last_name}}
+                             
+                            @if($u->process == 0)
+                                <p class="mt-2 text-warning font-weight-bold">เจ้าหน้าที่ติดต่อกลับ</p>
+                            @elseif($u->process == 1)
+                                <p class="mt-2 text-info font-weight-bold">ส่งเรื่องให้กับธนาคาร</p>
+                            @elseif($u->process == 2)
+                                <p class="mt-2 text-success font-weight-bold">ผ่าน</p>
+                            @else
+                                <p class="mt-2 text-danger  font-weight-bold">ไม่ผ่าน</p>
+							              @endif
+                            </td>
+							                <td>
+                              {{$u->phone1}}
                             </td>
                             <td>
-                              {{$u->email}}
-                            </td>
-							              <td>
-                              {{$u->phone}}
+                              {{$u->name_bank}}
                             </td>
                             <td>
-                              {{$u->age}}
+                              {{$u->biller_id}}
                             </td>
                             <td>
-                              @if($u->sex == 0)
-                              ไม่ระบุ
-                              @elseif($u->sex == 1)
-                              ไม่ระบุ
-                              @elseif($u->sex == 2)
-                              ชาย
-                              @else
-                              หญิง
-                              @endif
+                              {{$u->create}}
                             </td>
                             <td>
-                              {{formatDateThat($u->created_at)}}
-                            </td>
-                            <td>
-                              <a href="{{ url('admin/user/'.$u->id.'/edit') }}" class="btn btn-outline-primary btn-sm">แก้ไข</a>
-                              <a href="{{ url('api/del_user/'.$u->id) }}" onclick="return confirm('Are you sure?')" class="btn btn-outline-danger btn-sm">ลบ</a>
+                              <a href="{{ url('admin/edit_biller_id/'.$u->idb) }}" class="btn btn-outline-primary btn-sm">แก้ไข</a>
+                              <a href="{{ url('api/del_user_biller_id/'.$u->idb) }}" onclick="return confirm('Are you sure?')" class="btn btn-outline-danger btn-sm">ลบ</a>
                             </td>
                           </tr>
+                    
 
                           @endforeach
                           @endif
 
+
                         </tbody>
                       </table>
                       </div>
-					  {{ $objs->links() }}
+					            {{ $objs->links() }}
                     </div>
                   </div>
                 </div>

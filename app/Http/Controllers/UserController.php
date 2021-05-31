@@ -30,6 +30,45 @@ class UserController extends Controller
         return view('admin.user.index', $data);
     }
 
+    public function biller_search(Request $request){
+
+        $this->validate($request, [
+            'search' => 'required'
+        ]);
+        $search = $request->get('search');
+
+        $bill = DB::table('billers')->select(
+            'billers.*',
+            'billers.created_at as create',
+            'billers.id as idb',
+            'users.*',
+            'users.phone as phone1',
+            'banks.*',
+            'users.id as idu',
+            )
+            ->leftjoin('users', 'users.code_user',  'billers.user_id')
+            ->leftjoin('banks', 'banks.id',  'billers.bank_id')
+            ->where('users.name', 'like', "%$search%")
+            ->orwhere('users.phone', 'like', "%$search%")
+            ->orwhere('users.email', 'like', "%$search%")
+            ->orwhere('users.first_name', 'like', "%$search%")
+            ->orwhere('users.last_name', 'like', "%$search%")
+            ->orwhere('billers.biller_id', 'like', "%$search%")
+            ->Orderby('billers.id', 'desc')
+            ->paginate(15);
+
+
+            $data['currentPage'] = $bill->currentPage();
+        $data['perPage'] = $bill->perPage();
+        $data['total'] = $bill->total();
+        $data['search'] = $search;
+            //dd($bill);
+
+        $data['objs'] = $bill;  
+        return view('admin.user.biller_search', $data);
+
+    }
+
 
     public function user_search(Request $request){
 
@@ -49,6 +88,7 @@ class UserController extends Controller
         $data['currentPage'] = $objs->currentPage();
         $data['perPage'] = $objs->perPage();
         $data['total'] = $objs->total();
+        $data['search'] = $search;
 
         $data['objs'] = $objs;
         return view('admin.user.search', $data);
