@@ -34,8 +34,8 @@ window.gaTitle = 'หน้าแรก';
                       <table class="table">
                         <thead>
                           <tr>
-                            <th>ไฟล์เอกสาร</th>
                             <th>หมวดหมู่</th>
+                            <th>ไฟล์เอกสาร</th>
                             <th>ขนาด</th>
                             <th>ใช้งาน</th>
 							<th>วันที่</th>
@@ -48,10 +48,10 @@ window.gaTitle = 'หน้าแรก';
                       @foreach($objs as $u)
                           <tr access_id="{{$u->idg}}">
                             <td>
-                            {{$u->file_name}}
+                            {{$u->cat_name}}
                             </td>
                             <td>
-                            {{$u->cat_name}}
+                            {{$u->file_name}}
                             </td>
                             <td>
                             {{$u->file_size}}
@@ -66,7 +66,7 @@ window.gaTitle = 'หน้าแรก';
                               </label>
                             </div>
                             </td>
-						    <td>
+						                <td>
                               {{$u->create}}
                             </td>
                             <td>
