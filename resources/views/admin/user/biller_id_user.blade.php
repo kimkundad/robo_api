@@ -28,6 +28,7 @@
                         <thead>
 
                           <tr>
+                          <th>#</th>
                             <th>ชื่อธนาคาร</th>
                             <th>ชื่อ-นามสกุล</th>
 							<th>สถานะ</th>
@@ -41,9 +42,12 @@
                         <tbody>
                       
 						@if(isset($objs))
-                      @foreach($objs as $u)
+                      @foreach($objs as $index => $u)
                          
                           <tr>
+                          <td>
+                          {{ ( $currentPage - 1 ) * $perPage + $index + 1 }}
+                            </td>
                             <td>
                               {{$u->name_bank}}
                             </td>

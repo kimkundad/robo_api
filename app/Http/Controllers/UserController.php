@@ -22,6 +22,10 @@ class UserController extends Controller
                 ->Orderby('id', 'desc')
                 ->paginate(15);
 
+        $data['currentPage'] = $objs->currentPage();
+        $data['perPage'] = $objs->perPage();
+        $data['total'] = $objs->total();
+
         $data['objs'] = $objs;
         return view('admin.user.index', $data);
     }
@@ -42,6 +46,11 @@ class UserController extends Controller
             ->leftjoin('banks', 'banks.id',  'billers.bank_id')
             ->Orderby('billers.id', 'desc')
             ->paginate(15);
+
+
+            $data['currentPage'] = $bill->currentPage();
+        $data['perPage'] = $bill->perPage();
+        $data['total'] = $bill->total();
 
             //dd($bill);
 

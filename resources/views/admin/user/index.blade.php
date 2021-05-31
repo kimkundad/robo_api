@@ -28,6 +28,7 @@
                         <thead>
 
                           <tr>
+                            <th>#</th>
                             <th>บัญชีผู้ใช้</th>
                             <th>ชื่อ-นามสกุล</th>
 							<th>อีเมล</th>
@@ -41,9 +42,10 @@
                         <tbody>
                       
 						@if(isset($objs))
-                      @foreach($objs as $u)
+                      @foreach($objs as $index => $u)
                       
                           <tr>
+                            <td>{{ ( $currentPage - 1 ) * $perPage + $index + 1 }}</td>
                             <td>
                             @if($u->provider == 'email')
                             <img src="{{ url('assets/img/avatar/'.$u->avatar) }}" alt="{{$u->name}}"> 

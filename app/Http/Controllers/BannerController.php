@@ -18,9 +18,12 @@ class BannerController extends Controller
     public function index()
     {
         //
-        $cat = banner::all();
+        $cat = banner::Orderby('sort', 'asc')->paginate(15);
         
         $data['objs'] = $cat;
+        $data['currentPage'] = $cat->currentPage();
+        $data['perPage'] = $cat->perPage();
+        $data['total'] = $cat->total();
 
        return view('admin.banner.index', $data);
     }

@@ -19,7 +19,7 @@ class BankController extends Controller
     {
         //
       $objs = DB::table('banks')
-        ->get();
+      ->paginate(15);
 
         if(isset($objs)){
           foreach($objs as $u){
@@ -29,6 +29,10 @@ class BankController extends Controller
             $u->option = $count;
           }
         }
+
+        $data['currentPage'] = $objs->currentPage();
+        $data['perPage'] = $objs->perPage();
+        $data['total'] = $objs->total();
 
       $data['objs'] = $objs;
       return view('admin.bank.index', $data);

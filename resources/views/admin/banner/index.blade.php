@@ -27,25 +27,28 @@ window.gaTitle = 'หน้าแรก';
                 <div class="col-md-12 grid-margin stretch-card">
                   <div class="card">
                     <div class="card-body">
-                      <h4 class="card-title">รองรับการชำระเงิน ทั้งหมด</h4>
+                      <h4 class="card-title">รองรับการชำระเงิน ทั้งหมด ( {{$total}} )</h4>
 
                       <div class="table-responsive">
 
                       <table class="table">
                         <thead>
                           <tr>
+                            <th>#</th>
                             <th>ชื่อ</th>
                             <th>รูปภาพ</th>
                             <th>ใช้งาน</th>
-							<th>วันที่</th>
+                            <th>ลำดับ</th>
+							              <th>วันที่</th>
                             <th>ดำเนินการ</th>
                           </tr>
                         </thead>
                         <tbody>
                       
 						@if(isset($objs))
-                      @foreach($objs as $u)
+                      @foreach($objs as $index => $u)
                           <tr access_id="{{$u->id}}">
+                            <td>{{ ( $currentPage - 1 ) * $perPage + $index + 1 }}</td>
                             <td>
                             {{$u->name}}
                             </td>
@@ -62,6 +65,9 @@ window.gaTitle = 'หน้าแรก';
                               </label>
                             </div>
                             </td>
+                            <td>
+                            {{$u->sort}}
+                            </td>
 						    <td>
                               {{$u->created_at}}
                             </td>
@@ -76,7 +82,7 @@ window.gaTitle = 'หน้าแรก';
                         </tbody>
                       </table>
                       </div>
-					 
+                      {{ $objs->links() }}
                     </div>
                   </div>
                 </div>

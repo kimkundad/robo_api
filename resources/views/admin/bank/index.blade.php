@@ -31,6 +31,7 @@
                         <thead>
 
                           <tr>
+                            <th></th>
                             <th>#</th>
                             <th>ธนาคาร</th>
                             <th>จำนวนผู้ใช้งาน</th>
@@ -42,9 +43,10 @@
                         <tbody>
                       
 						@if(isset($objs))
-                      @foreach($objs as $u)
+                      @foreach($objs as $index => $u)
                      
                           <tr access_id="{{$u->id}}">
+                          <td>{{ ( $currentPage - 1 ) * $perPage + $index + 1 }}</td>
                             <td>
                             <img src="{{ url('img/bank/'.$u->bank_img) }}" alt="{{$u->name_bank}}"> </td>
                             <td>
@@ -81,6 +83,7 @@
                         </tbody>
                       </table>
                       </div>
+                      {{ $objs->links() }}
                     </div>
                   </div>
                 </div>
