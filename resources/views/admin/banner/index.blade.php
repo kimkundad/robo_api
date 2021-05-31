@@ -21,13 +21,13 @@ window.gaTitle = 'หน้าแรก';
 
 <div class="row">
                 <div class="col-md-12">
-                  <a href="{{ url('admin/banner/create') }}" class="btn btn-success btn-fw" style="float:right"><i class="icon-plus"></i>เพิ่ม Banner</a>
+                  <a href="{{ url('admin/banner/create') }}" class="btn btn-success btn-fw" style="float:right"><i class="icon-plus"></i>เพิ่ม รองรับการชำระเงิน</a>
                   <br /><br />
                 </div>
                 <div class="col-md-12 grid-margin stretch-card">
                   <div class="card">
                     <div class="card-body">
-                      <h4 class="card-title">Review ทั้งหมด</h4>
+                      <h4 class="card-title">รองรับการชำระเงิน ทั้งหมด</h4>
 
                       <div class="table-responsive">
 

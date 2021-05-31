@@ -73,7 +73,7 @@
             </li>
 
             <li class="nav-item">
-              <a href="{{ url('admin/banner') }}" class="nav-link"><i class="link-icon icon-badge"></i><span class="menu-title">แบนเนอร์</span></a>
+              <a href="{{ url('admin/banner') }}" class="nav-link"><i class="link-icon icon-badge"></i><span class="menu-title">รองรับการชำระ</span></a>
             </li>
  
             <li class="nav-item">

@@ -24,7 +24,7 @@ window.gaTitle = 'หน้าแรก';
 <div class="col-md-12">
   <div class="card">
     <div class="card-body">
-      <h4 class="card-title">ข้อมูล Banner</h4>
+      <h4 class="card-title">ข้อมูล รองรับการชำระเงิน</h4>
       <p class="card-description">
         กรอกข้อมูลให้ครบ ในส่วนที่มีเครื่องหมาย <span class="text-danger">*</span>
       </p>
@@ -33,7 +33,7 @@ window.gaTitle = 'หน้าแรก';
         {{ method_field($method) }}
         {{ csrf_field() }}
         <div class="form-group">
-          <label for="exampleInputUsername1">ชื่อผู้ Banner <span class="text-danger">*</span></label>
+          <label for="exampleInputUsername1">ชื่อ <span class="text-danger">*</span></label>
           <input type="text" class="form-control" id="exampleInputUsername1" name="name" value="{{ old('name') }}">
         </div>
 
