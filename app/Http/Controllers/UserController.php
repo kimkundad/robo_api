@@ -30,6 +30,31 @@ class UserController extends Controller
         return view('admin.user.index', $data);
     }
 
+
+    public function user_search(Request $request){
+
+        $this->validate($request, [
+            'search' => 'required'
+        ]);
+        $search = $request->get('search');
+
+        $objs = DB::table('users')
+            ->where('name', 'like', "%$search%")
+            ->orwhere('phone', 'like', "%$search%")
+            ->orwhere('email', 'like', "%$search%")
+            ->orwhere('first_name', 'like', "%$search%")
+            ->orwhere('last_name', 'like', "%$search%")
+            ->paginate(15);
+
+        $data['currentPage'] = $objs->currentPage();
+        $data['perPage'] = $objs->perPage();
+        $data['total'] = $objs->total();
+
+        $data['objs'] = $objs;
+        return view('admin.user.search', $data);
+
+    }
+
     public function biller_id_user(){
 
 

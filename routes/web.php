@@ -86,6 +86,8 @@ Route::group(['middleware' => ['UserRole:manager|employee']], function() {
     Route::get('admin/dashboard', 'DashboardController@index');
     Route::resource('admin/user', 'UserController');
 
+    Route::get('admin/user_search', 'UserController@user_search');
+
     Route::get('admin/biller_id_user', 'UserController@biller_id_user')->name('biller_id_user');
     Route::get('api/del_user_biller_id/{id}', 'UserController@del_user_biller_id')->name('del_user_biller_id');
     

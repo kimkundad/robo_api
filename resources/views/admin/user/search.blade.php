@@ -14,26 +14,15 @@
 
 
 <div class="row">
-                <div class="col-md-6"> </div>
-                <div class="col-md-6">
-                    
-                            <div class="form-group">
-                                <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="ชื่อ - นามสกุล, อีเมล, เบอร์ติดต่อ" aria-label="Recipient's username">
-                                    <div class="input-group-append">
-                                      <button class="btn btn-sm btn-primary" type="button">ค้นหา</button>
-                                    </div>
-                                  </div>
-                            </div>
-                       
-                </div>
-
+                
+                
                 <div class="col-md-12 grid-margin stretch-card">
                   <div class="card">
                     <div class="card-body">
                       <h4 class="card-title">ผู้ใช้งานทั้งหมด ( {{ count($objs)-2 }} )</h4>
 
                       <div class="table-responsive">
+
 
                       <table class="table">
                         <thead>
