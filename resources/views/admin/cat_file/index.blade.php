@@ -58,8 +58,8 @@ window.gaTitle = 'หน้าแรก';
                               </label>
                             </div>
                             </td>
-						    <td>
-                              {{$u->created_at}}
+						                <td>
+                            {{formatDateThat($u->created_at)}}
                             </td>
                             <td>
                               <a href="{{ url('admin/cat_file/'.$u->id.'/edit') }}" class="btn btn-outline-primary btn-sm">แก้ไข</a>

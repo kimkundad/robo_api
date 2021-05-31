@@ -39,7 +39,6 @@ window.gaTitle = 'หน้าแรก';
                             <th>รูปภาพ</th>
                             <th>ใช้งาน</th>
                             <th>ลำดับ</th>
-							              <th>วันที่</th>
                             <th>ดำเนินการ</th>
                           </tr>
                         </thead>
@@ -67,9 +66,6 @@ window.gaTitle = 'หน้าแรก';
                             </td>
                             <td>
                             {{$u->sort}}
-                            </td>
-						    <td>
-                              {{$u->created_at}}
                             </td>
                             <td>
                               <a href="{{ url('admin/banner/'.$u->id.'/edit') }}" class="btn btn-outline-primary btn-sm">แก้ไข</a>
