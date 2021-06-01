@@ -185,7 +185,7 @@ class UserController extends Controller
         $data['currentPage'] = $bill->currentPage();
         $data['perPage'] = $bill->perPage();
         $data['total'] = $bill->total();
-
+            dd($bill);
         $data['bill'] = $bill;   
 
 
