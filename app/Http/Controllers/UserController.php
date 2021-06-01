@@ -166,17 +166,25 @@ class UserController extends Controller
     {
         //name_bank
 
+
         $bill = DB::table('billers')->select(
             'billers.*',
             'billers.created_at as create',
             'billers.id as idb',
             'users.*',
-            'banks.*'
+            'users.phone as phone1',
+            'banks.*',
+            'users.id as idu',
             )
             ->leftjoin('users', 'users.code_user',  'billers.user_id')
             ->leftjoin('banks', 'banks.id',  'billers.bank_id')
             ->where('users.id', $id)
-            ->get();
+            ->Orderby('billers.id', 'desc')
+            ->paginate(15);
+
+        $data['currentPage'] = $bill->currentPage();
+        $data['perPage'] = $bill->perPage();
+        $data['total'] = $bill->total();
 
         $data['bill'] = $bill;   
 

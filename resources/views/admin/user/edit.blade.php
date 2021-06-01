@@ -7,90 +7,106 @@ window.gaTitle = 'หน้าแรก';
 @section('stylesheet')
 <style>
 
-
+.profile-page .profile-header {
+    width: 100%;
+    background: url('{{ url('img/Upgrafe-banner@2x.png') }}') no-repeat center center;
+    background-size: cover;
+    padding: 60px 0;
+    border-radius: 5px;
+}
+.hidden{
+  display:none;
+}
+.card-title{
+  font-size:16px;
+  margin-top:30px;
+}
+.table thead th, .jsgrid .jsgrid-table thead th {
+    font-size: 13px;
+}
 </style>
 @stop('stylesheet')
 
 @section('content')
 
 
-
-<div class="row">
-            <div class="col-md-4 grid-margin stretch-card">
-							<div class="card">
-								<div class="card-body">
-									<div class="d-flex flex-row">
-                                    <div class="bg-warning px-4 py-2 rounded" style="padding-top:28px !important;">
-												<i class="icon-wallet text-white icon-lg"></i>
-											</div>
-										<div class="ml-3">
-											<h6>เพิ่ม Biller ID ใหม่</h6>
-											<p class="text-muted">Biller ID ใหม่ต่างธนาคารที่มีอยู่</p>
-											<a class="add btn btn-primary font-weight-bold " href="{{ url('admin/create_biller_id/'.$objs->id) }}">Create Biller ID</a>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-
-            
-
-            @if(isset($bill))
-            @foreach($bill as $u)
-            <div class="col-md-4 grid-margin stretch-card">
-              
-							<div class="card">
-              <a href="{{ url('admin/edit_biller_id/'.$u->idb) }}" style="text-decoration:none">
-								<div class="card-body">
-									<div class="d-flex flex-row">
-										<img src="{{ url('img/bank/'.$u->bank_img) }}" class="img-lg rounded" >
-										<div class="ml-3">
-											<h6>{{ $u->biller_id }}</h6>
-											<p class="text-muted">{{ $u->name_bank }}</p>
-                                                        @if( $u->process == 0)
-                                                        <p class="mt-2 text-warning font-weight-bold">เจ้าหน้าที่ติดต่อกลับ</p>
-                                                        @elseif($u->process == 1)
-                                                        <p class="mt-2 text-info font-weight-bold">ส่งเรื่องให้กับธนาคาร</p>
-                                                        @elseif($u->process == 2)
-                                                        <p class="mt-2 text-success font-weight-bold">ผ่าน</p>
-                                                        @else
-                                                        <p class="mt-2 text-danger  font-weight-bold">ไม่ผ่าน</p>
-														                            @endif
-										</div>
-									</div>
-								</div>
-                </a>
-							</div>
-              
-						</div>
-            @endforeach
-            @endif
-
-            
+          <div class="row profile-page">
+            <div class="col-12">
+              <div class="card">
+                <div class="card-body">
+                  <div class="profile-header text-white">
+                    <div class="d-md-flex justify-content-around">
 
 
-<div class="col-md-12">
+                      <div class="profile-info d-flex align-items-center">
+                        @if($objs->provider == 'email')
+                          <img class="rounded-circle img-lg" src="{{ url('assets/img/avatar/'.$objs->avatar) }}" alt="{{$objs->name}}">
+                        @else
+                          <img class="rounded-circle img-lg" src="{{ url($objs->avatar) }}" alt="{{$objs->name}}">
+                        @endif
+                        <div class="wrapper pl-4">
+                          <p class="profile-user-name">{{ $objs->name }} (บัญชีผู้ใช้งาน)</p>
+                          <div class="wrapper d-flex align-items-center">
+                            <p class="profile-user-designation">{{ $objs->first_name }} {{ $objs->last_name }}</p>
+                          </div>
+                        </div>
+                      </div>
 
-  <div class="card">
-    <div class="card-body">
-    
-    
 
-      <h4 class="card-title">บัญชีผู้ใช้งาน : {{ $objs->name }}</h4>
-     
-     
+                      <div class="details">
+                        <div class="detail-col">
+                          <p>Biller_ID</p>
+                          <p>{{ count($bill) }}</p>
+                        </div>
+                        <div class="detail-col">
+                          <p>Bank_Acc.</p>
+                          <p>0</p>
+                        </div>
+                      </div>
 
-      <form class="forms-sample" method="POST" action="{{$url}}" enctype="multipart/form-data">
-        {{ method_field($method) }}
-        {{ csrf_field() }}
-        <br>
 
-        
-        
+                    </div>
+                  </div>
+
+                  
+
+                  <div class="profile-body">
+                    <ul class="nav tab-switch" role="tablist">
+                      <li class="nav-item">
+                        <a class="nav-link active" id="user-profile-info-tab" data-toggle="pill" href="#user-profile-info" role="tab" aria-controls="user-profile-info" aria-selected="true">บัญชีผู้ใช้งาน</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" id="user-profile-activity-tab" data-toggle="pill" href="#user-profile-activity" role="tab" aria-controls="user-profile-activity" aria-selected="false">ฺBiller ID</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" id="user-profile-activity-tab2" data-toggle="pill" href="#user-profile-activity2" role="tab" aria-controls="user-profile-activity2" aria-selected="false">ฺLog</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link">Bank</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link">Company</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link">Address</a>
+                      </li>
+                    </ul>
 
                     <div class="row">
+                      <div class="col-md-12">
+                        <div class="tab-content tab-body" id="profile-log-switch">
+                          <div class="tab-pane fade show active pr-3" id="user-profile-info" role="tabpanel" aria-labelledby="user-profile-info-tab">
 
-                    <div class="col-md-6">
+
+
+              <br>
+              <form class="forms-sample" method="POST" action="{{$url}}" enctype="multipart/form-data">
+                {{ method_field($method) }}
+                {{ csrf_field() }}
+                <br>
+                  <div class="row">
+
+                  <div class="col-md-6">
                         <div class="form-group row">
                           <label class="col-sm-3 col-form-label">บัญชีผู้ใช้งาน</label>
                           <div class="col-sm-9">
@@ -230,40 +246,191 @@ window.gaTitle = 'หน้าแรก';
         </div>
 
       </form>
+                            
+                            
+
+                            
+                          </div>
+                          <div class="tab-pane fade" id="user-profile-activity" role="tabpanel" aria-labelledby="user-profile-activity-tab">
+
+                          <div>
+                          <a href="{{ url('admin/create_biller_id/'.$objs->id) }}" class="btn btn-success btn-fw" style="float:right"><i class="icon-plus"></i>เพิ่ม Biller ID ใหม่</a>
+                          <h4 class="card-title">Biller ID ทั้งหมด ( {{ count($bill) }} )</h4>
+
+                      <div class="table-responsive">
+                      <table class="table">
+                        <thead>
+
+                          <tr>
+                          <th>#</th>
+                            <th>ชื่อธนาคาร</th>
+                            <th>ชื่อ-นามสกุล</th>
+						              	<th>สถานะ</th>
+                            <th>เบอร์โทร</th>
+                            <th>ชื่อบัญชี</th>
+                            <th>Biller ID</th>
+                            <th>วันที่สมัคร</th>
+                            <th>ดำเนินการ</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                      
+						          @if(isset($bill))
+                        @foreach($bill as $index => $u)
+                         
+                          <tr>
+                          <td>
+                          {{ ( $currentPage - 1 ) * $perPage + $index + 1 }}
+                            </td>
+                            <td>
+                              {{$u->name_bank}}
+                            </td>
+                            <td>
+                            @if($u->provider == 'email')
+                            <img src="{{ url('assets/img/avatar/'.$u->avatar) }}" > 
+                            @else
+                            <img src="{{ url($u->avatar) }}" > 
+                            @endif
+                            {{$u->first_name}} {{$u->last_name}}</td>
+
+                            <td>
+                             
+                            @if($u->process == 0)
+                                <p class="mt-2 text-warning font-weight-bold">เจ้าหน้าที่ติดต่อกลับ</p>
+                            @elseif($u->process == 1)
+                                <p class="mt-2 text-info font-weight-bold">ส่งเรื่องให้กับธนาคาร</p>
+                            @elseif($u->process == 2)
+                                <p class="mt-2 text-success font-weight-bold">ผ่าน</p>
+                            @else
+                                <p class="mt-2 text-danger  font-weight-bold">ไม่ผ่าน</p>
+							              @endif
+                            </td>
+							                <td>
+                              {{$u->phone1}}
+                            </td>
+                            <td>
+                              {{$u->name_bank}}
+                            </td>
+                            <td>
+                              {{$u->biller_id}}
+                            </td>
+                            <td>
+                            {{formatDateThat($u->create)}}
+                            </td>
+                            <td>
+                              <a href="{{ url('admin/edit_biller_id/'.$u->idb) }}" class="btn btn-outline-primary btn-sm">แก้ไข</a>
+                              <a href="{{ url('api/del_user_biller_id/'.$u->idb) }}" onclick="return confirm('Are you sure?')" class="btn btn-outline-danger btn-sm">ลบ</a>
+                            </td>
+                          </tr>
+                    
+
+                          @endforeach
+                          @endif
+
+
+                        </tbody>
+                      </table>
+                      </div>
+					            {{ $bill->links() }}
+                      </div>
+                            
+                          </div>
+
+                          <div class="tab-pane fade" id="user-profile-activity2" role="tabpanel" aria-labelledby="user-profile-activity-tab2">
+
+                          <div>
+                          <h4 class="card-title">ความเคลื่อนไหวทั้งหมด ทั้งหมด ( {{ count($log) }} )</h4>
+                          <br>
+                          <div class="table-responsive">
+                              <table class="table">
+                                  <tbody>
+                                  @if(isset($log))
+                                    @foreach($log as $u)
+                                      <tr>
+                                      @if($u->status == 1)
+                                      <td>User Login</td>
+                                      @elseif($u->status == 2)
+                                      <td>User Logout</td>
+                                      @else
+                                      <td>User Register</td>
+                                      @endif
+                                      <td>{{$u->detail}}</td>
+                                      <td>{{$u->ip_address}}</td>
+                                      <td>{{$u->browser}}</td>
+                                      <td>{{$u->create}}</td>
+                                      </tr>
+                                    @endforeach
+                                  @endif
+                                  </tbody>
+                              </table>
+                          </div>
+                          {{ $log->links() }}
+                          </div>
+                          </div>
+
+
+                        </div>
+                      </div>
+                      
+                      
+                    </div>
+
+                  </div>
+
+
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+
+
+<div class="row hidden">
+            <div class="col-md-4 grid-margin stretch-card">
+							<div class="card">
+								<div class="card-body">
+									<div class="d-flex flex-row">
+                                    <div class="bg-warning px-4 py-2 rounded" style="padding-top:28px !important;">
+												<i class="icon-wallet text-white icon-lg"></i>
+											</div>
+										<div class="ml-3">
+											<h6>เพิ่ม Biller ID ใหม่</h6>
+											<p class="text-muted">Biller ID ใหม่ต่างธนาคารที่มีอยู่</p>
+											<a class="add btn btn-primary font-weight-bold " href="{{ url('admin/create_biller_id/'.$objs->id) }}">Create Biller ID</a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+            
+
+            
+
+            
+
+
+<div class="col-md-12">
+
+  <div class="card">
+    <div class="card-body">
+    
+    
+
+      
     </div>
   </div>
   </div>
 
-            <div class="col-md-6 grid-margin stretch-card" style="margin-top:15px">
+            <div class="col-md-12 grid-margin stretch-card" style="margin-top:15px">
             
 							<div class="card">
               
 								<div class="card-body">
 									<h4 class="card-title">Updates</h4>
-									<ul class="bullet-line-list">
-                  @if(isset($log))
-                      @foreach($log as $u)
-										<li>
-                      @if($u->status == 1)
-											<h6>User Login</h6>
-                      @elseif($u->status == 2)
-                      <h6>User Logout</h6>
-                      @else
-                      <h6>User Register</h6>
-                      @endif
-											<p class="mb-0">{{$u->detail}} </p>
-                      <p class="mb-0 text-muted">ip_address : {{$u->ip_address}} </p>
-                      <p class="mb-0 text-muted">browser : {{$u->browser}} </p>
-											<p class="text-muted">
-												<i class="icon-clock"></i>
-												{{$u->created_at}}
-											</p>
-										</li>
-										
-                    @endforeach
-                          @endif
-									</ul>
-                  {{ $log->links() }}
+
+                    
 								</div>
                 
 							</div>
