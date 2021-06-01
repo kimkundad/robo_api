@@ -9,7 +9,7 @@ window.gaTitle = 'หน้าแรก';
 
 .profile-page .profile-header {
     width: 100%;
-    background: url('{{ url('img/Upgrafe-banner@2x.png') }}') no-repeat center center;
+    background: url('{{ url('assets/img/Upgrafe-banner@2x.png') }}') no-repeat center center;
     background-size: cover;
     padding: 60px 0;
     border-radius: 5px;
