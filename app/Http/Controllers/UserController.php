@@ -117,7 +117,7 @@ class UserController extends Controller
         $data['perPage'] = $bill->perPage();
         $data['total'] = $bill->total();
 
-            dd($bill);
+          //  dd($bill);
 
         $data['objs'] = $bill;  
         return view('admin.user.biller_id_user', $data);
