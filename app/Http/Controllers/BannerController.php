@@ -163,10 +163,10 @@ class BannerController extends Controller
                 'sort' => 'required'
             ]);
 
-          $objs = banner::find($id)->first();
+       /*   $objs = banner::find($id)->first();
 
           $file_path = 'img/banner/'.$objs->image;
-          unlink($file_path);
+          unlink($file_path);  */
 
           $input['imagename'] = time().'.'.$image->getClientOriginalExtension();
 
