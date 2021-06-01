@@ -97,6 +97,7 @@ Route::group(['middleware' => ['UserRole:manager|employee']], function() {
     Route::get('api/del_bank/{id}', 'BankController@del_bank')->name('del_bank');
     Route::post('api/bank_status', 'BankController@bank_status')->name('bank_status');
 
+    
     Route::get('api/del_user/{id}', 'UserController@del_user')->name('del_user');
 
     Route::get('admin/setting', 'SettingController@setting')->name('setting');
