@@ -166,6 +166,7 @@ class UserController extends Controller
     {
         //name_bank
 
+        $objs = User::find($id);
 
         $bill = DB::table('billers')->select(
             'billers.*',
@@ -178,14 +179,14 @@ class UserController extends Controller
             )
             ->leftjoin('users', 'users.code_user',  'billers.user_id')
             ->leftjoin('banks', 'banks.id',  'billers.bank_id')
-            ->where('users.id', $id)
+            ->where('billers.user_id', $objs->code_user)
             ->Orderby('billers.id', 'desc')
             ->paginate(15);
 
         $data['currentPage'] = $bill->currentPage();
         $data['perPage'] = $bill->perPage();
         $data['total'] = $bill->total();
-            dd($bill);
+        
         $data['bill'] = $bill;   
 
 
@@ -200,7 +201,7 @@ class UserController extends Controller
 
             $data['log'] = $log;
 
-        $objs = User::find($id);
+        
 
         $data['url'] = url('admin/user/'.$id);
         $data['method'] = "put";
