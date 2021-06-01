@@ -35,11 +35,11 @@
                 <div class="col-md-12 grid-margin stretch-card">
                   <div class="card">
                     <div class="card-body">
+
+                    
                       <h4 class="card-title">Biller ID ทั้งหมด ( {{ count($objs) }} )</h4>
 
                       <div class="table-responsive">
-
-
                       <table class="table">
                         <thead>
 
@@ -57,8 +57,8 @@
                         </thead>
                         <tbody>
                       
-						@if(isset($objs))
-                      @foreach($objs as $index => $u)
+						          @if(isset($objs))
+                        @foreach($objs as $index => $u)
                          
                           <tr>
                           <td>
