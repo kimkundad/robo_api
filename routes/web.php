@@ -20,12 +20,13 @@ Route::get('/', function () {
 
 Auth::routes();
 
+Route::get('/get_file_version', 'HomeController@get_file_version')->name('get_file_version');
+
 Route::get('/get_province', 'HomeController@get_province')->name('get_province');
 Route::get('/get_dist/{id}', 'HomeController@get_dist')->name('get_dist');
 Route::get('/get_subdist/{id}', 'HomeController@get_subdist')->name('get_subdist');
 
 Route::get('/get_img_bank/{id}', 'HomeController@get_img_bank')->name('get_img_bank');
-
 
 Route::get('/get_postal_codes/{id}/pro/{provi}/dist/{mydist}', 'HomeController@get_postal_codes')->name('get_postal_codes');
 
@@ -33,7 +34,6 @@ Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
 Route::get('/get_document', 'HomeController@get_document')->name('get_document');
 Route::get('/get_document_page/{id}', 'HomeController@get_document_page')->name('get_document_page');
-
 
 Route::get('oauth/{driver}', 'Auth\SocialAuthController@redirectToProvider')->name('social.oauth');
 Route::get('oauth/{driver}/callback', 'Auth\SocialAuthController@handleProviderCallback')->name('social.callback');
@@ -79,6 +79,11 @@ Route::get('/get_my_biller_id', [AuthController::class, 'get_my_biller_id']);
 Route::get('/get_biller_by_id/{id}', [AuthController::class, 'get_biller_by_id']); 
 Route::post('/change_status_biller_by_id', [AuthController::class, 'change_status_biller_by_id']); 
 Route::post('/add_new_biller', [AuthController::class, 'add_new_biller']); 
+Route::post('/add_new_device', [AuthController::class, 'add_new_device']); 
+Route::get('/get_device', [AuthController::class, 'get_device']); 
+Route::get('/get_device_by_id/{id}', [AuthController::class, 'get_device_by_id']); 
+Route::post('/change_status_device_by_id', [AuthController::class, 'change_status_device_by_id']); 
+
 
 
 Route::group(['middleware' => ['UserRole:manager|employee']], function() {
@@ -129,6 +134,9 @@ Route::group(['middleware' => ['UserRole:manager|employee']], function() {
     Route::get('api/del_get_file/{id}', 'GetFileController@del_get_file')->name('del_get_file');
     Route::post('api/get_file_status', 'GetFileController@get_file_status')->name('get_file_status');
     Route::get('api/get_file_upload/{id}', 'GetFileController@get_file_upload')->name('get_file_upload');
+
+    Route::resource('admin/get_file_version', 'GetFileVersionController');
+    Route::post('api/get_file_version_status', 'GetFileVersionController@get_file_version_status')->name('get_file_version_status');
 
 });
 

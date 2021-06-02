@@ -118,6 +118,16 @@ class HomeController extends Controller
 
     }
 
+
+    public function get_file_version(){
+
+        $bill = DB::table('fileversions')
+                ->orderby('id', 'desc')
+                ->get();
+
+        return response()->json(['status'=> 200, 'data' => $bill]);
+    }
+
     public function check_logout(Request $request){
 
         $agent = new Agent();

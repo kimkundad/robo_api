@@ -30,6 +30,10 @@ class VerifyCsrfToken extends Middleware
         'get_document',
         'add_new_address',
         'change_status_biller_by_id',
-        'add_new_biller'
+        'add_new_biller',
+        'add_new_device',
+        'get_device',
+        'get_device_by_id',
+        'change_status_device_by_id'
     ];
 }

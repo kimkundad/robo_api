@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Hash;
 use Jenssegers\Agent\Agent;
 use App\biller;
 use App\biller_file;
+use App\mydevice;
 
 
 
@@ -100,12 +101,28 @@ class AuthController extends Controller
         }
     }
 
+    
+    public function add_new_device(Request $request){
+
+        if(isset(auth('api')->user()->id)){
+
+
+            $objs = new mydevice();
+            $objs->divice_name = $request['divice_name'];
+            $objs->mac_address = $request['mac_address'];
+            $objs->user_data_id = $request['user_id'];
+            $objs->save();
+
+            return response()->json(['status'=>200, 'message' => 'Insert new Device success' ]);
+
+        }
+
+    }
+
 
     public function add_new_address(Request $request){
 
         if(isset(auth('api')->user()->id)){
-
-            
 
             $objs = new text_address();
             $objs->fname = $request['fname'];
@@ -433,6 +450,33 @@ class AuthController extends Controller
     }
 
 
+    public function get_device(){
+
+        if(isset(auth('api')->user()->id)){
+
+            $bill = DB::table('mydevices')
+                ->where('user_data_id', auth('api')->user()->code_user)
+                ->orderby('id', 'desc')
+                ->paginate(15);
+
+                if(isset($bill)){
+                    foreach($bill as $u){
+                        $u->date_create = formatDateThat($u->created_at);
+                    }
+                }
+
+                return response()->json([
+                    'status'=>200,
+                    'data' => $bill
+                ]
+                );
+
+        }
+    }
+
+   
+
+
     public function get_my_biller_id(){
 
         if(isset(auth('api')->user()->id)){
@@ -488,6 +532,31 @@ class AuthController extends Controller
     }
 
 
+    public function change_status_device_by_id(Request $request){
+
+        if(isset(auth('api')->user()->id)){
+
+            $id = $request['user_id'];
+       
+            $user = mydevice::findOrFail($id);
+
+                if($user->status == 1){
+                    $user->status = 0;
+                } else {
+                    $user->status = 1;
+                }
+                $user->save();
+
+                return response()->json([
+                    'status'=>200,
+                    'data' => $user
+                ]
+                );
+        }
+
+    }
+
+
     public function change_status_biller_by_id(Request $request){
 
         
@@ -510,10 +579,28 @@ class AuthController extends Controller
                     'data' => $user
                 ]
                 );
-                
-
         }
 
+
+    }
+
+    public function get_device_by_id($id){
+
+        if(isset(auth('api')->user()->id)){
+
+            $bill = DB::table('mydevices')
+                ->where('id', $id)
+                ->first();
+
+                $bill->date_create = formatDateThat($bill->created_at);
+
+                return response()->json([
+                    'status'=>200,
+                    'data' => $bill
+                ]
+                );
+
+        }
 
     }
 
