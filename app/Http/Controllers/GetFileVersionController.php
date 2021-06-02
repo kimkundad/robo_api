@@ -4,8 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\get_file;
-use App\cat_file;
+use App\fileversion;
 use Intervention\Image\ImageManagerStatic as Image;
 use File;
 use Response;
@@ -25,6 +24,25 @@ class GetFileVersionController extends Controller
         $data['objs'] = '';
 
        return view('admin.file_version.index', $data);
+    }
+
+
+    public function get_file_version_api(){
+
+        $bill = DB::table('fileversions')
+                ->orderby('id', 'desc')
+                ->get();
+
+                if(isset($bill)){
+                    foreach($bill as $u){
+                        $u->date_create = formatDateThat($u->created_at);
+                    }
+                }
+
+
+
+        return response()->json($bill);
+
     }
 
     /**
@@ -47,9 +65,28 @@ class GetFileVersionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function add_file_version(Request $request)
     {
         //
+        $image = $request->file('image');
+        $path = 'assets/doc_version/';
+         $filename = time().'.'.$image->getClientOriginalExtension();
+         $image->move($path, $filename);
+
+       $package = new fileversion();
+       $package->name = $request['file_name'];
+       $package->version = $request['version'];
+       $package->file_version = $filename;
+       $package->save();
+
+       return response()->json([
+        'data' => [
+          'status' => 200,
+          'msg' => 'This user was not verified by recaptcha.'
+        ]
+      ]);
+
+
     }
 
     /**

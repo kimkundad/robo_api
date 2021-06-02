@@ -20,7 +20,16 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/get_file_version', 'HomeController@get_file_version')->name('get_file_version');
+
+Route::get('api/get_file_version', 'GetFileVersionController@get_file_version_api');
+Route::get('admin/get_file_version', 'GetFileVersionController@index');
+Route::get('admin/get_file_version/create', 'GetFileVersionController@create');
+Route::get('admin/get_file_version/{id}/edit', 'GetFileVersionController@edit');
+Route::post('admin/get_file_version/store', 'GetFileVersionController@store');
+Route::get('admin/get_file_version/delete/{id}', 'GetFileVersionController@destroy');
+
+Route::post('api/add_file_version', 'GetFileVersionController@add_file_version');
+
 
 Route::get('/get_province', 'HomeController@get_province')->name('get_province');
 Route::get('/get_dist/{id}', 'HomeController@get_dist')->name('get_dist');
@@ -135,8 +144,7 @@ Route::group(['middleware' => ['UserRole:manager|employee']], function() {
     Route::post('api/get_file_status', 'GetFileController@get_file_status')->name('get_file_status');
     Route::get('api/get_file_upload/{id}', 'GetFileController@get_file_upload')->name('get_file_upload');
 
-    Route::resource('admin/get_file_version', 'GetFileVersionController');
-    Route::post('api/get_file_version_status', 'GetFileVersionController@get_file_version_status')->name('get_file_version_status');
+
 
 });
 

@@ -28,32 +28,30 @@ window.gaTitle = 'หน้าแรก';
         กรอกข้อมูลให้ครบ ในส่วนที่มีเครื่องหมาย <span class="text-danger">*</span>
       </p>
 
-      <form class="forms-sample" method="POST" action="{{$url}}" enctype="multipart/form-data">
-        {{ method_field($method) }}
-        {{ csrf_field() }}
+      <form class="forms-sample" id="contactForm">
         <div class="form-group">
           <label for="exampleInputUsername1">ชื่อไฟล์ version<span class="text-danger">*</span></label>
-          <input type="text" class="form-control" name="file_name" value="{{ old('file_name') }}">
+          <input type="text" class="form-control" name="file_name" id="file_name">
         </div>
 
         <div class="form-group">
           <label for="exampleInputUsername1">Version <span class="text-danger">*</span></label>
-          <input type="text" class="form-control" name="file_size" value="{{ old('file_size') }}">
+          <input type="text" class="form-control" name="version" id="version">
         </div>
 
         <div class="form-group">
           <br />
           <label for="exampleInputUsername1">อัพโหลดไฟล์ <span class="text-danger">*</span></label>
-          <input type="file" class="dropify"  name="image" />
+          <input type="file" class="dropify"  name="image" id="image"/>
           <br />
         </div>
 
 
-        <div style="text-align: right;">
-        <br /><br /><br />
-        <button type="submit" class="btn btn-primary mr-2">บันทึก</button>
-        <button class="btn btn-light">ยกเลิก</button>
-        </div>
+          <div style="text-align: right;">
+            <br /><br /><br />
+            <a class="btn btn-primary mr-2" id="btnSendData" style="color:#fff">บันทึก</a>
+            <button class="btn btn-light">ยกเลิก</button>
+          </div>
 
       </form>
     </div>
@@ -68,7 +66,92 @@ window.gaTitle = 'หน้าแรก';
 
 @section('scripts')
 
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gasparesganga-jquery-loading-overlay@2.1.6/dist/loadingoverlay.min.js"></script>
+
+<script>
+$(document).on('click','#btnSendData',function (event) {
+  event.preventDefault();
+  var form = $('#contactForm')[0];
+  var formData = new FormData(form);
+
+  var file_name = document.getElementById("file_name").value;
+  var version = document.getElementById("version").value;
+  var image = document.getElementById("image").value;
 
 
+
+
+if(file_name == '' || version == '' || image == ''){
+
+  swal("กรูณา ป้อนข้อมูลให้ครบถ้วน");
+
+}else{
+
+  $.LoadingOverlay("show", {
+    background  : "rgba(255, 255, 255, 0.4)",
+    image       : "",
+    fontawesome : "fa fa-cog fa-spin"
+  });
+
+
+  $.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="token"]').attr('value')
+    }
+});
+
+  console.log(formData)
+
+  $.ajax({
+      url: "{{url('/api/add_file_version')}}",
+      headers: {'X-CSRF-TOKEN': '{{ csrf_token() }}' },
+      data: formData,
+      processData: false,
+      contentType: false,
+      cache:false,
+      type: 'POST',
+      success: function (data) {
+
+      //  console.log(data.data.status)
+          if(data.data.status == 200){
+
+
+            setTimeout(function(){
+                $.LoadingOverlay("hide");
+            }, 0);
+
+            swal("สำเร็จ!", "ข้อความถูกส่งไปหาเจ้าหน้าที่เรียบร้อยแล้ว", "success");
+
+            $("#name").val('');
+            $("#comments").val('');
+            $("#email").val('');
+            $("#subject").val('');
+
+
+          setTimeout(function(){
+                window.location.replace("{{url('admin/get_file_version/')}}/");
+          }, 2000);
+
+          }else{
+
+            setTimeout(function(){
+                $.LoadingOverlay("hide");
+            }, 500);
+
+            swal("กรูณา ป้อนข้อมูลให้ครบถ้วน");
+
+          }
+      },
+      error: function () {
+
+      }
+  });
+
+}
+
+
+});
+</script>
 
 @stop('scripts')
