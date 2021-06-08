@@ -26,16 +26,17 @@ window.gaTitle = 'หน้าแรก';
                 <div class="col-md-12 grid-margin stretch-card">
                   <div class="card">
                     <div class="card-body">
-                      <h4 class="card-title">ไฟล์ version ทั้งหมด</h4>
+                      <h4 class="card-title">Firmware version</h4>
 
                       <div class="table-responsive">
 
                       <table class="table" id="datatable">
                         <thead>
                           <tr>
-                            <th>ชื่อไฟล์</th>
-                            <th>Version</th>
-                            <th>วันที่สร้าง</th>
+                            <th>#</th>
+                            <th>วันที่อัปโหลด</th>
+                            <th>ชื่อไฟล์ (Version)</th>
+                            <th>ประเภทอุปกรณ์</th>
                             <th>ดำเนินการ</th>
                           </tr>
                         </thead>
@@ -68,20 +69,24 @@ window.gaTitle = 'หน้าแรก';
 $(document).ready(function(){
 
   $.ajax({
-        url: "{{ url('api/get_file_version') }}",
+        url: "https://iot-test.promptrub.com/api/v1/version_control?Page=1&PageSize=10",
         method:'GET',
         success: function (data) {
 
           $('#datatable tr').not(':first').not(':last').remove();
             var html = '';
-            for(var i = 0; i < data.length; i++){
+            var num_var = 1;
+            for(var i = 0; i < data.items.length; i++){
+             
                 html += '<tr>'+
-                            '<td>' + data[i].name + '</td>' +
-                            '<td>' + data[i].version + '</td>' +
-                            '<td>' + data[i].date_create + '</td>' +
-                            '<td><a href="#" class="btn btn-outline-primary btn-sm" style="margin-right:5px;">แก้ไข</a>' +
-                            '<a href="#" class="btn btn-outline-danger btn-sm">ลบ</a></td>' +
+                            '<td>' + num_var + '</td>' +
+                            '<td>' + data.items[i].date_create + '</td>' +
+                            '<td>' + data.items[i].name + '</td>' +
+                            '<td> ประเภทอุปกรณ์ </td>' +
+                            '<td><a href="{{url('/')}}/admin/del_file_version/'+ data.items[i].id +'" style="margin-right:5px;" class="btn btn-outline-primary btn-sm">ดาวน์โหลด</a>'+
+                            '<a href="{{url('/')}}/admin/del_file_version/'+ data.items[i].id +'" class="btn btn-outline-danger btn-sm">ลบ</a></td>' +
                         '</tr>';
+                        num_var++;
                 }   
             $('#datatable tr').first().after(html);
 

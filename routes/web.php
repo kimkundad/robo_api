@@ -24,12 +24,15 @@ Auth::routes();
 Route::get('api/get_file_version', 'GetFileVersionController@get_file_version_api');
 Route::get('admin/get_file_version', 'GetFileVersionController@index');
 Route::get('admin/get_file_version/create', 'GetFileVersionController@create');
+
 Route::get('admin/get_file_version/{id}/edit', 'GetFileVersionController@edit');
+Route::get('api/get_file_version/{id}/edit', 'GetFileVersionController@api_edit');
+
 Route::post('admin/get_file_version/store', 'GetFileVersionController@store');
 Route::get('admin/get_file_version/delete/{id}', 'GetFileVersionController@destroy');
 
 Route::post('api/add_file_version', 'GetFileVersionController@add_file_version');
-
+Route::post('api/add_file_version_edit', 'GetFileVersionController@add_file_version_edit');
 
 Route::get('/get_province', 'HomeController@get_province')->name('get_province');
 Route::get('/get_dist/{id}', 'HomeController@get_dist')->name('get_dist');

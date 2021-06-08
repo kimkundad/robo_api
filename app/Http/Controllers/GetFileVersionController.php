@@ -39,8 +39,6 @@ class GetFileVersionController extends Controller
                     }
                 }
 
-
-
         return response()->json($bill);
 
     }
@@ -89,6 +87,37 @@ class GetFileVersionController extends Controller
 
     }
 
+
+    public function add_file_version_edit(Request $request){
+
+        $image = $request->file('image');
+
+       $package = fileversion::find($request['file_id']);
+       $package->name = $request['file_name'];
+       $package->version = $request['version'];
+       $package->save();
+
+       if($image != null){
+
+        $path = 'assets/doc_version/';
+         $filename = time().'.'.$image->getClientOriginalExtension();
+         $image->move($path, $filename);
+
+        $package = fileversion::find($request['file_id']);
+        $package->file_version = $filename;
+        $package->save();
+
+       }
+
+       return response()->json([
+        'data' => [
+          'status' => 200,
+          'msg' => 'This user was not verified by recaptcha.'
+        ]
+      ]);
+
+    }
+
     /**
      * Display the specified resource.
      *
@@ -109,7 +138,30 @@ class GetFileVersionController extends Controller
     public function edit($id)
     {
         //
+        $bill = DB::table('fileversions')
+                ->where('id', $id)
+                ->first();
+
+                $bill->date_create = formatDateThat($bill->created_at);
+
+              $data['objs'] = $bill;
+
+              return view('admin.file_version.edit', $data);
     }
+
+    public function api_edit($id)
+    {
+        //
+        $bill = DB::table('fileversions')
+                ->where('id', $id)
+                ->first();
+
+                $bill->date_create = formatDateThat($bill->created_at);
+
+        return response()->json($bill);
+    }
+
+    
 
     /**
      * Update the specified resource in storage.

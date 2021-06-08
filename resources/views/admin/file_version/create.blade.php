@@ -70,6 +70,7 @@ window.gaTitle = 'หน้าแรก';
 <script src="https://cdn.jsdelivr.net/npm/gasparesganga-jquery-loading-overlay@2.1.6/dist/loadingoverlay.min.js"></script>
 
 <script>
+
 $(document).on('click','#btnSendData',function (event) {
   event.preventDefault();
   var form = $('#contactForm')[0];
