@@ -11,3 +11,6 @@
   <link rel="shortcut icon" href="{{ url('back/images/favicon.png') }}" />
   <link rel="stylesheet" href="{{ url('back/vendors/summernote/dist/summernote-bs4.css') }}">
   <link rel="stylesheet" href="{{ url('back/vendors/lightgallery/css/lightgallery.css') }}">
+  <style>
+  
+  </style>

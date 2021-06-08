@@ -66,7 +66,7 @@ window.gaTitle = 'หน้าแรก';
                       </table>
 
                       </div>
-					 
+                      <div id="pagi_js"></div>
                     </div>
                   </div>
                 </div>
@@ -83,6 +83,8 @@ window.gaTitle = 'หน้าแรก';
 <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
 <script>
 
+var page = 1;
+
 $("#search").keyup(function(event) {
     if (event.keyCode === 13) {
         $("#btnSendData").click();
@@ -94,7 +96,7 @@ $(document).on('click','#btnSendData',function (event) {
   var search = document.getElementById("search").value;
 
   $.ajax({
-        url: "https://iot-test.promptrub.com/api/v1/version_control?Page=1&PageSize=10&Keyword="+search,
+        url: "https://iot-test.promptrub.com/api/v1/version_control?Page=1&PageSize=20&Keyword="+search,
         method:'GET',
         success: function (data) {
        
@@ -114,6 +116,7 @@ $(document).on('click','#btnSendData',function (event) {
                         num_var++;
                 }   
                 document.getElementById('reset_tb').innerHTML = html;
+                document.getElementById('pagi_js').innerHTML = "";
         },
         error: function (data) {
         }
@@ -159,10 +162,11 @@ function reply_click()
   });
     }
 
-$(document).ready(function(){
+    function onClickDiv(page_value){
 
-  $.ajax({
-        url: "https://iot-test.promptrub.com/api/v1/version_control?Page=1&PageSize=10",
+
+      $.ajax({
+        url: "https://iot-test.promptrub.com/api/v1/version_control?Page="+page_value+"&PageSize=20",
         method:'GET',
         success: function (data) {
           document.getElementById('reset_tb').innerHTML = "";
@@ -181,7 +185,89 @@ $(document).ready(function(){
                         num_var++;
                 }   
                 document.getElementById('reset_tb').innerHTML = html;
-           // $('#reset_tb').first().after(html);
+  
+              var in_pagi = '';
+              for (var i = 1; i <= data?.totalPages; i++) {
+                if(page_value == i){
+                  in_pagi += '<li class="page-item active">'+
+                          '<a class="page-link" onClick="onClickDiv('+i+')"  >'+i+'</a></li>';
+                }else{
+                  in_pagi += '<li class="page-item ">'+
+                          '<a class="page-link" onClick="onClickDiv('+i+')"  >'+i+'</a></li>';
+                }
+                }
+
+                  var pagination = '';
+                  if(data.totalPages > 0){
+                    pagination = '<nav>'+
+                    '<ul class="pagination rounded-flat pagination-success">'+
+                      '<li class="page-item"><a onClick="onClickDiv(1)" class="page-link" ><i class="icon-arrow-left"></i></a></li>'+
+                        in_pagi
+                      '<li class="page-item"><a onClick="onClickDiv('+ (data.currentPage+1) +')" class="page-link" href="#"><i class="icon-arrow-right"></i></a></li>'+
+                    '</ul>'+
+                  '</nav>';
+                  }
+
+                  document.getElementById('pagi_js').innerHTML = pagination;
+                  
+
+          
+        },
+        error: function (data) {
+        }
+      });
+
+
+
+    }
+
+$(document).ready(function(){
+
+  $.ajax({
+        url: "https://iot-test.promptrub.com/api/v1/version_control?Page="+page+"&PageSize=20",
+        method:'GET',
+        success: function (data) {
+          document.getElementById('reset_tb').innerHTML = "";
+            var html = '';
+            var num_var = 1;
+            for(var i = 0; i < data.items.length; i++){
+             
+                html += '<tr id="row_hide_'+ data.items[i].id +'">'+
+                            '<td>' + num_var + '</td>' +
+                            '<td>{{ formatDateThat(' + data.items[i].uploadDate + ')}}</td>' +
+                            '<td><a href="#" id="'+ data.items[i].id +'" onClick="reply_click2(this.id)" class="preview_'+ data.items[i].id +'">' + data.items[i].name + '</a></td>' +
+                            '<td>' + data.items[i].machineType + '</td>' +
+                            '<td><a target="_blank" href="' + data.items[i].url + '" style="margin-right:5px;" class="btn btn-outline-primary btn-sm">ดาวน์โหลด</a>'+
+                            '<a id="'+ data.items[i].id +'" onClick="reply_click()" class="btn btn-outline-danger btn-sm">ลบ</a></td>' +
+                        '</tr>';
+                        num_var++;
+                }   
+                document.getElementById('reset_tb').innerHTML = html;
+  
+              var in_pagi = '';
+              for (var i = 1; i <= data?.totalPages; i++) {
+                if(page == i){
+                  in_pagi += '<li class="page-item active">'+
+                          '<a class="page-link" onClick="onClickDiv('+i+')"  >'+i+'</a></li>';
+                }else{
+                  in_pagi += '<li class="page-item ">'+
+                          '<a class="page-link" onClick="onClickDiv('+i+')"  >'+i+'</a></li>';
+                }
+                }
+
+                  var pagination = '';
+                  if(data.totalPages > 0){
+                    pagination = '<nav>'+
+                    '<ul class="pagination rounded-flat pagination-success">'+
+                      '<li class="page-item"><a onClick="onClickDiv(1)" class="page-link" ><i class="icon-arrow-left"></i></a></li>'+
+                        ''+in_pagi
+                      '<li class="page-item"><a onClick="onClickDiv('+ (data.currentPage+1) +')" class="page-link"><i class="icon-arrow-right"></i></a></li>'+
+                    '</ul>'+
+                  '</nav>';
+                  }
+
+                  document.getElementById('pagi_js').innerHTML = pagination;
+                  
 
           
         },
