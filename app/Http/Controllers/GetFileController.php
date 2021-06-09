@@ -185,9 +185,11 @@ class GetFileController extends Controller
             ->where('id', $id)
             ->first();
 
-            dd($objs);
+           // dd($objs);
 
-       
+        $file= public_path(). "/img/doc_download/".$objs->store_file;
+
+        return response::download($file);
     }
 
     /**
@@ -256,7 +258,7 @@ class GetFileController extends Controller
 
 
           $objs = get_file::find($id)->first();
-          dd($objs);
+       //   dd($objs);
           $file_path = 'img/doc_download/'.$objs->store_file;
           unlink($file_path);
 
