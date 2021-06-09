@@ -89,7 +89,15 @@ class GetFileController extends Controller
     {
         //
 
+        $bytes = $request->file('image')->getSize();
+    
+
+     //    dd($bytes);
+
+
+        //dd($request->file('image')->getSize());
         $image = $request->file('image');
+      
         $this->validate($request, [
              'image' => 'required',
              'file_name' => 'required',
@@ -99,12 +107,39 @@ class GetFileController extends Controller
          $path = 'img/doc_download/';
          $filename = time().'.'.$image->getClientOriginalExtension();
          $image->move($path, $filename);
+        
+         
+
+         if ($bytes >= 1073741824)
+        {
+            $bytes = number_format($bytes / 1073741824, 2) . ' GB';
+        }
+        elseif ($bytes >= 1048576)
+        {
+            $bytes = number_format($bytes / 1048576, 2) . ' MB';
+        }
+        elseif ($bytes >= 1024)
+        {
+            $bytes = number_format($bytes / 1024, 2) . ' KB';
+        }
+        elseif ($bytes > 1)
+        {
+            $bytes = $bytes . ' bytes';
+        }
+        elseif ($bytes == 1)
+        {
+            $bytes = $bytes . ' byte';
+        }
+        else
+        {
+            $bytes = '0 bytes';
+        }
 
 
        $package = new get_file();
        $package->file_name = $request['file_name'];
        $package->cat_id = $request['cat_id'];
-       $package->file_size = $request['file_size'];
+       $package->file_size = $bytes;
        $package->store_file = $filename;
        $package->save();
 
