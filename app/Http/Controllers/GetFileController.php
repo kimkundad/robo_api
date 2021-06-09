@@ -185,6 +185,8 @@ class GetFileController extends Controller
             ->where('id', $id)
             ->first();
 
+            dd($objs);
+
         $file= public_path(). "/img/doc_download/".$objs->store_file;
        
 
