@@ -187,10 +187,7 @@ class GetFileController extends Controller
 
             dd($objs);
 
-        $file= public_path(). "/img/doc_download/".$objs->store_file;
-            dd($file);
-
-     //   return response::download($file);
+       
     }
 
     /**
