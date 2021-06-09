@@ -168,6 +168,7 @@ class GetFileController extends Controller
     {
         //
         $cat = cat_file::all();
+
         $data['cat'] = $cat;
 
         $obj = get_file::find($id);
@@ -256,6 +257,7 @@ class GetFileController extends Controller
 
 
           $objs = get_file::find($id)->first();
+          dd($objs);
           $file_path = 'img/doc_download/'.$objs->store_file;
           unlink($file_path);
 
