@@ -259,8 +259,8 @@ class GetFileController extends Controller
 
           $objs = get_file::find($id)->first();
        //   dd($objs);
-          $file_path = 'img/doc_download/'.$objs->store_file;
-          unlink($file_path);
+        /*  $file_path = 'img/doc_download/'.$objs->store_file;
+          unlink($file_path); */
 
          $path = 'img/doc_download/';
          $filename = time().'.'.$image->getClientOriginalExtension();
