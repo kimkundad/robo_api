@@ -202,6 +202,9 @@ class GetFileController extends Controller
         //
 
         $image = $request->file('image');
+       
+
+
 
         if($image == NULL){
 
@@ -214,10 +217,37 @@ class GetFileController extends Controller
          $package = get_file::find($id);
        $package->file_name = $request['file_name'];
        $package->cat_id = $request['cat_id'];
-       $package->file_size = $request['file_size'];
+       $package->file_size = $bytes;
        $package->save();
 
         }else{
+
+            $bytes = $request->file('image')->getSize(); 
+
+        if ($bytes >= 1073741824)
+        {
+            $bytes = number_format($bytes / 1073741824, 2) . ' GB';
+        }
+        elseif ($bytes >= 1048576)
+        {
+            $bytes = number_format($bytes / 1048576, 2) . ' MB';
+        }
+        elseif ($bytes >= 1024)
+        {
+            $bytes = number_format($bytes / 1024, 2) . ' KB';
+        }
+        elseif ($bytes > 1)
+        {
+            $bytes = $bytes . ' bytes';
+        }
+        elseif ($bytes == 1)
+        {
+            $bytes = $bytes . ' byte';
+        }
+        else
+        {
+            $bytes = '0 bytes';
+        }
 
         $this->validate($request, [
              'file_name' => 'required',
@@ -236,7 +266,7 @@ class GetFileController extends Controller
          $package = get_file::find($id);
        $package->file_name = $request['file_name'];
        $package->cat_id = $request['cat_id'];
-       $package->file_size = $request['file_size'];
+       $package->file_size = $bytes;
        $package->store_file = $filename;
        $package->save();
 
