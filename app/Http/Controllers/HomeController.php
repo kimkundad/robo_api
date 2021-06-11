@@ -14,6 +14,7 @@ use App\logsys;
 use App\cat_file;
 use App\get_file;
 use App\bank;
+use App\qr_code_type;
 use Intervention\Image\ImageManagerStatic as Image;
 use Jenssegers\Agent\Agent;
 
@@ -42,6 +43,12 @@ class HomeController extends Controller
         $check = preg_match("/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix", $str);
         dd($check);
         return view('home');
+    }
+
+    public function get_qr_type(){
+
+        $cat = qr_code_type::where('status', 1)->Orderby('id', 'desc')->paginate(15);
+        return response()->json($cat);
     }
 
 

@@ -50,7 +50,7 @@ window.gaTitle = 'หน้าแรก';
                             {{$u->qr_name}}
                             </td>
                             <td>
-                            <img src="{{ url('assets/img/qr_image/'.$u->qr_image) }}"  style="height:75px; width:auto">
+                            <img src="{{ url('assets/img/qr_image/'.$u->qr_image) }}"  style="height:35px; width:auto">
                             </td>
                             <td>
                               <div class="form-check form-check-flat">
