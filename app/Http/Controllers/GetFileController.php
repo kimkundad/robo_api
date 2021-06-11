@@ -11,7 +11,6 @@ use File;
 use Response;
 use Redirect;
 
-
 class GetFileController extends Controller
 {
     /**
@@ -219,7 +218,7 @@ class GetFileController extends Controller
          $package = get_file::find($id);
        $package->file_name = $request['file_name'];
        $package->cat_id = $request['cat_id'];
-       $package->file_size = $bytes;
+       $package->file_size = $request['file_size'];
        $package->save();
 
         }else{

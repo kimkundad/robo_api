@@ -85,6 +85,7 @@
                   <li class="nav-item"><a class="nav-link" href="{{ url('admin/cat_file') }}"> หมวดหมู่ไฟล์</a></li>
                   <li class="nav-item"><a class="nav-link" href="{{ url('admin/get_file') }}"> ไฟล์เอกสาร </a></li>
                   <li class="nav-item"><a class="nav-link" href="{{ url('admin/get_file_version') }}"> ไฟล์ version </a></li>
+                  <li class="nav-item"><a class="nav-link" href="{{ url('admin/get_qr_type') }}"> ประเภท QR </a></li>
                 </ul>
               </div>
               

@@ -146,8 +146,9 @@ Route::group(['middleware' => ['UserRole:manager|employee']], function() {
     Route::get('api/del_get_file/{id}', 'GetFileController@del_get_file')->name('del_get_file');
     Route::post('api/get_file_status', 'GetFileController@get_file_status')->name('get_file_status');
     Route::get('api/get_file_upload/{id}', 'GetFileController@get_file_upload')->name('get_file_upload');
-
-
+    Route::resource('admin/get_qr_type', 'QrTypeController');
+    Route::get('api/del_get_qr_type/{id}', 'QrTypeController@del_get_qr_type')->name('del_get_qr_type');
+    Route::post('api/qr_type_status', 'QrTypeController@qr_type_status')->name('qr_type_status');
 
 });
 
