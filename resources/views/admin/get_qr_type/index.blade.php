@@ -63,7 +63,7 @@ window.gaTitle = 'หน้าแรก';
                             </div>
                             </td>
 						                <td>
-                            {{formatDateThat($u->create)}}
+                            {{formatDateThat($u->created_at)}}
                             </td>
                             <td>
                               <a href="{{ url('admin/get_qr_type/'.$u->id.'/edit') }}" class="btn btn-outline-primary btn-sm">แก้ไข</a>
