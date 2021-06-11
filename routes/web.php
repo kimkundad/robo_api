@@ -81,6 +81,8 @@ Route::get('/get_banks', 'HomeController@get_banks')->name('get_banks');
 
 Route::post('/reset_password', [AuthController::class, 'reset_password']);
 
+Route::get('/get_api_service', [AuthController::class, 'get_api_service']);  
+
 Route::post('/get_login', [AuthController::class, 'login']);
 Route::post('/get_register', [AuthController::class, 'register']);
 Route::get('/get-user-profile', [AuthController::class, 'userProfile']);  

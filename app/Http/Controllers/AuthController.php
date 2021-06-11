@@ -604,6 +604,22 @@ class AuthController extends Controller
 
     }
 
+    public function get_api_service(){
+
+        if(isset(auth('api')->user()->id)){
+
+            $bill = DB::table('api_requests')->where('user_id', auth('api')->user()->code_user)->get();
+
+            return response()->json([
+                'status'=>200,
+                'data' => $bill
+            ]
+            );
+
+        }
+
+    }
+
     public function get_biller_by_id($id){
 
         if(isset(auth('api')->user()->id)){
