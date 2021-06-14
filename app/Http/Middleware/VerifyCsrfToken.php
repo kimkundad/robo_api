@@ -35,6 +35,7 @@ class VerifyCsrfToken extends Middleware
         'get_device',
         'get_device_by_id',
         'change_status_device_by_id',
-        'admin/get_file_version'
+        'admin/get_file_version',
+        'api/get_qr_type/'
     ];
 }
