@@ -25,7 +25,7 @@ Route::get('api/get_file_version', 'GetFileVersionController@get_file_version_ap
 Route::get('admin/get_file_version', 'GetFileVersionController@index');
 Route::get('admin/get_file_version/create', 'GetFileVersionController@create');
 
-Route::get('api/get_qr_type/', 'HomeController@get_qr_type')->name('get_qr_type');
+Route::get('get_qr_type/', 'HomeController@get_qr_type')->name('get_qr_type');
 
 Route::get('admin/get_file_version/{id}/edit', 'GetFileVersionController@edit');
 Route::get('api/get_file_version/{id}/edit', 'GetFileVersionController@api_edit');
