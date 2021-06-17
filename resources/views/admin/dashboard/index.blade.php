@@ -230,6 +230,6 @@
 
 @section('scripts')
 
-<script src="{{ url('back/js/dashboard.js') }}"></script>
+<script src="{{ url('back/js/dashboard.js') }}?v1"></script>
 
 @stop('scripts')
