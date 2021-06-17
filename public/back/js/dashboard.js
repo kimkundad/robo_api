@@ -8,16 +8,16 @@
           backgroundColor: [
             '#439aff',
             '#fdbab1',
-            '#f3f6f9'
+            '#90f3c5'
           ],
           borderWidth: 0
         }],
     
         // These labels appear in the legend and in the tooltips when hovering different arcs
         labels: [
-          'Sales',
-          'Open campaign',
-          'Miscellaneous'
+          'Payment Terminal',
+          'Mask',
+          'PromptRUB App'
         ]
       };
       var earningReportOptions = {
@@ -134,11 +134,11 @@
   if ($('#sales-chart').length) {
     var lineChartCanvas = $("#sales-chart").get(0).getContext("2d");
     var data = {
-      labels: ["2013", "2014", "2014", "2015", "2016", "2017", "2018"],
+      labels: ["ม.ค.","ก.พ.","มี.ค.","เม.ย.","พ.ค.","มิ.ย.","ก.ค.","ส.ค.","ก.ย.","ต.ค.","พ.ย.","ธ.ค."],
       datasets: [
         {
-          label: 'Support',
-          data: [1500, 7030, 1050, 2300, 3510, 6800, 4500],
+          label: 'ผู้สมัครสมาชิก',
+          data: [30, 80, 120, 600, 320, 255, 400, 80, 199, 35, 310, 226],
           borderColor: [
             '#fdbab1'
           ],
@@ -146,8 +146,8 @@
           fill: false
         },
         {
-          label: 'Product',
-          data: [5500, 4080, 3050, 5600, 4510, 5300, 2400],
+          label: 'สมัคร Biller ID',
+          data: [15, 30, 60, 411, 320, 180, 300, 40, 101, 80, 160, 80],
           borderColor: [
             '#439aff'
           ],
@@ -159,14 +159,14 @@
     var options = {
       scales: {
         yAxes: [{
-          display: false,
+          display: true,
           gridLines: {
             drawBorder: false,
             lineWidth: 0,
             color: "rgba(0,0,0,0)"
           },
           ticks: {
-            stepSize: 2000,
+            stepSize: 20,
             fontColor: "#686868"
           }
         }],
@@ -179,7 +179,7 @@
         }]
       },
       legend: {
-        display: false
+        display: true
       },
       elements: {
         point: {
