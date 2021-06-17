@@ -130,6 +130,7 @@
       data: areaData,
       options: areaOptions
     });
+
   }
   if ($('#sales-chart').length) {
     var lineChartCanvas = $("#sales-chart").get(0).getContext("2d");
@@ -138,18 +139,9 @@
       datasets: [
         {
           label: 'ผู้สมัครสมาชิก',
-          data: [30, 80, 120, 600, 320, 255, 400, 80, 199, 35, 310, 226],
+          data: [30, 80, 120, 66, 20, 10, 78, 80, 199, 35, 40, 99],
           borderColor: [
             '#fdbab1'
-          ],
-          borderWidth: 3,
-          fill: false
-        },
-        {
-          label: 'สมัคร Biller ID',
-          data: [15, 30, 60, 411, 320, 180, 300, 40, 101, 80, 160, 80],
-          borderColor: [
-            '#439aff'
           ],
           borderWidth: 3,
           fill: false
@@ -192,6 +184,60 @@
       type: 'line',
       data: data,
       options: options
+    });
+  }
+  if ($('#sales-chart2').length) {
+    var lineChartCanvas2 = $("#sales-chart2").get(0).getContext("2d");
+    var data2 = {
+      labels: ["ม.ค.","ก.พ.","มี.ค.","เม.ย.","พ.ค.","มิ.ย.","ก.ค.","ส.ค.","ก.ย.","ต.ค.","พ.ย.","ธ.ค."],
+      datasets: [
+        {
+          label: 'สมัคร Biller ID',
+          data: [15, 30, 60, 14, 79, 80, 180, 40, 101, 80, 33, 80],
+          borderColor: [
+            '#439aff'
+          ],
+          borderWidth: 3,
+          fill: false
+        }
+      ]
+    };
+    var options2 = {
+      scales: {
+        yAxes: [{
+          display: true,
+          gridLines: {
+            drawBorder: false,
+            lineWidth: 0,
+            color: "rgba(0,0,0,0)"
+          },
+          ticks: {
+            stepSize: 20,
+            fontColor: "#686868"
+          }
+        }],
+        xAxes: [{
+          gridLines: {
+            drawBorder: false,
+            lineWidth: 0,
+            color: "rgba(0,0,0,0)"
+          }
+        }]
+      },
+      legend: {
+        display: true
+      },
+      elements: {
+        point: {
+          radius: 0
+        }
+      },
+      stepsize: 1
+    };
+    var lineChart2 = new Chart(lineChartCanvas2, {
+      type: 'line',
+      data: data2,
+      options: options2
     });
   }
   if ($("#inline-datepicker-example").length) {

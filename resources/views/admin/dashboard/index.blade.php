@@ -207,7 +207,7 @@
 
 
 
-                        <div class="col-md-12 grid-margin stretch-card">
+                        <div class="col-md-6 grid-margin stretch-card">
                           <div class="card">
                             <div class="card-body d-flex flex-column justify-content-between">
                               <div>
@@ -219,8 +219,17 @@
                           </div>
                         </div>
 
-
-
+                        <div class="col-md-6 grid-margin stretch-card">
+                          <div class="card">
+                            <div class="card-body d-flex flex-column justify-content-between">
+                              <div>
+                                <h4 class="card-title">จำนวนผู้สมัคร Biler ID ปีนี้</h4>
+                                <h3 class="text-muted">300 คน</h3>
+                              </div>
+                              <canvas id="sales-chart2" class="mt-auto"></canvas>
+                            </div>
+                          </div>
+                        </div>
 
           </div>
 
@@ -230,6 +239,6 @@
 
 @section('scripts')
 
-<script src="{{ url('back/js/dashboard.js') }}?v1"></script>
+<script src="{{ url('back/js/dashboard.js') }}?v3"></script>
 
 @stop('scripts')
