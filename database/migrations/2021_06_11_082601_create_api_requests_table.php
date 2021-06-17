@@ -20,7 +20,7 @@ class CreateApiRequestsTable extends Migration
             $table->text('api_key')->nullable();
             $table->text('secret_key')->nullable();
             $table->string('user_id')->nullable();
-            $table->integer('api_type')->default('0');
+            $table->string('api_type')->nullable();
             $table->integer('address_id')->default('0');
             $table->integer('status')->default('0');
             $table->timestamps();

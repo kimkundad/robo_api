@@ -50,6 +50,7 @@
                 <ul class="submenu-item">
                   <li class="nav-item"> <a href="{{ url('admin/user') }}" class="nav-link"> รายชื่อผู้ใช้งาน </a></li>
                   <li class="nav-item"><a class="nav-link" href="{{ url('admin/biller_id_user') }}"> Biller ID</a></li>
+                  <li class="nav-item"><a class="nav-link" href="{{ url('admin/api_request_user') }}"> ข้อมูล API</a></li>
                 </ul>
               </div>
               

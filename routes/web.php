@@ -99,6 +99,10 @@ Route::post('/add_new_device', [AuthController::class, 'add_new_device']);
 Route::get('/get_device', [AuthController::class, 'get_device']); 
 Route::get('/get_device_by_id/{id}', [AuthController::class, 'get_device_by_id']); 
 Route::post('/change_status_device_by_id', [AuthController::class, 'change_status_device_by_id']); 
+Route::post('/add_new_api_service', [AuthController::class, 'add_new_api_service']); 
+Route::get('/get_my_qr_type', [AuthController::class, 'get_my_qr_type']); 
+Route::post('/edit_api_service', [AuthController::class, 'edit_api_service']); 
+Route::post('/edit_api_service_callback_url', [AuthController::class, 'edit_api_service_callback_url']); 
 
 
 
@@ -109,9 +113,16 @@ Route::group(['middleware' => ['UserRole:manager|employee']], function() {
 
     Route::get('admin/user_search', 'UserController@user_search');
     Route::get('admin/biller_search', 'UserController@biller_search');
+    Route::get('admin/api_request_search', 'UserController@api_request_search');
+
 
     Route::get('admin/biller_id_user', 'UserController@biller_id_user')->name('biller_id_user');
     Route::get('api/del_user_biller_id/{id}', 'UserController@del_user_biller_id')->name('del_user_biller_id');
+    Route::get('admin/api_request_user', 'UserController@api_request_user')->name('api_request_user');
+    Route::get('admin/edit_api_request_user/{id}', 'UserController@edit_api_request_user')->name('edit_api_request_user');
+    Route::post('api/post_edit_api_request_user/{id}', 'UserController@post_edit_api_request_user')->name('post_edit_api_request_user');
+    Route::get('api/del_api_request_user/{id}', 'UserController@del_api_request_user')->name('del_api_request_user');
+
     
     Route::resource('admin/bank', 'BankController');
     

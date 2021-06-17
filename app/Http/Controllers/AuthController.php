@@ -13,7 +13,8 @@ use Jenssegers\Agent\Agent;
 use App\biller;
 use App\biller_file;
 use App\mydevice;
-
+use App\api_request;
+use App\qr_code_type;
 
 
 class AuthController extends Controller
@@ -505,6 +506,102 @@ class AuthController extends Controller
 
     }
 
+
+    public function edit_api_service_callback_url(Request $request){
+
+        if(isset(auth('api')->user()->id)){
+
+            $id = $request['api_ids'];
+    
+            $objs = api_request::find($id);
+            $objs->api_callback = $request['callback_url'];
+            $objs->save();
+    
+            return response()->json([
+                'status'=>200,
+                'data' => 'เพิ่มข้อมูล Biller ID สำเร็จ รอเจ้าหน้าที่ติดต่อกลับ'
+            ]
+            );
+    
+            }
+
+    }
+
+    public function edit_api_service(Request $request){
+
+        if(isset(auth('api')->user()->id)){
+
+        $id = $request['api_ids'];
+
+        $objs = api_request::find($id);
+        $objs->api_type = serialize($request['getqrtype']);
+        $objs->save();
+
+        return response()->json([
+            'status'=>200,
+            'data' => 'เพิ่มข้อมูล Biller ID สำเร็จ รอเจ้าหน้าที่ติดต่อกลับ'
+        ]
+        );
+
+        }
+    }
+
+    public function add_new_api_service(Request $request){
+
+        //return unserialize($value);
+
+        $get_valur = [];
+
+        if(isset(auth('api')->user()->id)){
+
+        $lics = $request['getqrtype'];
+
+        if($lics[0] == 0){
+
+        $qrtype = qr_code_type::where('status', 1)->get();
+            foreach($qrtype as $u){
+                $get_valur[] = $u->id;
+            }
+
+            $objs = new api_request();
+            $objs->api_name = $request['name_company'];
+            $objs->api_callback = $request['callback_url'];
+            $objs->user_id = $request['user_id'];
+            $objs->api_type = serialize($get_valur);
+            $objs->address_id = $request['id_address'];
+            $objs->save();
+
+            return response()->json([
+                'status'=>200,
+                'data' => 'เพิ่มข้อมูล Biller ID สำเร็จ รอเจ้าหน้าที่ติดต่อกลับ'
+            ]
+            );
+            
+        }else{
+            
+        $objs = new api_request();
+        $objs->api_name = $request['name_company'];
+        $objs->api_callback = $request['callback_url'];
+        $objs->user_id = $request['user_id'];
+        $objs->api_type = serialize($request['getqrtype']);
+        $objs->address_id = $request['id_address'];
+        $objs->save();
+
+        return response()->json([
+            'status'=>200,
+            'data' => 'เพิ่มข้อมูล Biller ID สำเร็จ รอเจ้าหน้าที่ติดต่อกลับ'
+        ]
+        );
+
+
+        }
+
+        
+
+        }  
+
+    }
+
     public function add_new_biller(Request $request){
 
        
@@ -584,6 +681,42 @@ class AuthController extends Controller
 
     }
 
+
+    public function get_my_qr_type(){
+
+        if(isset(auth('api')->user()->id)){
+
+
+            $bill = DB::table('api_requests')->where('user_id', auth('api')->user()->code_user)->first();
+
+            $bill->one_my_type = unserialize($bill->api_type);
+
+            $cat = qr_code_type::where('status', 1)->get();
+
+            foreach($bill->one_my_type as $u){
+
+                foreach($cat as $j){
+
+                    if($j->id == $u){
+                        $j->active = 1;
+                    }
+                }
+
+            }
+
+   
+            return response()->json([
+                'status'=>200,
+                'data' => $cat,
+                'data2' => $bill->one_my_type,
+                'api_id' => $bill->id
+            ]
+            );
+
+        }
+
+    }
+
     public function get_device_by_id($id){
 
         if(isset(auth('api')->user()->id)){
@@ -608,11 +741,22 @@ class AuthController extends Controller
 
         if(isset(auth('api')->user()->id)){
 
-            $bill = DB::table('api_requests')->where('user_id', auth('api')->user()->code_user)->get();
+
+            $bill = DB::table('api_requests')->where('user_id', auth('api')->user()->code_user)->first();
+
+            if($bill != null){
+            $bill->one_my_type = unserialize($bill->api_type);
+           // dd($bill->one_my_type);
+            foreach($bill->one_my_type as $u){
+               
+                $objs = DB::table('qr_code_types')->where('id', $u)->first();
+                $bill->test[] = $objs->qr_name.', ';
+            }
+            }
 
             return response()->json([
                 'status'=>200,
-                'data' => $bill
+                'data' => $bill,
             ]
             );
 
