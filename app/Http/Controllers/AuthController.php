@@ -713,7 +713,6 @@ class AuthController extends Controller
 
         if(isset(auth('api')->user()->id)){
 
-
             $bill = DB::table('api_requests')->where('user_id', auth('api')->user()->code_user)->first();
 
             $bill->one_my_type = unserialize($bill->api_type);
@@ -728,7 +727,6 @@ class AuthController extends Controller
                         $j->active = 1;
                     }
                 }
-
             }
 
    
