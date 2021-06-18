@@ -537,9 +537,24 @@ class AuthController extends Controller
         $objs->api_type = serialize($request['getqrtype']);
         $objs->save();
 
+
+        $bill = DB::table('api_requests')->where('user_id', auth('api')->user()->code_user)->first();
+
+            if($bill != null){
+            $bill->one_my_type = unserialize($bill->api_type);
+           // dd($bill->one_my_type);
+            foreach($bill->one_my_type as $u){
+               
+                $objs = DB::table('qr_code_types')->where('id', $u)->first();
+                $bill->test[] = $objs->qr_name.', ';
+            }
+            }
+
+
+
         return response()->json([
             'status'=>200,
-            'data' => 'เพิ่มข้อมูล Biller ID สำเร็จ รอเจ้าหน้าที่ติดต่อกลับ'
+            'data' => $bill
         ]
         );
 
