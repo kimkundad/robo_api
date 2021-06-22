@@ -210,7 +210,6 @@ class AuthController extends Controller
             $objs->file_2 = $filename2;
             $objs->file_3 = $filename3;
             $objs->file_4 = $filename4;
-            $objs->file_5 = $filename5;
             $objs->file_6 = $filename6;
             $objs->biller_id = $randomSixDigitInt;
             $objs->address_id = $request['id_address'];
