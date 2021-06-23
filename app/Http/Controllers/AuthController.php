@@ -845,8 +845,46 @@ class AuthController extends Controller
 
     public function get_tex_address(){
 
-        $cat = DB::table('text_addresses')->where('company', auth('api')->user()->code_user)->get();
-        return response()->json(['status'=>200, 'message' => 'get tex address success', 'data' => $cat]);
+        $objs = DB::table('text_addresses')->where('company', auth('api')->user()->code_user)->get();
+
+
+                if(isset($objs)){
+                    foreach($objs as $get_address){
+
+                  $province = DB::table('provinces')
+                       ->where('id', $get_address->province)
+                       ->first();
+                       if(isset($province->name)){
+                        $get_address->p_name = $province->name;
+                       }else{
+                        $get_address->p_name = null;
+                       }
+
+                   $district = DB::table('districts')
+                        ->where('id', $get_address->county)
+                        ->first();
+
+                    if(isset($district->name)){
+                        $get_address->d_name = $district->name;
+                       }else{
+                        $get_address->d_name = null;
+                       }
+
+                    $subdistricts = DB::table('sub_districts')
+                         ->where('id', $get_address->district)
+                         ->first();
+
+                         if(isset($subdistricts->name)){
+                            $get_address->sub_name = $subdistricts->name;
+                           }else{
+                            $get_address->sub_name = null;
+                           }
+
+                 }
+                }
+
+
+        return response()->json(['status'=>200, 'message' => 'get tex address success', 'data' => $objs]);
     }
 
     /**
