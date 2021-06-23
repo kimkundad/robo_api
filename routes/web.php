@@ -103,8 +103,7 @@ Route::post('/add_new_api_service', [AuthController::class, 'add_new_api_service
 Route::get('/get_my_qr_type', [AuthController::class, 'get_my_qr_type']); 
 Route::post('/edit_api_service', [AuthController::class, 'edit_api_service']); 
 Route::post('/edit_api_service_callback_url', [AuthController::class, 'edit_api_service_callback_url']); 
-
-
+Route::get('/get_tex_address_by_id/{id}', [AuthController::class, 'get_tex_address_by_id']); 
 
 Route::group(['middleware' => ['UserRole:manager|employee']], function() {
 
