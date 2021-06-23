@@ -120,6 +120,33 @@ class AuthController extends Controller
 
     }
 
+    
+
+    public function edit_my_address(Request $request){
+
+        if(isset(auth('api')->user()->id)){
+            
+            $id = $request['a_id'];
+            $objs = text_address::find($id);
+            $objs->fname = $request['fname'];
+            $objs->phone = $request['phone'];
+            $objs->province = $request['provi'];
+            $objs->address_no = $request['address_no'];
+            $objs->address_name = $request['address_name'];
+            $objs->soi = $request['soi'];
+            $objs->road = $request['road'];
+            $objs->county = $request['mydist'];
+            $objs->district = $request['mySubDist'];
+            $objs->postal_code = $request['postal_codes'];
+            $objs->status = 3;
+            $objs->save();
+
+            return response()->json(['status'=>300, 'message' => 'Insert new Address success' ]);
+
+        }
+
+    }
+
 
     public function add_new_address(Request $request){
 

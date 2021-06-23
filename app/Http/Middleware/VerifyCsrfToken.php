@@ -41,6 +41,7 @@ class VerifyCsrfToken extends Middleware
         'get_my_qr_type',
         'edit_api_service',
         'edit_api_service_callback_url',
-        'get_tex_address_by_id'
+        'get_tex_address_by_id',
+        'edit_my_address'
     ];
 }
