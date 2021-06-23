@@ -844,52 +844,7 @@ class AuthController extends Controller
     }
 
 
-    public function get_tex_address_by_id($id){
-
-        if(isset(auth('api')->user()->id)){
-
-            $get_address = DB::table('text_addresses')->where('id', $id)->first();
-
-            $province = DB::table('provinces')
-                       ->where('id', $get_address->province)
-                       ->first();
-                       if(isset($province->name)){
-                        $get_address->p_name = $province->name;
-                        $get_address->p_id = $province->id;
-                       }else{
-                        $get_address->p_name = null;
-                       }
-
-                   $district = DB::table('districts')
-                        ->where('id', $get_address->county)
-                        ->first();
-
-                    if(isset($district->name)){
-                        $get_address->d_name = $district->name;
-                        $get_address->d_id = $district->id;
-                       }else{
-                        $get_address->d_name = null;
-                       }
-
-                    $subdistricts = DB::table('sub_districts')
-                         ->where('id', $get_address->district)
-                         ->first();
-
-                         if(isset($subdistricts->name)){
-                            $get_address->sub_name = $subdistricts->name;
-                            $get_address->sub_id = $subdistricts->id;
-                           }else{
-                            $get_address->sub_name = null;
-                           }
-
-            return response()->json([
-                'status'=>200,
-                'data' => $get_address
-            ]
-            );
-        }
-        
-    }
+    
 
     public function get_tex_address(){
 
