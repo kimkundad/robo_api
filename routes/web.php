@@ -109,6 +109,7 @@ Route::post('/edit_api_service_callback_url', [AuthController::class, 'edit_api_
 
 Route::post('/edit_my_address', [AuthController::class, 'edit_my_address']); 
 
+Route::get('/del_my_address/{id}', [AuthController::class, 'del_my_address']); 
 
 Route::group(['middleware' => ['UserRole:manager|employee']], function() {
 

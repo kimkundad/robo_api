@@ -255,7 +255,6 @@ class UserController extends Controller
                         $get_address->d_name = null;
                        }
 
-
                     $subdistricts = DB::table('sub_districts')
                          ->where('id', $get_address->district)
                          ->first();
@@ -265,9 +264,6 @@ class UserController extends Controller
                            }else{
                             $get_address->sub_name = null;
                            }
-
-                  
-
                 }
 
           //  dd($get_address);

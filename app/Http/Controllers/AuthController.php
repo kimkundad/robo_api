@@ -842,6 +842,25 @@ class AuthController extends Controller
 
     }
 
+
+
+    public function del_my_address($id){
+
+        if(isset(auth('api')->user()->id)){
+
+            $obj = DB::table('text_addresses')
+            ->where('id', $id)
+            ->delete();
+
+            return response()->json([
+                'status'=>200,
+                'msg' => 'ลบข้อมูลสำเร็จ'
+            ]
+            );
+
+        }
+    }
+
     public function get_biller_by_id($id){
 
         if(isset(auth('api')->user()->id)){
