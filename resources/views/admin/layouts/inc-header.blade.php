@@ -74,7 +74,7 @@
             </li>
 
             <li class="nav-item">
-              <a href="{{ url('admin/banner') }}" class="nav-link"><i class="link-icon icon-badge"></i><span class="menu-title">รองรับการชำระ</span></a>
+              <a href="{{ url('admin/blog') }}" class="nav-link"><i class="link-icon icon-trophy"></i><span class="menu-title">บทความ</span></a>
             </li>
  
             <li class="nav-item">
@@ -83,6 +83,7 @@
               <div class="submenu">
                 <ul class="submenu-item">
                   <li class="nav-item"> <a href="{{ url('admin/setting') }}" class="nav-link"> ตั้งค่าเว็บไซต์ </a></li>
+                  <li class="nav-item"> <a href="{{ url('admin/banner') }}" class="nav-link"> รองรับการชำระ </a></li>
                   <li class="nav-item"><a class="nav-link" href="{{ url('admin/cat_file') }}"> หมวดหมู่ไฟล์</a></li>
                   <li class="nav-item"><a class="nav-link" href="{{ url('admin/get_file') }}"> ไฟล์เอกสาร </a></li>
                   <li class="nav-item"><a class="nav-link" href="{{ url('admin/get_file_version') }}"> ไฟล์ version </a></li>

@@ -114,6 +114,8 @@ Route::get('/del_my_address/{id}', [AuthController::class, 'del_my_address']);
 Route::group(['middleware' => ['UserRole:manager|employee']], function() {
 
     Route::get('admin/dashboard', 'DashboardController@index');
+    Route::get('admin/blog', 'DashboardController@blog');
+
     Route::resource('admin/user', 'UserController');
 
     Route::get('admin/user_search', 'UserController@user_search');

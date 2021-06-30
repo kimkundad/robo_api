@@ -22,4 +22,10 @@ class DashboardController extends Controller
 
         return view('admin.dashboard.index', $data);
     }
+
+
+    public function blog(){
+        
+        return view('admin.blog.index');
+    }
 }
