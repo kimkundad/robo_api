@@ -104,7 +104,7 @@ class GetFileController extends Controller
          ]);
 
          $path = 'img/doc_download/';
-         $filename = time().'.'.$image->getClientOriginalExtension();
+         $filename = $image->getClientOriginalName().'.'.$image->getClientOriginalExtension();
          $image->move($path, $filename);
         
          
@@ -262,7 +262,7 @@ class GetFileController extends Controller
           unlink($file_path); */
 
          $path = 'img/doc_download/';
-         $filename = time().'.'.$image->getClientOriginalExtension();
+         $filename = $image->getClientOriginalName().'.'.$image->getClientOriginalExtension();
          $image->move($path, $filename);
 
          $package = get_file::find($id);
