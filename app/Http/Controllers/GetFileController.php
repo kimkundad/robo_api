@@ -215,7 +215,7 @@ class GetFileController extends Controller
          ]);
 
 
-         $package = get_file::find($id);
+       $package = get_file::find($id);
        $package->file_name = $request['file_name'];
        $package->cat_id = $request['cat_id'];
        $package->file_size = $request['file_size'];
@@ -286,6 +286,7 @@ class GetFileController extends Controller
     public function del_get_file($id)
     {
         //
+        
 
         $objs = DB::table('get_files')
       ->where('id', $id)
