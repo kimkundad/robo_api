@@ -291,7 +291,7 @@ window.gaTitle = 'หน้าแรก';
 
                                                 <li class="chat-persons">
                                                 <a href="#">
-                                                <span class="pro-pic"><button type="button" class="btn btn-icons btn-rounded btn-primary"><i class="icon-briefcase"></i></button></span>
+                                                <span class="pro-pic"><button type="button" class="btn btn-icons btn-rounded btn-info "><i class="icon-briefcase"></i></button></span>
                                                     <div class="user">
                                                         <p class="u-name">หนังสือรับรองบริษัท</p>
                                                         <p class="u-designation">( อายุไม่เกิน 3 เดือน )</p>
