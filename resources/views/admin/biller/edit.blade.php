@@ -297,7 +297,7 @@ window.gaTitle = 'หน้าแรก';
                                                         <span class="d-flex align-items-center mt-2">
                                                         <form method="POST" id="sub_file_com" action="{{ url('api/add_file_com/') }}" enctype="multipart/form-data">
                                                         {{ csrf_field() }}
-                                                        <input type="file" class="dropify" id="sub_file_com" name="sub_file_com[]" multiple/>
+                                                        <input type="file" class="dropify" id="file_com" name="sub_file_com[]" multiple/>
                                                         <input type="hidden"  name="id" value="{{$bill->idb}}" />
                                                         </form>
                                                         </span>
@@ -657,6 +657,11 @@ $("#file3").on('change',function()
     document.getElementById('sub_file3').submit();
 });
 
+$("#file_com").on('change',function()
+{
+    document.getElementById('sub_file3').submit();
+});
+sub_file_com
 
             
 $(document).ready(function() {
