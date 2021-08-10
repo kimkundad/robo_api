@@ -446,7 +446,7 @@ window.gaTitle = 'หน้าแรก';
                         <div class="form-group row">
                           <label class="col-sm-3 col-form-label">รูปแบบของธุรกิจ <span class="text-danger">*</span></label>
                           <div class="col-sm-9">
-                          <select class="form-control" name="process">
+                          <select class="form-control" name="t_com">
                                 <option value="0" @if( $bill->bill_type == 0)
 														selected='selected'
 														@endif>บุคคลธรรมดา</option>

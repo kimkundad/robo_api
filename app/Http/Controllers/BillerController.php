@@ -192,8 +192,10 @@ class BillerController extends Controller
 
 
 
+
     public function post_edit_biller_id(Request $request, $id){
 
+        
         $this->validate($request, [
             'company_name' => 'required',
             'company_type' => 'required',
