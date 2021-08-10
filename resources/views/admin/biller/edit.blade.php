@@ -314,6 +314,30 @@ window.gaTitle = 'หน้าแรก';
                                                 </li>
 
 
+                                                <li class="chat-persons">
+                                                <a href="#">
+                                                <span class="pro-pic"><button type="button" class="btn btn-icons btn-rounded btn-dark "><i class="icon-briefcase"></i></button></span>
+                                                    <div class="user">
+                                                        <p class="u-name">ทะเบียนภาษีมูลค่าเพิ่ม (ภพ.20)</p>
+                                                        <span class="d-flex align-items-center mt-2">
+                                                        @if(isset($bill->file_6))
+                                                        
+                                                        <span onclick="window.open('{{ url('img/doc/'.$bill->file_6) }}', '_blank' );" class="btn btn-xs btn-rounded btn-outline-primary" 
+                                                        style="margin-right: 25px;">Download</span>
+                                                        <br><br>
+                                                        @endif
+                                                        <form method="POST" id="sub_file6" action="{{ url('api/add_file6/') }}" enctype="multipart/form-data">
+                                                        {{ csrf_field() }}
+                                                        <input type="file" class="dropify" id="file6"  name="file6" />
+                                                        <input type="hidden"  name="biller_id" value="{{$bill->biller_id}}" />
+                                                        <input type="hidden"  name="id" value="{{$bill->idb}}" />
+                                                        </form>
+                                                        </span>
+                                                    </div>
+                                                    </a>
+                                                </li>
+
+
                                                 
 
                                                 <li class="chat-persons">
@@ -697,6 +721,11 @@ $("#file3").on('change',function()
 $("#file5").on('change',function()
 {
     document.getElementById('sub_file5').submit();
+});
+
+$("#file6").on('change',function()
+{
+    document.getElementById('sub_file6').submit();
 });
 
 $("#file_com").on('change',function()
