@@ -244,7 +244,7 @@ window.gaTitle = 'หน้าแรก';
                                                 </li>
                                                 <li class="chat-persons">
                                                 <a href="#">
-                                                    <span class="pro-pic"><button type="button" class="btn btn-icons btn-rounded btn-warning"><i class="icon-docs"></i></button></span>
+                                                    <span class="pro-pic"><button type="button" class="btn btn-icons btn-rounded btn-secondary"><i class="icon-docs"></i></button></span>
                                                     <div class="user">
                                                         <p class="u-name"> สำเนาบัตรประชาชนผู้มีอำนาจลงนาม</p>
                                                        <!-- <p class="u-designation"> (พร้อมลงนามรับรองสำเนาถูกต้อง + ประทับตราบริษัท)</p> -->
