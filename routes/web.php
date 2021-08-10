@@ -157,6 +157,10 @@ Route::group(['middleware' => ['UserRole:manager|employee']], function() {
     Route::get('api/get_document_2/{id}', 'BillerController@get_document_2')->name('get_document_2');
     Route::post('api/add_file3/', 'BillerController@add_file3')->name('add_file3');
     Route::get('api/get_document_3/{id}', 'BillerController@get_document_3')->name('get_document_3');
+
+    
+    Route::post('api/add_file_com/', 'BillerController@add_file_com')->name('add_file_com');
+
     Route::get('api/del_image_3/{id}', 'BillerController@del_image_3')->name('del_image_3');
 
     Route::post('api/post_edit_biller_id/{id}', 'BillerController@post_edit_biller_id')->name('post_edit_biller_id');

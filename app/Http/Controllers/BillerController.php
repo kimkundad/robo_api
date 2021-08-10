@@ -40,7 +40,7 @@ class BillerController extends Controller
         $data['bank'] = $bank;
 
         $file3 = biller_file::where('biller_id', $id)->get();
-        $data['file3'] = $file3;  
+        $data['file_all'] = $file3;  
 
         $bill = DB::table('billers')->select(
             'billers.*',
@@ -111,13 +111,26 @@ class BillerController extends Controller
     }
 
 
-    public function get_document_4($id){
+    public function get_document_2($id){
 
         $objs = DB::table('billers')
             ->where('id', $id)
             ->first();
 
-        $file= public_path(). "/img/doc/".$objs->file_4;
+        $file= public_path(). "/img/doc/".$objs->file_2;
+       
+
+        return response::download($file);
+    }
+
+
+    public function get_document_3($id){
+
+        $objs = DB::table('billers')
+            ->where('id', $id)
+            ->first();
+
+        $file= public_path(). "/img/doc/".$objs->file_3;
        
 
         return response::download($file);
@@ -152,6 +165,33 @@ class BillerController extends Controller
 
     }
 
+
+    public function add_file3(Request $request){
+
+        $id = $request['id'];
+        $objs = DB::table('billers')
+            ->where('id', $id)
+            ->first();
+
+            if(isset($objs->file_3)){
+              $file_path = 'img/doc/'.$objs->file_3;
+               unlink($file_path);
+            }
+
+          $image = $request->file('file3');
+          $path = 'img/doc/';
+          $filename = time().'.'.$image->getClientOriginalExtension();
+          $image->move($path, $filename);
+
+        
+        $package = biller::find($id);
+        $package->file_3 = $filename;
+        $package->save();
+
+        return redirect(url('admin/edit_biller_id/'.$id))->with('add_success','เพิ่มธนาคาร เสร็จเรียบร้อยแล้ว');
+
+    }
+
     public function add_file4(Request $request){
 
         $id = $request['id'];
@@ -180,11 +220,11 @@ class BillerController extends Controller
 
     
 
-    public function add_file3(Request $request){
+    public function add_file_com(Request $request){
 
         $id = $request['id'];
 
-        $gallary = $request->file('file3');
+        $gallary = $request->file('sub_file_com');
 
         if (sizeof($gallary) > 0) {
             for ($i = 0; $i < sizeof($gallary); $i++) {
@@ -223,17 +263,7 @@ class BillerController extends Controller
 
 
 
-    public function get_document_2($id){
-
-        $objs = DB::table('billers')
-            ->where('id', $id)
-            ->first();
-
-        $file= public_path(). "/img/doc/".$objs->file_2;
-       
-
-        return response::download($file);
-    }
+    
 
 
 

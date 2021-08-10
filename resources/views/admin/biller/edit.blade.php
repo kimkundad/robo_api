@@ -272,15 +272,15 @@ window.gaTitle = 'หน้าแรก';
                                                         <p class="u-name">หน้าสมุดบัญชีธนาคารที่จะใช้ในการรับเงิน</p>
                                                         <p class="u-designation">(1 บัญชีต่อ Biller ID เท่านั้น)</p>
                                                         <span class="d-flex align-items-center mt-2">
-                                                        @if(isset($bill->file_4))
+                                                        @if(isset($bill->file_3))
                                                         
-                                                        <span onclick="window.open('{{ url('api/get_document_4/'.$bill->idb) }}', '_blank');" class="btn btn-xs btn-rounded btn-outline-primary" 
+                                                        <span onclick="window.open('{{ url('api/get_document_3/'.$bill->idb) }}', '_blank');" class="btn btn-xs btn-rounded btn-outline-primary" 
                                                         style="margin-right: 25px;">Download</span>
                                                         <br><br>
                                                         @endif
-                                                        <form method="POST" id="sub_file2" action="{{ url('api/add_file4/') }}" enctype="multipart/form-data">
+                                                        <form method="POST" id="sub_file3" action="{{ url('api/add_file3/') }}" enctype="multipart/form-data">
                                                         {{ csrf_field() }}
-                                                        <input type="file" class="dropify" id="file4"  name="file4" />
+                                                        <input type="file" class="dropify" id="file3"  name="file3" />
                                                         <input type="hidden"  name="biller_id" value="{{$bill->biller_id}}" />
                                                         <input type="hidden"  name="id" value="{{$bill->idb}}" />
                                                         </form>
@@ -295,9 +295,9 @@ window.gaTitle = 'หน้าแรก';
                                                         <p class="u-name">ภาพถ่ายสำนักงานทั้งภายในภายนอก</p>
                                                         <p class="u-designation">พร้อมป้ายชื่อบริษัท และสินค้าที่จำหน่าย, ตัวอย่างเว็บไซต์, URL, Domain</p>
                                                         <span class="d-flex align-items-center mt-2">
-                                                        <form method="POST" id="sub_file3" action="{{ url('api/add_file3/') }}" enctype="multipart/form-data">
+                                                        <form method="POST" id="sub_file_com" action="{{ url('api/add_file_com/') }}" enctype="multipart/form-data">
                                                         {{ csrf_field() }}
-                                                        <input type="file" class="dropify" id="file3" name="file3[]" multiple/>
+                                                        <input type="file" class="dropify" id="sub_file_com" name="sub_file_com[]" multiple/>
                                                         <input type="hidden"  name="id" value="{{$bill->idb}}" />
                                                         </form>
                                                         </span>
@@ -311,8 +311,8 @@ window.gaTitle = 'หน้าแรก';
                                             <hr>
                                     <div class="list-wrapper">
 										<ul class=" d-flex flex-column-reverse todo-list todo-list-custom" id="ul-li">
-                                            @if(isset($file3))
-                                            @foreach($file3 as $u)
+                                            @if(isset($file_all))
+                                            @foreach($file_all as $u)
 											<li >
                                             <a href="{{ url('img/doc/'.$u->file_name) }}" class="item">
                                             <img src="{{ url('img/doc/'.$u->file_name) }}" height="62">
