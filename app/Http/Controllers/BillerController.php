@@ -188,7 +188,7 @@ class BillerController extends Controller
         $obj->file_3 = $filename;
         $obj->save();
 
-        dd($obj);
+      //  dd($obj);
 
         return redirect(url('admin/edit_biller_id/'.$id))->with('add_success','เพิ่มธนาคาร เสร็จเรียบร้อยแล้ว');
 
