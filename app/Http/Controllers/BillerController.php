@@ -130,10 +130,7 @@ class BillerController extends Controller
             ->where('id', $id)
             ->first();
 
-        $file= public_path(). "/img/doc/".$objs->file_3;
-
-
-  
+        $file= url("/img/doc/".$objs->file_3);
 
         return response::download($file);
     } 
