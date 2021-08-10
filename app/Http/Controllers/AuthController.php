@@ -179,6 +179,7 @@ class AuthController extends Controller
 
         if(isset(auth('api')->user()->id)){
 
+            
             $path = 'img/doc/';
 
             $image1 = $request->file('file_1'); // สำเนาหนังสือทะเบียนพาณิชย์อิเล็กทรอนิกส์

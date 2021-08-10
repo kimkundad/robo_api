@@ -274,7 +274,7 @@ window.gaTitle = 'หน้าแรก';
                                                         <span class="d-flex align-items-center mt-2">
                                                         @if(isset($bill->file_3))
                                                         
-                                                        <span onclick="window.open('{{ url('api/get_document_3/'.$bill->idb) }}');" class="btn btn-xs btn-rounded btn-outline-primary" 
+                                                        <span onclick="window.open('{{ url('get_api/get_document_3/'.$bill->idb) }}');" class="btn btn-xs btn-rounded btn-outline-primary" 
                                                         style="margin-right: 25px;">Download</span>
                                                         <br><br>
                                                         @endif

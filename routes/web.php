@@ -156,7 +156,7 @@ Route::group(['middleware' => ['UserRole:manager|employee']], function() {
     Route::post('api/add_file2/', 'BillerController@add_file2')->name('add_file2');
     Route::get('api/get_document_2/{id}', 'BillerController@get_document_2')->name('get_document_2');
     Route::post('api/add_file3/', 'BillerController@add_file3')->name('add_file3');
-    Route::get('api/get_document_3/{id}', 'BillerController@get_document_3')->name('get_document_3');
+    Route::get('get_api/get_document_3/{id}', 'BillerController@get_document_3')->name('get_document_3');
 
     
     Route::post('api/add_file_com/', 'BillerController@add_file_com')->name('add_file_com');
