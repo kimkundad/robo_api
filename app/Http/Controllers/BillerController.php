@@ -228,7 +228,7 @@ class BillerController extends Controller
         $objs->bill_type = $request['t_com'];
         $objs->merchant_id = $request['merchant_id'];
         $objs->terminal_id = $request['terminal_id'];
-        $objs->address_id = $request['address'];
+     //   $objs->address_id = $request['address'];
         $objs->save();
 
         return redirect(url('admin/edit_biller_id/'.$id))->with('add_success','Edit successful');
