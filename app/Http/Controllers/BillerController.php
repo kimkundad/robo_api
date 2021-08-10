@@ -184,9 +184,11 @@ class BillerController extends Controller
           $image->move($path, $filename);
 
         
-        $package = biller::find($id);
-        $package->file_3 = $filename;
-        $package->save();
+        $obj = biller::find($id);
+        $obj->file_3 = $filename;
+        $obj->save();
+
+        dd($obj);
 
         return redirect(url('admin/edit_biller_id/'.$id))->with('add_success','เพิ่มธนาคาร เสร็จเรียบร้อยแล้ว');
 
