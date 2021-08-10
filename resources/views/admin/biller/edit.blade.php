@@ -14,7 +14,7 @@ window.gaTitle = 'หน้าแรก';
 }
 .dropify-wrapper {
 
-    height: 120px;
+    height: 90px;
     padding: 5px 10px;
 
 }
