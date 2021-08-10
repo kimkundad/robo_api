@@ -317,26 +317,7 @@ window.gaTitle = 'หน้าแรก';
 
     <div class="row">
         <div class="col-md-12 grid-margin">
-                @if ($errors->has('f_name'))
-                  <div class="alert alert-warning" role="alert">
-                    กรุณากรอก ชื่อจริง ให้ครบ
-                  </div>
-                @endif
-                @if ($errors->has('l_name'))
-                  <div class="alert alert-warning" role="alert">
-                    กรุณากรอก นามสกุล ให้ครบ
-                  </div>
-                @endif
-                @if ($errors->has('email'))
-                  <div class="alert alert-warning" role="alert">
-                    กรุณากรอก อีเมล ให้ครบ
-                  </div>
-                @endif
-                @if ($errors->has('phone'))
-                  <div class="alert alert-warning" role="alert">
-                    กรุณากรอก เบอร์โทร ให้ครบ
-                  </div>
-                @endif
+           
 
                 @if ($errors->has('company_name'))
                   <div class="alert alert-warning" role="alert">
@@ -377,7 +358,7 @@ window.gaTitle = 'หน้าแรก';
             <div class="card-body">
                 <h4 class="card-title mb-0">1. ข้อมูลผู้ติดต่อ</h4>
                 <p class="card-description">
-                    กรอกข้อมูลให้ครบ ในส่วนที่มีเครื่องหมาย <span class="text-danger">*</span>
+                    ข้อมุลส่วนนี้ดึงมาจาก Profile นะ ไม่ได้เปิดให้แก้ไขส่วนนี้ให้ดูเฉยๆว่าเป็นของใคร
                 </p>
                 <br>
                 <div class="row">
@@ -459,6 +440,23 @@ window.gaTitle = 'หน้าแรก';
                 </p>
                 <br>
                 <div class="row">
+
+
+                <div class="col-md-12">
+                        <div class="form-group row">
+                          <label class="col-sm-3 col-form-label">รูปแบบของธุรกิจ <span class="text-danger">*</span></label>
+                          <div class="col-sm-9">
+                          <select class="form-control" name="process">
+                                <option value="0" @if( $bill->bill_type == 0)
+														selected='selected'
+														@endif>บุคคลธรรมดา</option>
+                                <option value="1" @if( $bill->bill_type == 1)
+														selected='selected'
+														@endif>นิติบุคคล</option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
                         
                     <div class="col-md-12">
                         <div class="form-group row">
