@@ -730,9 +730,9 @@ $("#file6").on('change',function()
 
 $("#file_com").on('change',function()
 {
-    document.getElementById('sub_file3').submit();
+    document.getElementById('sub_file_com').submit();
 });
-sub_file_com
+
 
             
 $(document).ready(function() {
