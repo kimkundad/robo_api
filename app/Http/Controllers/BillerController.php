@@ -167,6 +167,34 @@ class BillerController extends Controller
     }
 
 
+
+    public function add_file5(Request $request){
+
+        $id = $request['id'];
+        $objs = DB::table('billers')
+            ->where('id', $id)
+            ->first();
+
+            if(isset($objs->file_5)){
+              $file_path = 'img/doc/'.$objs->file_5;
+               unlink($file_path);
+            }
+
+          $image = $request->file('file5');
+          $path = 'img/doc/';
+          $filename = time().'.'.$image->getClientOriginalExtension();
+          $image->move($path, $filename);
+
+        
+        $package = biller::find($id);
+        $package->file_5 = $filename;
+        $package->save();
+
+        return redirect(url('admin/edit_biller_id/'.$id))->with('add_success','เพิ่มธนาคาร เสร็จเรียบร้อยแล้ว');
+
+    }
+
+
     public function add_file3(Request $request){
 
         $id = $request['id'];

@@ -288,6 +288,34 @@ window.gaTitle = 'หน้าแรก';
                                                     </div>
                                                     </a>
                                                 </li>
+
+                                                <li class="chat-persons">
+                                                <a href="#">
+                                                <span class="pro-pic"><button type="button" class="btn btn-icons btn-rounded btn-primary"><i class="icon-briefcase"></i></button></span>
+                                                    <div class="user">
+                                                        <p class="u-name">หนังสือรับรองบริษัท</p>
+                                                        <p class="u-designation">( อายุไม่เกิน 3 เดือน )</p>
+                                                        <span class="d-flex align-items-center mt-2">
+                                                        @if(isset($bill->file_5))
+                                                        
+                                                        <span onclick="window.open('{{ url('img/doc/'.$bill->file_5) }}', '_blank' );" class="btn btn-xs btn-rounded btn-outline-primary" 
+                                                        style="margin-right: 25px;">Download</span>
+                                                        <br><br>
+                                                        @endif
+                                                        <form method="POST" id="sub_file5" action="{{ url('api/add_file5/') }}" enctype="multipart/form-data">
+                                                        {{ csrf_field() }}
+                                                        <input type="file" class="dropify" id="file5"  name="file5" />
+                                                        <input type="hidden"  name="biller_id" value="{{$bill->biller_id}}" />
+                                                        <input type="hidden"  name="id" value="{{$bill->idb}}" />
+                                                        </form>
+                                                        </span>
+                                                    </div>
+                                                    </a>
+                                                </li>
+
+
+                                                
+
                                                 <li class="chat-persons">
                                                 <a href="#">
                                                 <span class="pro-pic"><button type="button" class="btn btn-icons btn-rounded btn-success"><i class="icon-camera"></i></button></span>
@@ -517,6 +545,15 @@ window.gaTitle = 'หน้าแรก';
                         </div>
                     </div>
 
+                    <div class="col-md-12">
+                        <div class="form-group row">
+                          <label class="col-sm-3 col-form-label">Website, URL, Domain </label>
+                          <div class="col-sm-9">
+                            <input type="text" class="form-control" value="{{ $bill->url_domain_name }}" name="url_domain_name">
+                          </div>
+                        </div>
+                    </div>
+
                 </div>
 
             </div>
@@ -655,6 +692,11 @@ $("#file2").on('change',function()
 $("#file3").on('change',function()
 {
     document.getElementById('sub_file3').submit();
+});
+
+$("#file5").on('change',function()
+{
+    document.getElementById('sub_file5').submit();
 });
 
 $("#file_com").on('change',function()

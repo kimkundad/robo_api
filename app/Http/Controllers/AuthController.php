@@ -179,7 +179,7 @@ class AuthController extends Controller
 
         if(isset(auth('api')->user()->id)){
 
-            
+
             $path = 'img/doc/';
 
             $image1 = $request->file('file_1'); // สำเนาหนังสือทะเบียนพาณิชย์อิเล็กทรอนิกส์
@@ -238,7 +238,8 @@ class AuthController extends Controller
             $objs->file_2 = $filename2;
             $objs->file_3 = $filename3;
             $objs->file_4 = $filename4;
-            $objs->file_6 = $filename6;
+            $objs->file_5 = $filename5;
+            $objs->file_7 = $filename6;
             $objs->biller_id = $randomSixDigitInt;
             $objs->address_id = $request['id_address'];
             $objs->url_domain_name = $request['user_domain_name'];
