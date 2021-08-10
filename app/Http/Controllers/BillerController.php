@@ -124,7 +124,7 @@ class BillerController extends Controller
     }
 
 
-    public function get_document_3($id){
+ /*   public function get_document_3($id){
 
         $objs = DB::table('billers')
             ->where('id', $id)
@@ -132,11 +132,11 @@ class BillerController extends Controller
 
         $file= public_path(). "/img/doc/".$objs->file_3;
 
-        
+
        dd($file);
 
         return response::download($file);
-    }
+    } */
 
  
 
