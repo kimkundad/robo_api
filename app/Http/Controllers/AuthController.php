@@ -250,6 +250,8 @@ class AuthController extends Controller
             $objs->bill_type = $request['t_com'];
             $objs->admin_id = 1;
             $objs->status = 1;
+            $objs->AddressNow = $request['id_address2'];
+            $objs->AddressCom = $request['id_address3'];
             $objs->save();
 
             return response()->json(['status'=>200, 'message' => 'Insert biller id success', 'bill_id'=> $objs->id ]);

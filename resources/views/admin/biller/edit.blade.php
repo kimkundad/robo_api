@@ -386,7 +386,7 @@ window.gaTitle = 'หน้าแรก';
                         <div class="form-group row">
                           <label class="col-sm-3 col-form-label">ชื่อจริง <span class="text-danger">*</span></label>
                           <div class="col-sm-9">
-                            <input type="text" class="form-control" value="{{ $bill->f_name }}" name="f_name">
+                            <input type="text" class="form-control" value="{{ $bill->first_name }}" >
                             <input type="hidden" class="form-control" value="{{ $objs->code_user }}" name="user_id">
                           </div>
                         </div>
@@ -395,7 +395,7 @@ window.gaTitle = 'หน้าแรก';
                         <div class="form-group row">
                           <label class="col-sm-3 col-form-label">นามสกุล <span class="text-danger">*</span></label>
                           <div class="col-sm-9">
-                            <input type="text" class="form-control" value="{{ $bill->l_name }}" name="l_name">
+                            <input type="text" class="form-control" value="{{ $bill->last_name }}" >
                           </div>
                         </div>
                     </div>
@@ -404,7 +404,7 @@ window.gaTitle = 'หน้าแรก';
                         <div class="form-group row">
                           <label class="col-sm-3 col-form-label">อีเมล <span class="text-danger">*</span></label>
                           <div class="col-sm-9">
-                            <input type="text" class="form-control" value="{{ $bill->email }}" name="email" >
+                            <input type="text" class="form-control" value="{{ $bill->email_u }}"  >
                           </div>
                         </div>
                       </div>
@@ -413,7 +413,7 @@ window.gaTitle = 'หน้าแรก';
                         <div class="form-group row">
                           <label class="col-sm-3 col-form-label">เบอร์โทร <span class="text-danger">*</span></label>
                           <div class="col-sm-9">
-                            <input type="text" class="form-control" value="{{ $bill->phone1 }}" name="phone">
+                            <input type="text" class="form-control" value="{{ $bill->phone_u }}">
                           </div>
                         </div>
                     </div>
@@ -502,12 +502,34 @@ window.gaTitle = 'หน้าแรก';
     </div>
 
 
+      <div class="col-md-12 grid-margin">
+
+          <div class="card">
+              <div class="card-body">
+                    <h4 class="card-title mb-0">3. ข้อมูลที่อยู่</h4>
+                    <p class="card-description">
+                        กรอกข้อมูลให้ครบ ในส่วนที่มีเครื่องหมาย <span class="text-danger">*</span>
+                    </p>
+                
+                    <div class="row">
+                            
+                        <div class="col-md-12">
+                        </div>
+
+                    </div>
+                </div>
+
+
+          </div>
+      </div>
+
+
 
     <div class="col-md-12 grid-margin">
 
         <div class="card">
             <div class="card-body">
-                <h4 class="card-title mb-0">3. เลือกธนาคารที่ต้องการสมัคร</h4>
+                <h4 class="card-title mb-0">4. เลือกธนาคารที่ต้องการสมัคร</h4>
                 <p class="card-description">
                     กรอกข้อมูลให้ครบ ในส่วนที่มีเครื่องหมาย <span class="text-danger">*</span>
                 </p>

@@ -50,6 +50,8 @@ class BillerController extends Controller
             'users.*',
             'banks.*',
             'users.id as idu',
+            'users.email as email_u',
+            'users.phone as phone_u'
             )
             ->leftjoin('users', 'users.code_user',  'billers.user_id')
             ->leftjoin('banks', 'banks.id',  'billers.bank_id')
@@ -189,13 +191,10 @@ class BillerController extends Controller
     }
 
 
+
     public function post_edit_biller_id(Request $request, $id){
 
         $this->validate($request, [
-            'f_name' => 'required',
-            'l_name' => 'required',
-            'email' => 'required',
-            'phone' => 'required',
             'company_name' => 'required',
             'company_type' => 'required',
             'business_type' => 'required',
