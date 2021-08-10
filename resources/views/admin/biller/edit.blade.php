@@ -228,7 +228,7 @@ window.gaTitle = 'หน้าแรก';
                                                         <span class="d-flex align-items-center mt-2">
                                                         @if(isset($bill->file_1))
                                                         
-                                                        <span onclick="window.open('{{ url('api/get_document_1/'.$bill->idb) }}', '_blank');" class="btn btn-xs btn-rounded btn-outline-primary" style="margin-right: 25px;">Download</span>
+                                                        <span onclick="window.open('{{ url('img/doc/'.$bill->file_1) }}', '_blank');" class="btn btn-xs btn-rounded btn-outline-primary" style="margin-right: 25px;">Download</span>
                                                         <br><br>
                                                         @endif
                                                         <form method="POST" id="sub_file1" action="{{ url('api/add_file1/') }}" enctype="multipart/form-data">
@@ -251,7 +251,7 @@ window.gaTitle = 'หน้าแรก';
                                                         <span class="d-flex align-items-center mt-2">
                                                         @if(isset($bill->file_2))
                                                         
-                                                        <span onclick="window.open('{{ url('api/get_document_2/'.$bill->idb) }}', '_blank');" class="btn btn-xs btn-rounded btn-outline-primary" style="margin-right: 25px;">Download</span>
+                                                        <span onclick="window.open('{{ url('img/doc/'.$bill->file_2) }}', '_blank');" class="btn btn-xs btn-rounded btn-outline-primary" style="margin-right: 25px;">Download</span>
                                                         <br><br>
                                                         @endif
                                                         <form method="POST" id="sub_file2" action="{{ url('api/add_file2/') }}" enctype="multipart/form-data">
