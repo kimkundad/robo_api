@@ -223,8 +223,8 @@ window.gaTitle = 'หน้าแรก';
                                                 <a href="#">
                                                     <span class="pro-pic"><button type="button" class="btn btn-icons btn-rounded btn-warning"><i class="icon-docs"></i></button></span>
                                                     <div class="user">
-                                                        <p class="u-name">สำเนาบัตรประชาชนผู้มีอำนาจลงนาม</p>
-                                                        <p class="u-designation"> (พร้อมลงนามรับรองสำเนาถูกต้อง + ประทับตราบริษัท)</p>
+                                                        <p class="u-name">สำเนาหนังสือทะเบียนพาณิชย์อิเล็กทรอนิกส์</p>
+                                                        
                                                         <span class="d-flex align-items-center mt-2">
                                                         @if(isset($bill->file_1))
                                                         
@@ -244,10 +244,10 @@ window.gaTitle = 'หน้าแรก';
                                                 </li>
                                                 <li class="chat-persons">
                                                 <a href="#">
-                                                <span class="pro-pic"><button type="button" class="btn btn-icons btn-rounded btn-primary"><i class="icon-briefcase"></i></button></span>
+                                                    <span class="pro-pic"><button type="button" class="btn btn-icons btn-rounded btn-warning"><i class="icon-docs"></i></button></span>
                                                     <div class="user">
-                                                        <p class="u-name">สำเนาหนังสือรับรองบริษัท ไม่เกิน 6 เดือน</p>
-                                                        <p class="u-designation">(พร้อมลงนามรับรองสำเนาถูกต้อง + ประทับตราบริษัท)</p>
+                                                        <p class="u-name"> สำเนาบัตรประชาชนผู้มีอำนาจลงนาม</p>
+                                                       <!-- <p class="u-designation"> (พร้อมลงนามรับรองสำเนาถูกต้อง + ประทับตราบริษัท)</p> -->
                                                         <span class="d-flex align-items-center mt-2">
                                                         @if(isset($bill->file_2))
                                                         
@@ -257,6 +257,30 @@ window.gaTitle = 'หน้าแรก';
                                                         <form method="POST" id="sub_file2" action="{{ url('api/add_file2/') }}" enctype="multipart/form-data">
                                                         {{ csrf_field() }}
                                                         <input type="file" class="dropify" id="file2"  name="file2" />
+                                                        <input type="hidden"  name="biller_id" value="{{$bill->biller_id}}" />
+                                                        <input type="hidden"  name="id" value="{{$bill->idb}}" />
+                                                        </form>
+                                                        
+                                                        </span>
+                                                    </div>
+                                                    </a>
+                                                </li>
+                                                <li class="chat-persons">
+                                                <a href="#">
+                                                <span class="pro-pic"><button type="button" class="btn btn-icons btn-rounded btn-primary"><i class="icon-briefcase"></i></button></span>
+                                                    <div class="user">
+                                                        <p class="u-name">หน้าสมุดบัญชีธนาคารที่จะใช้ในการรับเงิน</p>
+                                                        <p class="u-designation">(1 บัญชีต่อ Biller ID เท่านั้น)</p>
+                                                        <span class="d-flex align-items-center mt-2">
+                                                        @if(isset($bill->file_4))
+                                                        
+                                                        <span onclick="window.open('{{ url('api/get_document_4/'.$bill->idb) }}', '_blank');" class="btn btn-xs btn-rounded btn-outline-primary" 
+                                                        style="margin-right: 25px;">Download</span>
+                                                        <br><br>
+                                                        @endif
+                                                        <form method="POST" id="sub_file2" action="{{ url('api/add_file4/') }}" enctype="multipart/form-data">
+                                                        {{ csrf_field() }}
+                                                        <input type="file" class="dropify" id="file4"  name="file4" />
                                                         <input type="hidden"  name="biller_id" value="{{$bill->biller_id}}" />
                                                         <input type="hidden"  name="id" value="{{$bill->idb}}" />
                                                         </form>
