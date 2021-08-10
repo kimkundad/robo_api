@@ -60,7 +60,7 @@ class BillerController extends Controller
 
         $data['bill'] = $bill;  
 
-        //dd($bill);
+        dd($bill);
 
         $objs = User::find($bill->idu);
         $data['objs'] = $objs;
