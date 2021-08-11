@@ -700,7 +700,6 @@ window.gaTitle = 'หน้าแรก';
 
 @section('scripts')
 
-
 <script>
 
 $("#file1").on('change',function()
@@ -732,7 +731,6 @@ $("#file_com").on('change',function()
 {
     document.getElementById('sub_file_com').submit();
 });
-
 
             
 $(document).ready(function() {
