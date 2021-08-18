@@ -371,6 +371,7 @@ window.gaTitle = 'หน้าแรก';
 
                           <div class="tab-pane fade" id="user-profile-activity3" role="tabpanel" aria-labelledby="user-profile-activity-tab3">
                             <div>
+                            <a href="{{ url('admin/create_address_user2/'.$objs->id) }}" class="btn btn-success btn-fw" style="float:right"><i class="icon-plus"></i>เพิ่มที่อยู่</a>
                             <h4 class="card-title">ข้อมูลที่อยุ่ทั้งหมด ( {{ count($add) }} )</h4>
                             <br>
 
