@@ -21,6 +21,64 @@ window.gaTitle = 'หน้าแรก';
 
 <div class="row">
 
+<div class="row">
+        <div class="col-md-12 grid-margin">
+                @if ($errors->has('fname'))
+                  <div class="alert alert-warning" role="alert">
+                    กรุณากรอก ชื่อ-นามสกุล ให้ครบ
+                  </div>
+                @endif
+
+                @if ($errors->has('phone'))
+                  <div class="alert alert-warning" role="alert">
+                    กรุณากรอก หมายเลขโทรศัพท์ ให้ครบ
+                  </div>
+                @endif
+
+                @if ($errors->has('address_no'))
+                  <div class="alert alert-warning" role="alert">
+                    กรุณากรอก เลขที่บ้าน ให้ครบ
+                  </div>
+                @endif
+
+                @if ($errors->has('address_name'))
+                  <div class="alert alert-warning" role="alert">
+                    กรุณากรอก ชื่ออาคาร/หมู่บ้าน ให้ครบ
+                  </div>
+                @endif
+
+                @if ($errors->has('provi'))
+                  <div class="alert alert-warning" role="alert">
+                    กรุณาเลือก จังหวัด ให้ถูกต้อง
+                  </div>
+                @endif
+
+
+                @if ($errors->has('mydist'))
+                  <div class="alert alert-warning" role="alert">
+                    กรุณาเลือก เขต/อำเภอ ให้ถูกต้อง
+                  </div>
+                @endif
+
+                @if ($errors->has('mySubDist'))
+                  <div class="alert alert-warning" role="alert">
+                    กรุณาเลือก แขวง/ตำบล ให้ถูกต้อง
+                  </div>
+                @endif
+
+                @if ($errors->has('postal_codes'))
+                  <div class="alert alert-warning" role="alert">
+                    กรุณาเพิ่ม รหัสไปรษณีย์ ให้ถูกต้อง
+                  </div>
+                @endif
+
+
+                
+               
+                
+        </div>
+    </div>  
+
 <div class="col-md-12">
   <div class="card">
     <div class="card-body">

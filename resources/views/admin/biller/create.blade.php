@@ -184,35 +184,21 @@ window.gaTitle = 'หน้าแรก';
 
     <div class="row">
         <div class="col-md-12 grid-margin">
-                @if ($errors->has('f_name'))
-                  <div class="alert alert-warning" role="alert">
-                    กรุณากรอก ชื่อจริง ให้ครบ
-                  </div>
-                @endif
-                @if ($errors->has('l_name'))
-                  <div class="alert alert-warning" role="alert">
-                    กรุณากรอก นามสกุล ให้ครบ
-                  </div>
-                @endif
-                @if ($errors->has('email'))
-                  <div class="alert alert-warning" role="alert">
-                    กรุณากรอก อีเมล ให้ครบ
-                  </div>
-                @endif
-                @if ($errors->has('phone'))
-                  <div class="alert alert-warning" role="alert">
-                    กรุณากรอก เบอร์โทร ให้ครบ
-                  </div>
-                @endif
 
+                @if ($errors->has('t_com'))
+                  <div class="alert alert-warning" role="alert">
+                    กรุณาเลือก รูปแบบของธุรกิจ
+                  </div>
+                @endif
+               
                 @if ($errors->has('company_name'))
                   <div class="alert alert-warning" role="alert">
-                    กรุณากรอก ชื่อบริษัท
+                    กรุณากรอก ชื่อบริษัท/ชื่อร้านค้า 
                   </div>
                 @endif
                 @if ($errors->has('company_type'))
                   <div class="alert alert-warning" role="alert">
-                    กรุณากรอก ประเภทบริษัท
+                    กรุณากรอก ประเภทบริษัท/ร้านค้า
                   </div>
                 @endif
                 @if ($errors->has('business_type'))
@@ -230,6 +216,27 @@ window.gaTitle = 'หน้าแรก';
                     กรุณาเลือกธนาคารที่ต้องการผูกบัญชี
                   </div>
                 @endif
+
+                @if ($errors->has('id_address'))
+                  <div class="alert alert-warning" role="alert">
+                    กรุณาเลือกที่อยู่ตามบัตรประชาชน/ทะเบียนบ้าน
+
+                  </div>
+                @endif
+
+                @if ($errors->has('id_address2'))
+                  <div class="alert alert-warning" role="alert">
+                    กรุณาเลือกที่อยู่ปัจจุบัน
+                  </div>
+                @endif
+
+                @if ($errors->has('id_address3'))
+                  <div class="alert alert-warning" role="alert">
+                    กรุณาเลือกที่อยู่บริษัท/ร้านค้่า
+                  </div>
+                @endif
+
+
         </div>
     </div>  
    
@@ -273,6 +280,7 @@ window.gaTitle = 'หน้าแรก';
                           <label class="col-sm-3 col-form-label">ชื่อบริษัท/ชื่อร้านค้า <span class="text-danger">*</span></label>
                           <div class="col-sm-9">
                             <input type="text" class="form-control" value="{{ old('company_name')  }}" name="company_name">
+                            <input type="hidden" class="form-control" value="{{ $objs->code_user  }}" name="user_id">
                           </div>
                         </div>
                       </div>
@@ -348,10 +356,10 @@ window.gaTitle = 'หน้าแรก';
                 <div class="row">
                         
                     <div class="col-md-12">
-                    
+                        <br>
                         <div class="form-group">
                           <select class="form-control" name="id_address" >
-                            <option > -- เลือกที่อยู่ -- </option>
+                            <option value=""> -- เลือกที่อยู่ -- </option>
                             @if(isset($address))
                               @foreach($address as $u)
                                 <option value="{{$u->id}}"> {{ $u->fname }}, {{ $u->phone }}, {{ $u->address_no }}, {{ $u->address_name }} </option>
@@ -377,9 +385,10 @@ window.gaTitle = 'หน้าแรก';
                 <div class="row">
                         
                     <div class="col-md-12">
+                    <br>
                         <div class="form-group">
                         <select class="form-control" name="id_address2" >
-                        <option > -- เลือกที่อยู่ -- </option>
+                        <option value=""> -- เลือกที่อยู่ -- </option>
                             @if(isset($address))
                               @foreach($address as $u)
                                 <option value="{{$u->id}}"> {{ $u->fname }}, {{ $u->phone }}, {{ $u->address_no }}, {{ $u->address_name }} </option>
@@ -405,9 +414,10 @@ window.gaTitle = 'หน้าแรก';
                 <div class="row">
                         
                     <div class="col-md-12">
+                    <br>
                         <div class="form-group">
                         <select class="form-control" name="id_address3" >
-                        <option > -- เลือกที่อยู่ -- </option>
+                        <option value=""> -- เลือกที่อยู่ -- </option>
                             @if(isset($address))
                               @foreach($address as $u)
                                 <option value="{{$u->id}}"> {{ $u->fname }}, {{ $u->phone }}, {{ $u->address_no }}, {{ $u->address_name }} </option>

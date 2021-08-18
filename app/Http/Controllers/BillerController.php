@@ -410,6 +410,7 @@ class BillerController extends Controller
     public function post_edit_biller_id(Request $request, $id){
 
         
+        
         $this->validate($request, [
             'company_name' => 'required',
             'company_type' => 'required',
@@ -417,15 +418,14 @@ class BillerController extends Controller
             'id_card' => 'required',
             'bank_id' => 'required',
             'user_id' => 'required',
-            't_com' => 'required'
+            't_com' => 'required',
+            'id_address' => 'required',
+            'id_address2' => 'required',
+            'id_address3' => 'required'
         ]);
 
     
         $objs = biller::find($id);
-        $objs->f_name = $request['f_name'];
-        $objs->l_name = $request['l_name'];
-        $objs->email = $request['email'];
-        $objs->phone = $request['phone'];
         $objs->company_name = $request['company_name'];
         $objs->company_type = $request['company_type'];
         $objs->business_type = $request['business_type'];
@@ -438,10 +438,13 @@ class BillerController extends Controller
         $objs->bank_name = $request['bank_name'];
         $objs->bank_no = $request['bank_no'];
         $objs->bank_major = $request['bank_major'];
-        $objs->url_domain_name = $request['domain'];
+        $objs->url_domain_name = $request['url_domain_name'];
         $objs->bill_type = $request['t_com'];
         $objs->merchant_id = $request['merchant_id'];
         $objs->terminal_id = $request['terminal_id'];
+        $objs->address_id = $request['id_address'];
+        $objs->AddressNow = $request['id_address2'];
+        $objs->AddressCom = $request['id_address3'];
      //   $objs->address_id = $request['address'];
         $objs->save();
 
@@ -450,30 +453,26 @@ class BillerController extends Controller
     }
 
 
+
     public function add_new_biller_id(Request $request){
 
         $this->validate($request, [
-            'f_name' => 'required',
-            'l_name' => 'required',
-            'email' => 'required',
-            'phone' => 'required',
             'company_name' => 'required',
             'company_type' => 'required',
             'business_type' => 'required',
             'id_card' => 'required',
             'bank_id' => 'required',
             'user_id' => 'required',
-            't_com' => 'required'
+            't_com' => 'required',
+            'id_address' => 'required',
+            'id_address2' => 'required',
+            'id_address3' => 'required'
         ]);
 
         $randomSixDigitInt = (\random_int(1000, 9999)).''.(\random_int(1000, 9999)).''.(\random_int(10, 99));
 
         $objs = new biller();
         $objs->biller_id = $randomSixDigitInt;
-        $objs->f_name = $request['f_name'];
-        $objs->l_name = $request['l_name'];
-        $objs->email = $request['email'];
-        $objs->phone = $request['phone'];
         $objs->company_name = $request['company_name'];
         $objs->company_type = $request['company_type'];
         $objs->business_type = $request['business_type'];
@@ -481,12 +480,14 @@ class BillerController extends Controller
         $objs->bank_id = $request['bank_id'];
         $objs->user_id = $request['user_id'];
         $objs->admin_id = Auth::user()->id;
-        $objs->url_domain_name = $request['domain'];
+        $objs->url_domain_name = $request['url_domain_name'];
         $objs->bill_type = $request['t_com'];
         $objs->merchant_id = $request['merchant_id'];
         $objs->terminal_id = $request['terminal_id'];
-        $objs->address_id = $request['address'];
         $objs->status = 1;
+        $objs->address_id = $request['id_address'];
+        $objs->AddressNow = $request['id_address2'];
+        $objs->AddressCom = $request['id_address3'];
         $objs->save();
 
         return redirect(url('admin/edit_biller_id/'.$objs->id))->with('add_success','Edit successful');
