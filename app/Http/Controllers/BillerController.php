@@ -128,6 +128,9 @@ class BillerController extends Controller
             'postal_codes' => 'required'
         ]);
 
+        $id = $request['user_id'];
+        $objs = User::find($id);
+
             $objs = new text_address();
             $objs->fname = $request['fname'];
             $objs->phone = $request['phone'];
@@ -139,7 +142,7 @@ class BillerController extends Controller
             $objs->county = $request['mydist'];
             $objs->district = $request['mySubDist'];
             $objs->postal_code = $request['postal_codes'];
-            $objs->company = $request['user_id'];
+            $objs->company = $objs->code_user;
             $objs->status = 3;
             $objs->save();
 
