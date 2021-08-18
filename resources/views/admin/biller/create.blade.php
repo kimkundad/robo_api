@@ -350,6 +350,14 @@ window.gaTitle = 'หน้าแรก';
                     <div class="col-md-12">
                     
                         <div class="form-group">
+                          <select class="form-control" name="id_address" >
+                            <option > -- เลือกที่อยู่ -- </option>
+                            @if(isset($address))
+                              @foreach($address as $u)
+                                <option value="{{$u->id}}"> {{ $u->fname }}, {{ $u->phone }}, {{ $u->address_no }}, {{ $u->address_name }} </option>
+                              @endforeach
+                            @endif
+                          </select> 
                         </div>
                     </div>
                 </div>
@@ -370,6 +378,14 @@ window.gaTitle = 'หน้าแรก';
                         
                     <div class="col-md-12">
                         <div class="form-group">
+                        <select class="form-control" name="id_address2" >
+                        <option > -- เลือกที่อยู่ -- </option>
+                            @if(isset($address))
+                              @foreach($address as $u)
+                                <option value="{{$u->id}}"> {{ $u->fname }}, {{ $u->phone }}, {{ $u->address_no }}, {{ $u->address_name }} </option>
+                              @endforeach
+                            @endif
+                            </select> 
                         </div>
                     </div>
                 </div>
@@ -390,6 +406,14 @@ window.gaTitle = 'หน้าแรก';
                         
                     <div class="col-md-12">
                         <div class="form-group">
+                        <select class="form-control" name="id_address3" >
+                        <option > -- เลือกที่อยู่ -- </option>
+                            @if(isset($address))
+                              @foreach($address as $u)
+                                <option value="{{$u->id}}"> {{ $u->fname }}, {{ $u->phone }}, {{ $u->address_no }}, {{ $u->address_name }} </option>
+                              @endforeach
+                            @endif
+                            </select> 
                         </div>
                     </div>
                 </div>
