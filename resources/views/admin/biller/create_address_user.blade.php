@@ -107,12 +107,12 @@ function showProvinces(){
             input_province.innerHTML = "";
             for(let item of result){
                 let option = document.createElement("option");
-                option.text = item.province;
-                option.value = item.province;
+                option.text = item.name;
+                option.value = item.id;
                 input_province.add(option);                
             }
             //QUERY AMPHOES
-            showAmphoes();
+          //  showAmphoes();
         });
 }
 function showAmphoes(){
