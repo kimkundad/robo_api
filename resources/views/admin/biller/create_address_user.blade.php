@@ -75,6 +75,17 @@ window.gaTitle = 'หน้าแรก';
           </select>
         </div>
 
+        <div class="form-group">
+          <label for="exampleInputUsername1">แขวง/ตำบล </label>
+          <select class="form-control" name="amphoe" id="input_amphoe" onchange="showTambons()">
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="exampleInputUsername1">รหัสไปรษณีย์ </label>
+          <input type="text" class="form-control" id="input_zipcode" name="zipcode">
+        </div>
+
         
 
         <div style="text-align: right;">
@@ -143,7 +154,7 @@ function showAmphoes(){
 function showTambons(){
     let input_province = document.querySelector("#input_province");
     let input_amphoe = document.querySelector("#input_amphoe");
-    fetch("{{ url('/') }}/api/province/"+input_province.value+"/amphoe/"+input_amphoe.value+"/tambons")
+    fetch("{{ url('/') }}/province/"+input_province.value+"/amphoe/"+input_amphoe.value+"/tambons")
         .then(response => response.json())
         .then(result => {
             console.log(result);
@@ -164,7 +175,7 @@ function showZipcode(){
     let input_province = document.querySelector("#input_province");
     let input_amphoe = document.querySelector("#input_amphoe");
     let input_tambon = document.querySelector("#input_tambon");
-    fetch("{{ url('/') }}/api/province/"+input_province.value+"/amphoe/"+input_amphoe.value+"/tambon/"+input_tambon.value+"/zipcodes")
+    fetch("{{ url('/') }}/province/"+input_province.value+"/amphoe/"+input_amphoe.value+"/tambon/"+input_tambon.value+"/zipcodes")
         .then(response => response.json())
         .then(result => {
             console.log(result);

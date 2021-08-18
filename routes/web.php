@@ -147,6 +147,8 @@ Route::group(['middleware' => ['UserRole:manager|employee']], function() {
 
     Route::get('/provinces','BillerController@getProvinces');
     Route::get('/province/{province_code}/amphoes','BillerController@getAmphoes');
+    Route::get('/province/{province_code}/amphoe/{amphoe_code}/tambons','BillerController@getTambons');
+    Route::get('/province/{province_code}/amphoe/{amphoe_code}/tambon/{tambon_code}/zipcodes','BillerController@getZipcodes');
     
     Route::post('api/add_new_biller_id/', 'BillerController@add_new_biller_id')->name('add_new_biller_id');
     Route::get('admin/edit_biller_id/{id}', 'BillerController@edit_biller_id')->name('edit_biller_id');

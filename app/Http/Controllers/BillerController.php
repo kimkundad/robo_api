@@ -36,6 +36,26 @@ class BillerController extends Controller
     }
 
 
+    public function getTambons($province,$amphoe)
+    {
+        $tambons = DB::table('sub_districts')
+            ->where('district_id ', $amphoe)
+            ->get();
+
+        return $tambons;
+    }
+    public function getZipcodes($province,$amphoe,$tambon)
+    {
+        $zipcodes = DB::table('postal_codes')
+            ->where('sub_district_id', $tambon)
+            ->where('district_id', $amphoe)
+            ->where('province_id', $province)
+            ->get();
+
+        return $zipcodes;
+    }
+
+
     public function create_biller_id($id){
 
         $bank = bank::where('bank_status', 1)->get();

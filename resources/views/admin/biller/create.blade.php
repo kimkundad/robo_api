@@ -156,12 +156,12 @@ window.gaTitle = 'หน้าแรก';
                                     <option value="{{ $objs->sex }}" selected='selected'> ไม่ระบุ </option>
                                     @endif
 
-									<option value="1" 
+									                  <option value="1" 
                                     @if($objs->sex == 1)
                                     selected='selected'
                                     @endif
                                     > ไม่ระบุ </option>
-									<option value="2" @if($objs->sex == 2)
+									                  <option value="2" @if($objs->sex == 2)
                                     selected='selected'
                                     @endif> ชาย </option>
                                     <option value="3" @if($objs->sex == 3)
