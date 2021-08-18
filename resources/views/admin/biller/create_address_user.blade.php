@@ -69,6 +69,12 @@ window.gaTitle = 'หน้าแรก';
           </select>
         </div>
 
+        <div class="form-group">
+          <label for="exampleInputUsername1">เขต/อำเภอ </label>
+          <select class="form-control" name="amphoe" id="input_amphoe" onchange="showTambons()">
+          </select>
+        </div>
+
         
 
         <div style="text-align: right;">
@@ -112,12 +118,12 @@ function showProvinces(){
                 input_province.add(option);                
             }
             //QUERY AMPHOES
-          //  showAmphoes();
+            showAmphoes();
         });
 }
 function showAmphoes(){
     let input_province = document.querySelector("#input_province");
-    fetch("{{ url('/') }}/api/province/"+input_province.value+"/amphoes")
+    fetch("{{ url('/') }}/province/"+input_province.value+"/amphoes")
         .then(response => response.json())
         .then(result => {
             console.log(result);
@@ -126,12 +132,12 @@ function showAmphoes(){
             input_amphoe.innerHTML = "";
             for(let item of result){
                 let option = document.createElement("option");
-                option.text = item.amphoe;
-                option.value = item.amphoe;
+                option.text = item.name;
+                option.value = item.id;
                 input_amphoe.add(option);                
             }
             //QUERY AMPHOES
-            showTambons();
+         //   showTambons();
         });
 }
 function showTambons(){

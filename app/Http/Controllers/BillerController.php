@@ -23,8 +23,16 @@ class BillerController extends Controller
     {
         $provinces = DB::table('provinces')
         ->get();
-        
+
         return $provinces;
+    }
+    public function getAmphoes($province)
+    {
+        $amphoes = DB::table('districts')
+            ->where('province_id ', $province)
+            ->get();
+
+        return $amphoes;
     }
 
 
