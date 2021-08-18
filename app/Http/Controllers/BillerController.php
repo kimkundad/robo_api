@@ -18,6 +18,16 @@ class BillerController extends Controller
 {
     //
 
+
+    public function getProvinces()
+    {
+        $provinces = DB::table('provinces')
+        ->get();
+        
+        return $provinces;
+    }
+
+
     public function create_biller_id($id){
 
         $bank = bank::where('bank_status', 1)->get();
@@ -30,8 +40,16 @@ class BillerController extends Controller
 
         
         $data['objs'] = $objs;
+        $data['id'] = $id;
         return view('admin.biller.create', $data);
 
+    }
+
+    public function create_address_user($id){
+
+        $data['id'] = $id;
+
+        return view('admin.biller.create_address_user', $data);
     }
 
     public function edit_biller_id($id){
@@ -193,6 +211,7 @@ class BillerController extends Controller
         return redirect(url('admin/edit_biller_id/'.$id))->with('add_success','เพิ่มธนาคาร เสร็จเรียบร้อยแล้ว');
 
     }
+
 
 
     public function add_file6(Request $request){

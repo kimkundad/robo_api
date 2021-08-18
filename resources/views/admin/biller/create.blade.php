@@ -19,6 +19,7 @@ window.gaTitle = 'หน้าแรก';
 
 
 
+
 <div class="row">
 
 <div class="col-md-6 grid-margin">
@@ -56,7 +57,7 @@ window.gaTitle = 'หน้าแรก';
   <div class="card">
     <div class="card-body">
       
-    <h4 class="card-title mb-0">ข้อมูลผู้ใช้งาน</h4>
+    <h4 class="card-title mb-0">1. ข้อมูลผู้ติดต่อ</h4>
      
     <br>
         <br>
@@ -237,58 +238,8 @@ window.gaTitle = 'หน้าแรก';
         {{ csrf_field() }}
   <div class="row">
 
-    <div class="col-md-12 grid-margin">
-
-        <div class="card">
-            <div class="card-body">
-                <h4 class="card-title mb-0">1. ข้อมูลผู้ติดต่อ</h4>
-                <p class="card-description">
-                    กรอกข้อมูลให้ครบ ในส่วนที่มีเครื่องหมาย <span class="text-danger">*</span>
-                </p>
-                <br>
-                <div class="row">
-                        
-                    <div class="col-md-6">
-                        <div class="form-group row">
-                          <label class="col-sm-3 col-form-label">ชื่อจริง <span class="text-danger">*</span></label>
-                          <div class="col-sm-9">
-                            <input type="text" class="form-control" value="{{ old('f_name')  }}" name="f_name">
-                            <input type="hidden" class="form-control" value="{{ $objs->code_user }}" name="user_id">
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-md-6">
-                        <div class="form-group row">
-                          <label class="col-sm-3 col-form-label">นามสกุล <span class="text-danger">*</span></label>
-                          <div class="col-sm-9">
-                            <input type="text" class="form-control" value="{{ old('l_name') }}" name="l_name">
-                          </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6">
-                        <div class="form-group row">
-                          <label class="col-sm-3 col-form-label">อีเมล <span class="text-danger">*</span></label>
-                          <div class="col-sm-9">
-                            <input type="text" class="form-control" value="{{ old('email') }}" name="email" >
-                          </div>
-                        </div>
-                      </div>
-
-                      <div class="col-md-6">
-                        <div class="form-group row">
-                          <label class="col-sm-3 col-form-label">เบอร์โทร <span class="text-danger">*</span></label>
-                          <div class="col-sm-9">
-                            <input type="text" class="form-control" value="{{ old('phone') }}" name="phone">
-                          </div>
-                        </div>
-                    </div>
-
-                </div>
-
-            </div>
-        </div>
-    </div>
+    
+  
 
 
     <div class="col-md-12 grid-margin">
@@ -315,24 +266,11 @@ window.gaTitle = 'หน้าแรก';
                         </div>
                       </div>
 
-                      <div class="col-md-12">
-                        <div class="form-group row">
-                          <label class="col-sm-3 col-form-label">ที่อยู่บริษัท/ร้านค้า <span class="text-danger">*</span></label>
-                          <div class="col-sm-9">
-                          <select class="form-control" name="address">
-                                  @if(isset($address))
-                                    @foreach($address as $u)
-                                    <option value="{{$u->id}}" > {{$u->fname}} {{$u->address_no}} {{$u->address_name}}</option>
-                                    @endforeach
-                                  @endif
-                            </select>
-                          </div>
-                        </div>
-                      </div>
+                      
                       
                     <div class="col-md-12">
                         <div class="form-group row">
-                          <label class="col-sm-3 col-form-label">ชื่อบริษัท <span class="text-danger">*</span></label>
+                          <label class="col-sm-3 col-form-label">ชื่อบริษัท/ชื่อร้านค้า <span class="text-danger">*</span></label>
                           <div class="col-sm-9">
                             <input type="text" class="form-control" value="{{ old('company_name')  }}" name="company_name">
                           </div>
@@ -349,7 +287,7 @@ window.gaTitle = 'หน้าแรก';
 
                     <div class="col-md-12">
                         <div class="form-group row">
-                          <label class="col-sm-3 col-form-label">ประเภทบริษัท <span class="text-danger">*</span></label>
+                          <label class="col-sm-3 col-form-label">ประเภทบริษัท/ร้านค้า <span class="text-danger">*</span></label>
                           <div class="col-sm-9">
                             <input type="text" class="form-control" value="{{ old('company_type') }}" placeholder="ประเภทบริษัท (เช่น อาหาร, เทคโนโลยี, ขนส่ง)" name="company_type" >
                           </div>
@@ -370,7 +308,7 @@ window.gaTitle = 'หน้าแรก';
                         <div class="form-group row">
                           <label class="col-sm-3 col-form-label">Website, URL, Domain (ถ้ามี) <span class="text-danger">*</span></label>
                           <div class="col-sm-9">
-                            <input type="text" class="form-control" value="{{ old('domain') }}" name="domain">
+                            <input type="text" class="form-control" value="{{ old('url_domain_name') }}" name="url_domain_name">
                           </div>
                         </div>
                       </div>
@@ -378,7 +316,7 @@ window.gaTitle = 'หน้าแรก';
 
                       <div class="col-md-12">
                         <div class="form-group row">
-                          <label class="col-sm-3 col-form-label">Merchant id <span class="text-danger">*</span></label>
+                          <label class="col-sm-3 col-form-label">Merchant id (รอข้อมูลจากธนาคาร)</label>
                           <div class="col-sm-9">
                             <input type="text" class="form-control" value="{{ old('merchant_id') }}" name="merchant_id">
                           </div>
@@ -387,7 +325,7 @@ window.gaTitle = 'หน้าแรก';
 
                       <div class="col-md-12">
                         <div class="form-group row">
-                          <label class="col-sm-3 col-form-label">Terminal id <span class="text-danger">*</span></label>
+                          <label class="col-sm-3 col-form-label">Terminal id (รอข้อมูลจากธนาคาร)</label>
                           <div class="col-sm-9">
                             <input type="text" class="form-control" value="{{ old('terminal_id') }}" name="terminal_id">
                           </div>
@@ -401,12 +339,73 @@ window.gaTitle = 'หน้าแรก';
     </div>
 
 
+    <div class="col-md-12 grid-margin">
+
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title mb-0">3. ที่อยู่ตามบัตรประชาชน/ทะเบียนบ้าน </h4><br>
+                <a class="add btn btn-primary font-weight-bold " href="{{ url('admin/create_address_user/'.$id) }}">เพิ่มที่อยุ่ใหม่</a>
+                <div class="row">
+                        
+                    <div class="col-md-12">
+                    
+                        <div class="form-group">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        
+    </div>
+
 
     <div class="col-md-12 grid-margin">
 
         <div class="card">
             <div class="card-body">
-                <h4 class="card-title mb-0">3. เลือกธนาคารที่ต้องการสมัคร</h4>
+                <h4 class="card-title mb-0">4. ที่อยู่ปัจจุบัน</h4>
+                
+                <div class="row">
+                        
+                    <div class="col-md-12">
+                        <div class="form-group">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        
+    </div>
+
+
+    <div class="col-md-12 grid-margin">
+
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title mb-0">5. ที่อยู่บริษัท/ร้านค้่า</h4>
+                
+                <div class="row">
+                        
+                    <div class="col-md-12">
+                        <div class="form-group">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        
+    </div>
+
+
+
+    <div class="col-md-12 grid-margin">
+
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title mb-0">6. เลือกธนาคารที่ต้องการสมัคร</h4>
                 <p class="card-description">
                     กรอกข้อมูลให้ครบ ในส่วนที่มีเครื่องหมาย <span class="text-danger">*</span>
                 </p>
@@ -436,7 +435,6 @@ window.gaTitle = 'หน้าแรก';
 
             </div>
         </div>
-
         
     </div>
 
