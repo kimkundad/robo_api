@@ -114,7 +114,7 @@ class BillerController extends Controller
         
 
 
-        $user = User::find($id);
+        $user = User::find($bill->idu);
 
         $address = text_address::where('company', $user->code_user)->get();
         $data['address'] = $address;
