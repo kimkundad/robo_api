@@ -163,8 +163,8 @@ function showTambons(){
             input_tambon.innerHTML = "";
             for(let item of result){
                 let option = document.createElement("option");
-                option.text = item.tambon;
-                option.value = item.tambon;
+                option.text = item.name;
+                option.value = item.id;
                 input_tambon.add(option);                
             }
             //QUERY AMPHOES
@@ -183,7 +183,7 @@ function showZipcode(){
             let input_zipcode = document.querySelector("#input_zipcode");
             input_zipcode.value = "";
             for(let item of result){
-                input_zipcode.value = item.zipcode;
+                input_zipcode.value = item.code;
                 break; 
             }
         });
