@@ -86,7 +86,7 @@ class BillerController extends Controller
         return view('admin.biller.create_address_user2', $data);
     }
 
-    api/add_new_address3/{id}
+   
     
 
     public function edit_biller_id($id){
