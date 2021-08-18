@@ -39,7 +39,7 @@ class BillerController extends Controller
     public function getTambons($province,$amphoe)
     {
         $tambons = DB::table('sub_districts')
-            ->where('district_id ', $amphoe)
+            ->where('district_id', $amphoe)
             ->get();
 
         return $tambons;
