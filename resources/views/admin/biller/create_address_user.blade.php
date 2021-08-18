@@ -104,7 +104,7 @@ function showProvinces(){
             console.log(result);
             //UPDATE SELECT OPTION
             let input_province = document.querySelector("#input_province");
-            input_province.innerHTML = "";
+          //  input_province.innerHTML = "";
             for(let item of result){
                 let option = document.createElement("option");
                 option.text = item.name;
