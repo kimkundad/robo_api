@@ -63,9 +63,9 @@ class BillerController extends Controller
 
         $objs = User::find($id);
 
-        $address = text_address::all();
+        $address = text_address::where('company', $objs->code_user)->get();
         $data['address'] = $address;
-        dd($address);
+        dd($objs);
         
         $data['objs'] = $objs;
         $data['id'] = $id;
