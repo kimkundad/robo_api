@@ -117,7 +117,7 @@ class BillerController extends Controller
 
     public function add_new_address(Request $request){
 
-        dd($request->all);
+        dd($request->all());
         $this->validate($request, [
             'fname' => 'required',
             'phone' => 'required',
