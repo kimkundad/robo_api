@@ -609,7 +609,7 @@ window.gaTitle = 'หน้าแรก';
 <div class="card">
     <div class="card-body">
         <h4 class="card-title mb-0">3. ที่อยู่ตามบัตรประชาชน/ทะเบียนบ้าน </h4><br>
-        <a class="add btn btn-primary font-weight-bold " href="{{ url('admin/create_address_user/'.$id) }}">เพิ่มที่อยุ่ใหม่</a>
+        <a class="add btn btn-primary font-weight-bold " href="{{ url('admin/create_address_user2/'.$id) }}">เพิ่มที่อยุ่ใหม่</a>
         <div class="row">
                 
             <div class="col-md-12">

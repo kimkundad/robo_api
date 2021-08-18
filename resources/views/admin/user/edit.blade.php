@@ -81,15 +81,15 @@ window.gaTitle = 'หน้าแรก';
                       <li class="nav-item">
                         <a class="nav-link" id="user-profile-activity-tab2" data-toggle="pill" href="#user-profile-activity2" role="tab" aria-controls="user-profile-activity2" aria-selected="false">ฺLog</a>
                       </li>
+
                       <li class="nav-item">
-                        <a class="nav-link">Bank</a>
+                        <a class="nav-link" id="user-profile-activity-tab3" data-toggle="pill" href="#user-profile-activity3" role="tab" aria-controls="user-profile-activity3" aria-selected="false">Address</a>
                       </li>
+                      
                       <li class="nav-item">
                         <a class="nav-link">Company</a>
                       </li>
-                      <li class="nav-item">
-                        <a class="nav-link">Address</a>
-                      </li>
+                      
                     </ul>
 
                     <div class="row">
@@ -339,7 +339,7 @@ window.gaTitle = 'หน้าแรก';
                           <div class="tab-pane fade" id="user-profile-activity2" role="tabpanel" aria-labelledby="user-profile-activity-tab2">
 
                           <div>
-                          <h4 class="card-title">ความเคลื่อนไหวทั้งหมด ทั้งหมด ( {{ count($log) }} )</h4>
+                          <h4 class="card-title">ความเคลื่อนไหวทั้งหมด ( {{ count($log) }} )</h4>
                           <br>
                           <div class="table-responsive">
                               <table class="table">
@@ -368,6 +368,78 @@ window.gaTitle = 'หน้าแรก';
                           </div>
                           </div>
 
+
+                          <div class="tab-pane fade" id="user-profile-activity3" role="tabpanel" aria-labelledby="user-profile-activity-tab3">
+                            <div>
+                            <h4 class="card-title">ข้อมูลที่อยุ่ทั้งหมด ( {{ count($add) }} )</h4>
+                            <br>
+
+                            <div class="table-responsive">
+                      <table class="table">
+                        <thead>
+
+                          <tr>
+                          <th>#</th>
+                            <th>ชื่อ-นามสกุล</th>
+                            <th>หมายเลขโทรศัพท์</th>
+						              	<th>เลขที่</th>
+                            <th>ชื่ออาคาร/หมู่บ้าน</th>
+                            <th>จังหวัด</th>
+                            <th>เขต/อำเภอ</th>
+                            <th>วันที่สร้าง</th>
+                            <th>ดำเนินการ</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                      
+						          @if(isset($add))
+                        @foreach($add as $index => $u)
+                         
+                          <tr>
+                          <td>
+                          {{ ( $currentPage - 1 ) * $perPage + $index + 1 }}
+                            </td>
+                            <td>
+                              {{$u->fname}}
+                            </td>
+                            <td>
+                            {{$u->phone}}
+                            </td>
+                            <td>
+                             
+                            {{$u->address_no}}
+                            
+                            </td>
+							                <td>
+                              {{$u->address_name}}
+                            </td>
+                            <td>
+                              {{$u->p_name}}
+                            </td>
+                            <td>
+                              {{$u->d_name}}
+                            </td>
+                            <td>
+                            {{formatDateThat($u->created_at)}}
+                            </td>
+                            <td>
+                              <a href="{{ url('admin/edit_add_id/'.$u->id) }}" class="btn btn-outline-primary btn-sm">แก้ไข</a>
+                              <a href="{{ url('api/del_user_add_id/'.$u->id) }}" onclick="return confirm('Are you sure?')" class="btn btn-outline-danger btn-sm">ลบ</a>
+                            </td>
+                          </tr>
+                    
+
+                          @endforeach
+                          @endif
+
+
+                        </tbody>
+                      </table>
+                      </div>
+					            {{ $add->links() }}
+                            
+                            </div>
+                          </div>
 
                         </div>
                       </div>

@@ -79,6 +79,13 @@ class BillerController extends Controller
 
         return view('admin.biller.create_address_user', $data);
     }
+    public function create_address_user2($id){
+
+        $data['id'] = $id;
+
+        return view('admin.biller.create_address_user2', $data);
+    }
+    
 
     public function edit_biller_id($id){
 
@@ -122,6 +129,44 @@ class BillerController extends Controller
         $data['id'] = $user->id;
 
         return view('admin.biller.edit', $data);
+
+    }
+
+    
+
+    public function add_new_address2(Request $request){
+
+        
+        $this->validate($request, [
+            'fname' => 'required',
+            'phone' => 'required',
+            'provi' => 'required',
+            'address_no' => 'required',
+            'mydist' => 'required',
+            'user_id' => 'required',
+            'mySubDist' => 'required',
+            'postal_codes' => 'required'
+        ]);
+
+        $id = $request['user_id'];
+        $obj = User::find($id);
+
+            $objs = new text_address();
+            $objs->fname = $request['fname'];
+            $objs->phone = $request['phone'];
+            $objs->province = $request['provi'];
+            $objs->address_no = $request['address_no'];
+            $objs->address_name = $request['address_name'];
+            $objs->soi = $request['soi'];
+            $objs->road = $request['road'];
+            $objs->county = $request['mydist'];
+            $objs->district = $request['mySubDist'];
+            $objs->postal_code = $request['postal_codes'];
+            $objs->company = $obj->code_user;
+            $objs->status = 3;
+            $objs->save();
+
+            return redirect(url('admin/user/'.$id.'/edit'))->with('add_success','เพิ่มธนาคาร เสร็จเรียบร้อยแล้ว');
 
     }
 

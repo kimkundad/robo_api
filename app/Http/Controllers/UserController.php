@@ -314,7 +314,53 @@ class UserController extends Controller
     {
         //name_bank
 
+
+
+
+
+
         $objs = User::find($id);
+
+        $add = DB::table('text_addresses')->where('company', $objs->code_user)->paginate(15);
+
+        if(isset($add)){
+            foreach($add as $get_address){
+
+          $province = DB::table('provinces')
+               ->where('id', $get_address->province)
+               ->first();
+               if(isset($province->name)){
+                $get_address->p_name = $province->name;
+               }else{
+                $get_address->p_name = null;
+               }
+
+           $district = DB::table('districts')
+                ->where('id', $get_address->county)
+                ->first();
+
+            if(isset($district->name)){
+                $get_address->d_name = $district->name;
+               }else{
+                $get_address->d_name = null;
+               }
+
+            $subdistricts = DB::table('sub_districts')
+                 ->where('id', $get_address->district)
+                 ->first();
+
+                 if(isset($subdistricts->name)){
+                    $get_address->sub_name = $subdistricts->name;
+                   }else{
+                    $get_address->sub_name = null;
+                   }
+
+         }
+        }
+
+        
+        dd($add);
+        $data['add'] = $add;   
 
         $bill = DB::table('billers')->select(
             'billers.*',
