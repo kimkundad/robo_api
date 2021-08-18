@@ -65,7 +65,7 @@ class BillerController extends Controller
 
         $address = text_address::where('company', $objs->code_user)->get();
         $data['address'] = $address;
-        dd($objs);
+       // dd($objs);
         
         $data['objs'] = $objs;
         $data['id'] = $id;
@@ -117,6 +117,7 @@ class BillerController extends Controller
 
     public function add_new_address(Request $request){
 
+        dd($request->all);
         $this->validate($request, [
             'fname' => 'required',
             'phone' => 'required',
