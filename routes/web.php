@@ -139,6 +139,11 @@ Route::group(['middleware' => ['UserRole:manager|employee']], function() {
 
     Route::get('api/del_user/{id}', 'UserController@del_user')->name('del_user');
 
+    Route::get('admin/edit_add_id/{id}', 'AddressController@edit_add_id')->name('edit_add_id');
+    Route::get('api/del_user_add_id/{id}', 'AddressController@del_user_add_id')->name('del_user_add_id');
+    Route::post('api/edit_user_address', 'AddressController@edit_user_address')->name('edit_user_address');
+    
+
     Route::get('admin/setting', 'SettingController@setting')->name('setting');
     Route::post('api/post_setting', 'SettingController@post_setting')->name('post_setting');
 

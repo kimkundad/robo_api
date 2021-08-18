@@ -1,3 +1,4 @@
+
 @extends('admin.layouts.template')
 
 @section('ga')
@@ -82,43 +83,43 @@ window.gaTitle = 'หน้าแรก';
 <div class="col-md-12">
   <div class="card">
     <div class="card-body">
-      <h4 class="card-title">เพิ่มที่อยู่ของลูกค้า</h4>
+      <h4 class="card-title">แก้ไขที่อยู่ของ ( {{ $user->name }} )</h4>
       <p class="card-description">
         กรอกข้อมูลให้ครบ ในส่วนที่มีเครื่องหมาย <span class="text-danger">*</span>
       </p>
 
-      <form class="forms-sample" method="POST" action="{{ url('api/edit_user_address') }}" enctype="multipart/form-data">
+      <form class="forms-sample" method="POST" action="{{ url('api/add_new_address2') }}" enctype="multipart/form-data">
         {{ csrf_field() }}
 
         <div class="form-group">
           <label for="exampleInputUsername1">ชื่อ-นามสกุล <span class="text-danger">*</span></label>
-          <input type="text" class="form-control" name="fname" value="{{ old('fname') }}">
-          <input type="hidden" name="user_id" value="{{$id}}">
+          <input type="text" class="form-control" name="fname" value="{{ $objs->fname }}">
+          <input type="hidden" name="add_id" value="{{$objs->id}}">
         </div>
 
         <div class="form-group">
           <label for="exampleInputUsername1">หมายเลขโทรศัพท์ <span class="text-danger">*</span></label>
-          <input type="text" class="form-control" name="phone" value="{{ old('phone') }}">
+          <input type="text" class="form-control" name="phone" value="{{ $objs->phone }}">
         </div>
 
         <div class="form-group">
           <label for="exampleInputUsername1">เลขที่ <span class="text-danger">*</span></label>
-          <input type="text" class="form-control" name="address_no" value="{{ old('address_no') }}">
+          <input type="text" class="form-control" name="address_no" value="{{ $objs->address_no }}">
         </div>
 
         <div class="form-group">
           <label for="exampleInputUsername1">ชื่ออาคาร/หมู่บ้าน </label>
-          <input type="text" class="form-control" name="address_name" value="{{ old('address_name') }}">
+          <input type="text" class="form-control" name="address_name" value="{{ $objs->address_name }}">
         </div>
 
         <div class="form-group">
           <label for="exampleInputUsername1">ตรอก/ซอย </label>
-          <input type="text" class="form-control" name="soi" value="{{ old('soi') }}">
+          <input type="text" class="form-control" name="soi" value="{{ $objs->soi }}">
         </div>
 
         <div class="form-group">
           <label for="exampleInputUsername1">ถนน </label>
-          <input type="text" class="form-control" name="road" value="{{ old('road') }}">
+          <input type="text" class="form-control" name="road" value="{{ $objs->road }}">
         </div>
 
         <div class="form-group">
@@ -142,7 +143,7 @@ window.gaTitle = 'หน้าแรก';
 
         <div class="form-group">
           <label for="exampleInputUsername1">รหัสไปรษณีย์ </label>
-          <input type="text" class="form-control" id="input_zipcode" name="postal_codes">
+          <input type="text" class="form-control" id="input_zipcode" name="postal_codes" value="{{ $objs->postal_code }}">
         </div>
 
         
