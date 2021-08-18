@@ -77,7 +77,7 @@ window.gaTitle = 'หน้าแรก';
 
         <div class="form-group">
           <label for="exampleInputUsername1">แขวง/ตำบล </label>
-          <select class="form-control" name="amphoe" id="input_amphoe" onchange="showTambons()">
+          <select class="form-control" name="amphoe" id="input_tambon" onchange="showZipcode()">
           </select>
         </div>
 
