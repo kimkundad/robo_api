@@ -144,6 +144,7 @@ Route::group(['middleware' => ['UserRole:manager|employee']], function() {
 
     Route::get('admin/create_biller_id/{id}', 'BillerController@create_biller_id')->name('create_biller_id');
     Route::get('admin/create_address_user/{id}', 'BillerController@create_address_user')->name('create_address_user');
+    Route::post('api/add_new_address', 'BillerController@add_new_address')->name('add_new_address');
 
     Route::get('/provinces','BillerController@getProvinces');
     Route::get('/province/{province_code}/amphoes','BillerController@getAmphoes');

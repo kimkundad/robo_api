@@ -115,7 +115,37 @@ class BillerController extends Controller
 
     }
 
-    
+    public function add_new_address(Request $request){
+
+        $this->validate($request, [
+            'fname' => 'required',
+            'phone' => 'required',
+            'provi' => 'required',
+            'address_no' => 'required',
+            'mydist' => 'required',
+            'user_id' => 'required',
+            'mySubDist' => 'required',
+            'postal_codes' => 'required'
+        ]);
+
+            $objs = new text_address();
+            $objs->fname = $request['fname'];
+            $objs->phone = $request['phone'];
+            $objs->province = $request['provi'];
+            $objs->address_no = $request['address_no'];
+            $objs->address_name = $request['address_name'];
+            $objs->soi = $request['soi'];
+            $objs->road = $request['road'];
+            $objs->county = $request['mydist'];
+            $objs->district = $request['mySubDist'];
+            $objs->postal_code = $request['postal_codes'];
+            $objs->company = $request['user_id'];
+            $objs->status = 3;
+            $objs->save();
+
+            return redirect(url('admin/create_biller_id/'.$request['user_id']))->with('add_success','เพิ่มธนาคาร เสร็จเรียบร้อยแล้ว');
+
+    }
 
     public function add_file1(Request $request){
 

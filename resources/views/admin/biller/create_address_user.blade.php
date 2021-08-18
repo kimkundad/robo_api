@@ -29,61 +29,62 @@ window.gaTitle = 'หน้าแรก';
         กรอกข้อมูลให้ครบ ในส่วนที่มีเครื่องหมาย <span class="text-danger">*</span>
       </p>
 
-      <form class="forms-sample" method="POST" action="" enctype="multipart/form-data">
+      <form class="forms-sample" method="POST" action="{{ url('api/add_new_address') }}" enctype="multipart/form-data">
         {{ csrf_field() }}
 
         <div class="form-group">
           <label for="exampleInputUsername1">ชื่อ-นามสกุล <span class="text-danger">*</span></label>
-          <input type="text" class="form-control" id="exampleInputUsername1" name="name" value="{{ old('name') }}">
+          <input type="text" class="form-control" name="fname" value="{{ old('fname') }}">
+          <input type="hidden" name="user_id" value="{{$id}}">
         </div>
 
         <div class="form-group">
           <label for="exampleInputUsername1">หมายเลขโทรศัพท์ <span class="text-danger">*</span></label>
-          <input type="text" class="form-control" id="exampleInputUsername1" name="name" value="{{ old('name') }}">
+          <input type="text" class="form-control" name="phone" value="{{ old('phone') }}">
         </div>
 
         <div class="form-group">
           <label for="exampleInputUsername1">เลขที่ <span class="text-danger">*</span></label>
-          <input type="text" class="form-control" id="exampleInputUsername1" name="name" value="{{ old('name') }}">
+          <input type="text" class="form-control" name="address_no" value="{{ old('address_no') }}">
         </div>
 
         <div class="form-group">
           <label for="exampleInputUsername1">ชื่ออาคาร/หมู่บ้าน </label>
-          <input type="text" class="form-control" id="exampleInputUsername1" name="name" value="{{ old('name') }}">
+          <input type="text" class="form-control" name="address_name" value="{{ old('address_name') }}">
         </div>
 
         <div class="form-group">
           <label for="exampleInputUsername1">ตรอก/ซอย </label>
-          <input type="text" class="form-control" id="exampleInputUsername1" name="name" value="{{ old('name') }}">
+          <input type="text" class="form-control" name="soi" value="{{ old('soi') }}">
         </div>
 
         <div class="form-group">
           <label for="exampleInputUsername1">ถนน </label>
-          <input type="text" class="form-control" id="exampleInputUsername1" name="name" value="{{ old('name') }}">
+          <input type="text" class="form-control" name="road" value="{{ old('road') }}">
         </div>
 
         <div class="form-group">
           <label for="exampleInputUsername1">จังหวัด </label>
-          <select class="form-control" name="province" id="input_province" onchange="showAmphoes()">
+          <select class="form-control" name="provi" id="input_province" onchange="showAmphoes()">
             <option > -- เลือกจังหวัด -- </option>
           </select>
         </div>
 
         <div class="form-group">
           <label for="exampleInputUsername1">เขต/อำเภอ </label>
-          <select class="form-control" name="amphoe" id="input_amphoe" onchange="showTambons()">
+          <select class="form-control" name="mydist" id="input_amphoe" onchange="showTambons()">
           </select>
         </div>
 
         <div class="form-group">
           <label for="exampleInputUsername1">แขวง/ตำบล </label>
-          <select class="form-control" name="amphoe" id="input_tambon" onchange="showZipcode()">
+          <select class="form-control" name="mySubDist" id="input_tambon" onchange="showZipcode()">
           </select>
         </div>
 
         <div class="form-group">
           <label for="exampleInputUsername1">รหัสไปรษณีย์ </label>
-          <input type="text" class="form-control" id="input_zipcode" name="zipcode">
+          <input type="text" class="form-control" id="input_zipcode" name="postal_codes">
         </div>
 
         
