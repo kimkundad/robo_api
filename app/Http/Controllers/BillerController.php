@@ -439,9 +439,9 @@ class BillerController extends Controller
         $objs->bill_type = $request['t_com'];
         $objs->merchant_id = $request['merchant_id'];
         $objs->terminal_id = $request['terminal_id'];
-        $objs->address_id = $request['id_address'];
+     /*   $objs->address_id = $request['id_address'];
         $objs->AddressNow = $request['id_address2'];
-        $objs->AddressCom = $request['id_address3'];
+        $objs->AddressCom = $request['id_address3']; */
      //   $objs->address_id = $request['address'];
         $objs->save();
 
