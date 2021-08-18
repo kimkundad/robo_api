@@ -418,10 +418,7 @@ class BillerController extends Controller
             'id_card' => 'required',
             'bank_id' => 'required',
             'user_id' => 'required',
-            't_com' => 'required',
-            'id_address' => 'required',
-            'id_address2' => 'required',
-            'id_address3' => 'required'
+            't_com' => 'required'
         ]);
 
     
