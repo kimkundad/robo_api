@@ -359,7 +359,7 @@ class UserController extends Controller
         }
 
         
-        dd($add);
+        
         $data['add'] = $add;   
 
         $bill = DB::table('billers')->select(
