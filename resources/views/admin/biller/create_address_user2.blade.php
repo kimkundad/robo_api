@@ -87,7 +87,7 @@ window.gaTitle = 'หน้าแรก';
         กรอกข้อมูลให้ครบ ในส่วนที่มีเครื่องหมาย <span class="text-danger">*</span>
       </p>
 
-      <form class="forms-sample" method="POST" action="{{ url('api/edit_user_address') }}" enctype="multipart/form-data">
+      <form class="forms-sample" method="POST" action="{{ url('api/add_new_address2') }}" enctype="multipart/form-data">
         {{ csrf_field() }}
 
         <div class="form-group">

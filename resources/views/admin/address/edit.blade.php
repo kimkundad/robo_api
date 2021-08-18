@@ -88,13 +88,14 @@ window.gaTitle = 'หน้าแรก';
         กรอกข้อมูลให้ครบ ในส่วนที่มีเครื่องหมาย <span class="text-danger">*</span>
       </p>
 
-      <form class="forms-sample" method="POST" action="{{ url('api/add_new_address2') }}" enctype="multipart/form-data">
+      <form class="forms-sample" method="POST" action="{{ url('api/edit_user_address') }}" enctype="multipart/form-data">
         {{ csrf_field() }}
 
         <div class="form-group">
           <label for="exampleInputUsername1">ชื่อ-นามสกุล <span class="text-danger">*</span></label>
           <input type="text" class="form-control" name="fname" value="{{ $objs->fname }}">
           <input type="hidden" name="add_id" value="{{$objs->id}}">
+          <input type="hidden" name="user_id" value="{{$user->id}}">
         </div>
 
         <div class="form-group">
@@ -125,19 +126,21 @@ window.gaTitle = 'หน้าแรก';
         <div class="form-group">
           <label for="exampleInputUsername1">จังหวัด </label>
           <select class="form-control" name="provi" id="input_province" onchange="showAmphoes()">
-            <option > -- เลือกจังหวัด -- </option>
+            <option value="{{ $objs->p_id }}"> {{ $objs->p_name }} </option>
           </select>
         </div>
 
         <div class="form-group">
           <label for="exampleInputUsername1">เขต/อำเภอ </label>
           <select class="form-control" name="mydist" id="input_amphoe" onchange="showTambons()">
+          <option value="{{ $objs->d_id }}"> {{ $objs->d_name }} </option>
           </select>
         </div>
 
         <div class="form-group">
           <label for="exampleInputUsername1">แขวง/ตำบล </label>
           <select class="form-control" name="mySubDist" id="input_tambon" onchange="showZipcode()">
+          <option value="{{ $objs->sub_id }}"> {{ $objs->sub_name }} </option>
           </select>
         </div>
 
