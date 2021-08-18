@@ -578,6 +578,25 @@ window.gaTitle = 'หน้าแรก';
                         </div>
                     </div>
 
+
+                    <div class="col-md-12">
+                        <div class="form-group row">
+                          <label class="col-sm-3 col-form-label">Merchant id (รอข้อมูลจากธนาคาร)</label>
+                          <div class="col-sm-9">
+                            <input type="text" class="form-control" value="{{ $bill->merchant_id }}" name="merchant_id">
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="col-md-12">
+                        <div class="form-group row">
+                          <label class="col-sm-3 col-form-label">Terminal id (รอข้อมูลจากธนาคาร)</label>
+                          <div class="col-sm-9">
+                            <input type="text" class="form-control" value="{{ $bill->terminal_id }}" name="terminal_id">
+                          </div>
+                        </div>
+                      </div>
+
                 </div>
 
             </div>
@@ -600,7 +619,11 @@ window.gaTitle = 'หน้าแรก';
                     <option value=""> -- เลือกที่อยู่ -- </option>
                     @if(isset($address))
                       @foreach($address as $u)
-                        <option value="{{$u->id}}"> {{ $u->fname }}, {{ $u->phone }}, {{ $u->address_no }}, {{ $u->address_name }} </option>
+                        <option value="{{$u->id}}" 
+                                    @if($u->id == $bill->address_id)
+                                    selected='selected'
+                                    @endif
+                                    > {{ $u->fname }}, {{ $u->phone }}, {{ $u->address_no }}, {{ $u->address_name }} </option>
                       @endforeach
                     @endif
                   </select> 
@@ -629,7 +652,10 @@ window.gaTitle = 'หน้าแรก';
                 <option value=""> -- เลือกที่อยู่ -- </option>
                     @if(isset($address))
                       @foreach($address as $u)
-                        <option value="{{$u->id}}"> {{ $u->fname }}, {{ $u->phone }}, {{ $u->address_no }}, {{ $u->address_name }} </option>
+                        <option value="{{$u->id}}"  @if($u->id == $bill->AddressNow)
+                                    selected='selected'
+                                    @endif
+                                    > {{ $u->fname }}, {{ $u->phone }}, {{ $u->address_no }}, {{ $u->address_name }} </option>
                       @endforeach
                     @endif
                     </select> 
@@ -658,7 +684,9 @@ window.gaTitle = 'หน้าแรก';
                 <option value=""> -- เลือกที่อยู่ -- </option>
                     @if(isset($address))
                       @foreach($address as $u)
-                        <option value="{{$u->id}}"> {{ $u->fname }}, {{ $u->phone }}, {{ $u->address_no }}, {{ $u->address_name }} </option>
+                        <option value="{{$u->id}}" @if($u->id == $bill->AddressCom)
+                                    selected='selected'
+                                    @endif> {{ $u->fname }}, {{ $u->phone }}, {{ $u->address_no }}, {{ $u->address_name }} </option>
                       @endforeach
                     @endif
                     </select> 
