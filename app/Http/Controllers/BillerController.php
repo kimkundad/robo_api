@@ -117,7 +117,7 @@ class BillerController extends Controller
 
     public function add_new_address(Request $request){
 
-        dd($request->all());
+        
         $this->validate($request, [
             'fname' => 'required',
             'phone' => 'required',
@@ -130,7 +130,7 @@ class BillerController extends Controller
         ]);
 
         $id = $request['user_id'];
-        $objs = User::find($id);
+        $obj = User::find($id);
 
             $objs = new text_address();
             $objs->fname = $request['fname'];
@@ -143,7 +143,7 @@ class BillerController extends Controller
             $objs->county = $request['mydist'];
             $objs->district = $request['mySubDist'];
             $objs->postal_code = $request['postal_codes'];
-            $objs->company = $objs->code_user;
+            $objs->company = $obj->code_user;
             $objs->status = 3;
             $objs->save();
 
