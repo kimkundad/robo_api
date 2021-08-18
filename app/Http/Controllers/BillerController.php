@@ -111,6 +111,12 @@ class BillerController extends Controller
         $objs = User::find($bill->idu);
         $data['objs'] = $objs;
 
+
+        $user = User::find($id);
+
+        $address = text_address::where('company', $user->code_user)->get();
+        $data['address'] = $address;
+
         return view('admin.biller.edit', $data);
 
     }

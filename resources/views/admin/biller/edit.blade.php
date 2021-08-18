@@ -585,26 +585,91 @@ window.gaTitle = 'หน้าแรก';
     </div>
 
 
-      <div class="col-md-12 grid-margin">
+    <div class="col-md-12 grid-margin">
 
-          <div class="card">
-              <div class="card-body">
-                    <h4 class="card-title mb-0">3. ข้อมูลที่อยู่</h4>
-                    <p class="card-description">
-                        กรอกข้อมูลให้ครบ ในส่วนที่มีเครื่องหมาย <span class="text-danger">*</span>
-                    </p>
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-title mb-0">3. ที่อยู่ตามบัตรประชาชน/ทะเบียนบ้าน </h4><br>
+        <a class="add btn btn-primary font-weight-bold " href="{{ url('admin/create_address_user/'.$id) }}">เพิ่มที่อยุ่ใหม่</a>
+        <div class="row">
                 
-                    <div class="row">
-                            
-                        <div class="col-md-12">
-                        </div>
-
-                    </div>
+            <div class="col-md-12">
+                <br>
+                <div class="form-group">
+                  <select class="form-control" name="id_address" >
+                    <option value=""> -- เลือกที่อยู่ -- </option>
+                    @if(isset($address))
+                      @foreach($address as $u)
+                        <option value="{{$u->id}}"> {{ $u->fname }}, {{ $u->phone }}, {{ $u->address_no }}, {{ $u->address_name }} </option>
+                      @endforeach
+                    @endif
+                  </select> 
                 </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+</div>
 
 
-          </div>
-      </div>
+<div class="col-md-12 grid-margin">
+
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-title mb-0">4. ที่อยู่ปัจจุบัน</h4>
+        
+        <div class="row">
+                
+            <div class="col-md-12">
+            <br>
+                <div class="form-group">
+                <select class="form-control" name="id_address2" >
+                <option value=""> -- เลือกที่อยู่ -- </option>
+                    @if(isset($address))
+                      @foreach($address as $u)
+                        <option value="{{$u->id}}"> {{ $u->fname }}, {{ $u->phone }}, {{ $u->address_no }}, {{ $u->address_name }} </option>
+                      @endforeach
+                    @endif
+                    </select> 
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+</div>
+
+
+<div class="col-md-12 grid-margin">
+
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-title mb-0">5. ที่อยู่บริษัท/ร้านค้่า</h4>
+        
+        <div class="row">
+                
+            <div class="col-md-12">
+            <br>
+                <div class="form-group">
+                <select class="form-control" name="id_address3" >
+                <option value=""> -- เลือกที่อยู่ -- </option>
+                    @if(isset($address))
+                      @foreach($address as $u)
+                        <option value="{{$u->id}}"> {{ $u->fname }}, {{ $u->phone }}, {{ $u->address_no }}, {{ $u->address_name }} </option>
+                      @endforeach
+                    @endif
+                    </select> 
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+</div>
 
 
 
@@ -612,7 +677,7 @@ window.gaTitle = 'หน้าแรก';
 
         <div class="card">
             <div class="card-body">
-                <h4 class="card-title mb-0">4. เลือกธนาคารที่ต้องการสมัคร</h4>
+                <h4 class="card-title mb-0">6. เลือกธนาคารที่ต้องการสมัคร</h4>
                 <p class="card-description">
                     กรอกข้อมูลให้ครบ ในส่วนที่มีเครื่องหมาย <span class="text-danger">*</span>
                 </p>
