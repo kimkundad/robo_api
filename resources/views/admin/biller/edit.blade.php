@@ -374,7 +374,7 @@ window.gaTitle = 'หน้าแรก';
                                             @foreach($file_all as $u)
 											<li >
                                             <a href="{{ url('img/doc/'.$u->file_name) }}" class="item">
-                                            <img src="{{ url('img/icon/icon_file.png') }}" height="72">
+                                            <img src="{{ url('assets/icon/icon_file.png') }}" height="72">
                                             <span class="name_doc_all">{{ $u->file_name }}</span>
                                             </a>
                                                 <a href="{{ url('api/del_image_3/'.$u->id) }}" onclick="return confirm('Are you sure?')" class="btn btn-outline-danger btn-sm my_remove1">ลบ</a>
@@ -391,6 +391,7 @@ window.gaTitle = 'หน้าแรก';
                                 </div>
                             </div>
 						</div>      
+
 
 
 
