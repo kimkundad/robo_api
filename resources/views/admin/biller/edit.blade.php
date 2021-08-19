@@ -497,6 +497,16 @@ window.gaTitle = 'หน้าแรก';
                         </div>
                     </div>
 
+
+                    <div class="col-md-12">
+                        <div class="form-group row">
+                          <label class="col-sm-3 col-form-label">หมายเหตุ <span class="text-danger">*</span></label>
+                          <div class="col-sm-9">
+                            <textarea class="form-control" name="notes" id="notes" cols="30" rows="5">{{ $bill->data1_id }}</textarea>
+                          </div>
+                        </div>
+                    </div>
+
                     
 
                 </div>

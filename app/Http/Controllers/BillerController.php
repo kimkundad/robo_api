@@ -499,6 +499,7 @@ class BillerController extends Controller
         $objs->address_id = $request['id_address'];
         $objs->AddressNow = $request['id_address2'];
         $objs->AddressCom = $request['id_address3']; 
+        $objs->data1_id = $request['notes']; 
      //   $objs->address_id = $request['address'];
         $objs->save();
 
