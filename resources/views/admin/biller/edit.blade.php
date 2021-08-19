@@ -25,6 +25,13 @@ window.gaTitle = 'หน้าแรก';
     text-align: center;
     margin-left: auto !important;
 }
+.name_doc_all{
+  position: absolute;
+    height: 50px;
+    width: 300px;
+    overflow: hidden;
+    font-size: 10px;
+}
 </style>
 @stop('stylesheet')
 
@@ -367,7 +374,8 @@ window.gaTitle = 'หน้าแรก';
                                             @foreach($file_all as $u)
 											<li >
                                             <a href="{{ url('img/doc/'.$u->file_name) }}" class="item">
-                                            <img src="{{ url('img/doc/'.$u->file_name) }}" height="62">
+                                            <img src="{{ url('img/icon/icon_file.png') }}" height="72">
+                                            <span class="name_doc_all">{{ $u->file_name }}</span>
                                             </a>
                                                 <a href="{{ url('api/del_image_3/'.$u->id) }}" onclick="return confirm('Are you sure?')" class="btn btn-outline-danger btn-sm my_remove1">ลบ</a>
 											</li>

@@ -283,14 +283,10 @@ window.gaTitle = 'หน้าแรก';
                           {{ ( $currentPage - 1 ) * $perPage + $index + 1 }}
                             </td>
                             <td>
-                              {{$u->name_bank}}
+                            <img src="{{ url('img/bank/'.$u->bank_img) }}" alt="{{$u->name_bank}}">
                             </td>
                             <td>
-                            @if($u->provider == 'email')
-                            <img src="{{ url('assets/img/avatar/'.$u->avatar) }}" > 
-                            @else
-                            <img src="{{ url($u->avatar) }}" > 
-                            @endif
+                            
                             {{$u->first_name}} {{$u->last_name}}</td>
 
                             <td>
@@ -309,7 +305,7 @@ window.gaTitle = 'หน้าแรก';
                               {{$u->phone1}}
                             </td>
                             <td>
-                              {{$u->name_bank}}
+                              {{$u->bank_name}}
                             </td>
                             <td>
                               {{$u->biller_id}}
@@ -318,8 +314,8 @@ window.gaTitle = 'หน้าแรก';
                             {{formatDateThat($u->create)}}
                             </td>
                             <td>
-                              <a href="{{ url('admin/edit_biller_id/'.$u->idb) }}" class="btn btn-outline-primary btn-sm">แก้ไข</a>
-                              <a href="{{ url('api/del_user_biller_id/'.$u->idb) }}" onclick="return confirm('Are you sure?')" class="btn btn-outline-danger btn-sm">ลบ</a>
+                              <a href="{{ url('admin/edit_biller_id/'.$u->idb) }}" class="btn btn-icons btn-rounded btn-primary"><i class="icon-pencil"></i></a>
+                              <a href="{{ url('api/del_user_biller_id/'.$u->idb) }}" onclick="return confirm('Are you sure?')" class="btn btn-icons btn-rounded btn-secondary"><i class="icon-trash"></i></a>
                             </td>
                           </tr>
                     
@@ -424,8 +420,9 @@ window.gaTitle = 'หน้าแรก';
                             {{formatDateThat($u->created_at)}}
                             </td>
                             <td>
-                              <a href="{{ url('admin/edit_add_id/'.$u->id) }}" class="btn btn-outline-primary btn-sm">แก้ไข</a>
-                              <a href="{{ url('api/del_user_add_id/'.$u->id) }}" onclick="return confirm('Are you sure?')" class="btn btn-outline-danger btn-sm">ลบ</a>
+
+                              <a href="{{ url('admin/edit_add_id/'.$u->id) }}" class="btn btn-icons btn-rounded btn-primary"><i class="icon-pencil"></i></a>
+                              <a href="{{ url('api/del_user_add_id/'.$u->id) }}" onclick="return confirm('Are you sure?')" class="btn btn-icons btn-rounded btn-secondary"><i class="icon-trash"></i></a>
                             </td>
                           </tr>
                     
