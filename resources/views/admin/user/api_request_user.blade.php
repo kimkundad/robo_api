@@ -71,7 +71,13 @@
                             @else
                             <img src="{{ url($u->avatar) }}" > 
                             @endif
-                            {{$u->first_name}} {{$u->last_name}}</td>
+                            @if(isset($u->first_name))
+                            {{$u->first_name}} {{$u->last_name}}
+                            @else
+                            {{$u->name}}
+                            @endif
+
+                            </td>
                             <td>
                             @if($u->status_v2 == 0)
                                 <p class="mt-2 text-warning font-weight-bold">รอการตรวจสอบ</p>
