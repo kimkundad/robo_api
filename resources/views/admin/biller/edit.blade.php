@@ -255,7 +255,7 @@ window.gaTitle = 'หน้าแรก';
                                                 <a href="#">
                                                     <span class="pro-pic"><button type="button" class="btn btn-icons btn-rounded btn-secondary"><i class="icon-docs"></i></button></span>
                                                     <div class="user">
-                                                        <p class="u-name"> สำเนาบัตรประชาชนผู้มีอำนาจลงนาม.</p>
+                                                        <p class="u-name"> สำเนาบัตรประชาชนผู้มีอำนาจลงนาม..</p>
                                                         <p class="u-designation"> (สำเนาบัตรประชาชนผู้มีอำนาจลงนาม ของ นิติบุคคล) </p>
                                                         <span class="d-flex align-items-center mt-2">
                                                         @if(isset($bill->file_2))
