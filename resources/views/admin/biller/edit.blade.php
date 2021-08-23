@@ -249,11 +249,13 @@ window.gaTitle = 'หน้าแรก';
                                                     </div>
                                                     </a>
                                                 </li>
+
+
                                                 <li class="chat-persons">
                                                 <a href="#">
                                                     <span class="pro-pic"><button type="button" class="btn btn-icons btn-rounded btn-secondary"><i class="icon-docs"></i></button></span>
                                                     <div class="user">
-                                                        <p class="u-name"> สำเนาบัตรประชาชนผู้มีอำนาจลงนาม</p>
+                                                        <p class="u-name"> สำเนาบัตรประชาชนผู้มีอำนาจลงนาม..</p>
                                                         <p class="u-designation"> (สำเนาบัตรประชาชนผู้มีอำนาจลงนาม ของ นิติบุคคล) </p>
                                                         <span class="d-flex align-items-center mt-2">
                                                         @if(isset($bill->file_2))
@@ -267,11 +269,11 @@ window.gaTitle = 'หน้าแรก';
                                                         <input type="hidden"  name="biller_id" value="{{$bill->biller_id}}" />
                                                         <input type="hidden"  name="id" value="{{$bill->idb}}" />
                                                         </form>
-                                                        
                                                         </span>
                                                     </div>
+
                                                     </a>
-                                                      <div class="list-wrapper">
+                                                      <div class="list-wrapper ">
                                                         <ul class=" d-flex flex-column-reverse todo-list todo-list-custom" id="ul-li">
                                                                               @if(isset($file_2_all))
                                                                               @foreach($file_2_all as $u)
