@@ -94,6 +94,7 @@ Route::get('/get_tex_address', [AuthController::class, 'get_tex_address']);
 Route::post('/update_profile', [AuthController::class, 'update_profile']); 
 Route::post('/add_my_biller_id', [AuthController::class, 'add_my_biller_id']); 
 Route::post('/add_my_biller_file', [AuthController::class, 'add_my_biller_file']); 
+Route::post('/add_my_biller_file2', [AuthController::class, 'add_my_biller_file2']); 
 Route::post('/add_new_address', [AuthController::class, 'add_new_address']); 
 Route::get('/get_my_biller_id', [AuthController::class, 'get_my_biller_id']); 
 Route::get('/get_biller_by_id/{id}', [AuthController::class, 'get_biller_by_id']); 
