@@ -261,7 +261,7 @@ window.gaTitle = 'หน้าแรก';
                                                         <span onclick="window.open('{{ url('img/doc/'.$bill->file_2) }}', '_blank');" class="btn btn-xs btn-rounded btn-outline-primary" style="margin-right: 25px;">Download</span>
                                                         <br><br>
                                                         @endif
-                                                        <form method="POST" id="sub_file2" action="{{ url('api/add_file2/') }}" enctype="multipart/form-data">
+                                                        <form method="POST" id="sub_file2" action="{{ url('api/add_file_com2/') }}" enctype="multipart/form-data">
                                                         {{ csrf_field() }}
                                                         <input type="file" class="dropify" id="file2"  name="file2[]" multiple/>
                                                         <input type="hidden"  name="biller_id" value="{{$bill->biller_id}}" />
