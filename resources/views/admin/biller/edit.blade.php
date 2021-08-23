@@ -263,7 +263,7 @@ window.gaTitle = 'หน้าแรก';
                                                         @endif
                                                         <form method="POST" id="sub_file2" action="{{ url('api/add_file2/') }}" enctype="multipart/form-data">
                                                         {{ csrf_field() }}
-                                                        <input type="file" class="dropify" id="file2"  name="file2" />
+                                                        <input type="file" class="dropify" id="file2"  name="file2[]" multiple/>
                                                         <input type="hidden"  name="biller_id" value="{{$bill->biller_id}}" />
                                                         <input type="hidden"  name="id" value="{{$bill->idb}}" />
                                                         </form>
@@ -271,6 +271,23 @@ window.gaTitle = 'หน้าแรก';
                                                         </span>
                                                     </div>
                                                     </a>
+                                                      <div class="list-wrapper">
+                                                        <ul class=" d-flex flex-column-reverse todo-list todo-list-custom" id="ul-li">
+                                                                              @if(isset($file_2_all))
+                                                                              @foreach($file_2_all as $u)
+                                                                        <li >
+                                                                              <a href="{{ url('img/doc/'.$u->file_name) }}" class="item">
+                                                                              <img src="{{ url('assets/icon/icon_file.png') }}" height="72">
+                                                                              <span class="name_doc_all">{{ $u->file_name }}</span>
+                                                                              </a>
+                                                                                  <a href="{{ url('api/del_image_idcard/'.$u->id) }}" onclick="return confirm('Are you sure?')" class="btn btn-outline-danger btn-sm my_remove1">ลบ</a>
+                                                                        </li>
+                                                                              @endforeach
+                                                                              @endif
+                                                                              
+                                                        
+                                                          </ul>
+                                                      </div>
                                                 </li>
                                                 <li class="chat-persons">
                                                 <a href="#">

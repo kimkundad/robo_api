@@ -12,6 +12,8 @@ use Illuminate\Support\Facades\Hash;
 use Jenssegers\Agent\Agent;
 use App\biller;
 use App\biller_file;
+use App\biller_file2;
+
 use App\mydevice;
 use App\api_request;
 use App\qr_code_type;
@@ -101,6 +103,37 @@ class AuthController extends Controller
 
         }
     }
+
+
+    public function add_my_biller_file2(Request $request){
+
+        if(isset(auth('api')->user()->id)){
+
+        
+     
+          $gallary = $request->file('image');
+          $id = $request['bill_id'];
+          if (sizeof($gallary) > 0) {
+            for ($i = 0; $i < sizeof($gallary); $i++) {
+              $path = 'img/doc/';
+              $filename = time().$i.'.'.$gallary[$i]->getClientOriginalExtension();
+              $gallary[$i]->move($path, $filename);
+              $admins[] = [
+                  'file_name' => $filename,
+                  'type' => 3,
+                  'biller_id' => $id
+              ];
+            }
+            biller_file2::insert($admins);
+          }
+
+          return response()->json(['status'=>200, 'message' => 'Insert biller id success' ]);
+
+
+        }
+    }
+
+    
 
     
     public function add_new_device(Request $request){

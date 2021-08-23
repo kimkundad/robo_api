@@ -9,6 +9,7 @@ use App\User;
 use App\bank;
 use App\biller;
 use App\biller_file;
+use App\biller_file2;
 use App\text_address;
 use Auth;
 use Response;
@@ -96,6 +97,9 @@ class BillerController extends Controller
 
         $file3 = biller_file::where('biller_id', $id)->get();
         $data['file_all'] = $file3;  
+
+        $file_2_all = biller_file2::where('biller_id', $id)->get();
+        $data['file_2_all'] = $file_2_all;  
 
         $bill = DB::table('billers')->select(
             'billers.*',
@@ -441,6 +445,31 @@ class BillerController extends Controller
     }
 
 
+    public function add_file_com2(Request $request){
+
+        $id = $request['id'];
+
+        $gallary = $request->file('file2');
+
+        if (sizeof($gallary) > 0) {
+            for ($i = 0; $i < sizeof($gallary); $i++) {
+              $path = 'img/doc/';
+              $filename = time()."-".$gallary[$i]->getClientOriginalName();
+              $gallary[$i]->move($path, $filename);
+              $admins[] = [
+                  'file_name' => $filename,
+                  'type' => 3,
+                  'biller_id' => $id
+              ];
+            }
+            biller_file2::insert($admins);
+          }
+
+          return redirect(url('admin/edit_biller_id/'.$id))->with('add_success','เพิ่มธนาคาร เสร็จเรียบร้อยแล้ว');
+
+    }
+
+
     public function del_image_3($id)
     {
         //
@@ -452,6 +481,22 @@ class BillerController extends Controller
              unlink($file_path);
           }
           DB::table('biller_files')->where('id', $id)->delete();
+
+          return Redirect::back()->with('del_success','คุณทำการเพิ่มอสังหา สำเร็จ');
+    }
+
+
+    public function del_image_idcard($id)
+    {
+        //
+        $objs = DB::table('biller_file2s')->where('id', $id)->first();
+      //  dd($objs);
+
+        if(isset($objs->file_name)){
+            $file_path = 'img/doc/'.$objs->file_name;
+             unlink($file_path);
+          }
+          DB::table('biller_file2s')->where('id', $id)->delete();
 
           return Redirect::back()->with('del_success','คุณทำการเพิ่มอสังหา สำเร็จ');
     }

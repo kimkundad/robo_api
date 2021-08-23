@@ -132,6 +132,7 @@ Route::group(['middleware' => ['UserRole:manager|employee']], function() {
     Route::get('api/del_api_request_user/{id}', 'UserController@del_api_request_user')->name('del_api_request_user');
 
     
+
     Route::resource('admin/bank', 'BankController');
     
     Route::get('api/del_bank/{id}', 'BankController@del_bank')->name('del_bank');
@@ -178,8 +179,10 @@ Route::group(['middleware' => ['UserRole:manager|employee']], function() {
     Route::post('api/add_file6/', 'BillerController@add_file6')->name('add_file6');
     
     Route::post('api/add_file_com/', 'BillerController@add_file_com')->name('add_file_com');
+    Route::post('api/add_file_com2/', 'BillerController@add_file_com2')->name('add_file_com2');
 
     Route::get('api/del_image_3/{id}', 'BillerController@del_image_3')->name('del_image_3');
+    Route::get('api/del_image_idcard/{id}', 'BillerController@del_image_idcard')->name('del_image_idcard');
 
     Route::post('api/post_edit_biller_id/{id}', 'BillerController@post_edit_biller_id')->name('post_edit_biller_id');
 
