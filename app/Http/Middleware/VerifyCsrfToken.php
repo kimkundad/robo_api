@@ -43,6 +43,7 @@ class VerifyCsrfToken extends Middleware
         'edit_api_service_callback_url',
         'get_tex_address_by_id',
         'edit_my_address',
-        'del_my_address'
+        'del_my_address',
+        'add_my_biller_file2'
     ];
 }

@@ -108,8 +108,6 @@ class AuthController extends Controller
     public function add_my_biller_file2(Request $request){
 
         if(isset(auth('api')->user()->id)){
-
-        
      
           $gallary = $request->file('image');
           $id = $request['bill_id'];
