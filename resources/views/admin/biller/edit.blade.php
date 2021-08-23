@@ -278,7 +278,7 @@ window.gaTitle = 'หน้าแรก';
                                                                         <li >
                                                                               <a href="{{ url('img/doc/'.$u->file_name) }}" class="item">
                                                                               <img src="{{ url('assets/icon/icon_file.png') }}" height="72">
-                                                                              <span class="name_doc_all">{{ $u->file_name }}</span>
+                                                                              <span class="name_doc_all" style="padding-left: 70px;">{{ $u->file_name }}</span>
                                                                               </a>
                                                                                   <a href="{{ url('api/del_image_idcard/'.$u->id) }}" onclick="return confirm('Are you sure?')" class="btn btn-outline-danger btn-sm my_remove1">ลบ</a>
                                                                         </li>
