@@ -56,7 +56,7 @@
                           </tr>
                         </thead>
                         <tbody>
-                      
+                      {{ dd($objs) }}
 						          @if(isset($objs))
                         @foreach($objs as $index => $u)
                          
