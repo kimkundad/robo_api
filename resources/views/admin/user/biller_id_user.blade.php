@@ -100,7 +100,7 @@
                               {{$u->biller_id}}
                             </td>
                             <td>
-                            {{formatDateThat($u->create)}}
+                            {{($u->create)}}
                             </td>
                             <td>
                               <a href="{{ url('admin/edit_biller_id/'.$u->idb) }}" class="btn btn-outline-primary btn-sm">แก้ไข</a>
