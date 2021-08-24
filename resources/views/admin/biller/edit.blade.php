@@ -279,7 +279,7 @@ window.gaTitle = 'หน้าแรก';
                                                                               @if(isset($file_2_all))
                                                                               @foreach($file_2_all as $u)
                                                                         <li >
-                                                                              <a href="{{ url('img/doc/'.$u->file_name) }}" class="item">
+                                                                              <a href="{{ url('img/doc/'.$u->file_name) }}" class="item" target="_blank">
                                                                               <img src="{{ url('assets/icon/icon_file.png') }}" height="72">
                                                                               <span class="name_doc_all" style="padding-left: 70px;">{{ $u->file_name }}</span>
                                                                               </a>
