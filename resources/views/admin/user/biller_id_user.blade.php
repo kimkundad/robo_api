@@ -56,7 +56,7 @@
                           </tr>
                         </thead>
                         <tbody>
-                      {{ dd($objs) }}
+                
 						          @if(isset($objs))
                         @foreach($objs as $index => $u)
                          
@@ -68,11 +68,8 @@
                               {{$u->name_bank}}
                             </td>
                             <td>
-                            @if($u->provider == 'email')
-                            <img src="{{ url('assets/img/avatar/'.$u->avatar) }}" > 
-                            @else
-                            <img src="{{ url($u->avatar) }}" > 
-                            @endif
+                            
+                            
                             {{$u->first_name}} {{$u->last_name}}</td>
 
                             
