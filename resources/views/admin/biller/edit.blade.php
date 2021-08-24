@@ -275,7 +275,7 @@ window.gaTitle = 'หน้าแรก';
 
                                                     </a>
                                                       <div class="list-wrapper ">
-                                                        <ul class=" d-flex flex-column-reverse todo-list todo-list-custom" id="ul-li">
+                                                        <ul class=" d-flex flex-column-reverse todo-list todo-list-custom" >
                                                                               @if(isset($file_2_all))
                                                                               @foreach($file_2_all as $u)
                                                                         <li >
