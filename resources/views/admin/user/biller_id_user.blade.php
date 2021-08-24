@@ -65,15 +65,11 @@
                           {{ ( $currentPage - 1 ) * $perPage + $index + 1 }}
                             </td>
                             <td>
-                              {{$u->name_bank}}
+                            <img src="{{ url('img/bank/'.$u->bank_img) }}" alt="{{$u->name_bank}}">
                             </td>
                             <td>
                             
-                            
                             {{$u->first_name}} {{$u->last_name}}</td>
-
-                            
-
 
                             <td>
                              
@@ -91,7 +87,7 @@
                               {{$u->phone1}}
                             </td>
                             <td>
-                              {{$u->name_bank}}
+                              {{$u->bank_name}}
                             </td>
                             <td>
                               {{$u->biller_id}}
