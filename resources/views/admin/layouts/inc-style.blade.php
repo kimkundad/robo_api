@@ -12,5 +12,11 @@
   <link rel="stylesheet" href="{{ url('back/vendors/summernote/dist/summernote-bs4.css') }}">
   <link rel="stylesheet" href="{{ url('back/vendors/lightgallery/css/lightgallery.css') }}">
   <style>
-  
+  @media (max-width: 991.98px){
+    .navbar.horizontal-layout .nav-bottom {
+    display: block;
+}
+  }
+
+
   </style>
