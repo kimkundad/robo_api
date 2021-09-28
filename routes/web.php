@@ -20,6 +20,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
+Route::post('oauth/robotel/callback', 'UUAuthController@handleProviderCallback');
 Route::get('oauth/robotel/callback', 'UUAuthController@handleProviderCallback');
 
 Route::get('api/get_file_version', 'GetFileVersionController@get_file_version_api');
