@@ -47,6 +47,7 @@
                           <th>#</th>
                             <th>ชื่อบริษัท / ร้านค้า</th>
                             <th>ชื่อ-นามสกุล</th>
+                            <th>QR Type</th>
 						              	<th>สถานะ</th>
                             <th>เบอร์โทร</th>
                             <th>วันที่สมัคร</th>
@@ -63,8 +64,9 @@
                           {{ ( $currentPage - 1 ) * $perPage + $index + 1 }}
                             </td>
                             <td>
-                              {{$u->api_name}}
+                              {{ $u->api_name}}
                             </td>
+                            
                             <td>
                             @if($u->provider == 'email')
                             <img src="{{ url('assets/img/avatar/'.$u->avatar) }}" > 
@@ -77,6 +79,29 @@
                             {{$u->name}}
                             @endif
 
+                            </td>
+                            <td>
+                              @if(isset($u->one_my_type))
+                                @foreach($u->one_my_type as $j)
+
+                                  @if($j == 1)
+                                  <b class="text-primary">(PromptPay)</b>,
+                                  @endif
+
+                                  @if($j == 2)
+                                  <b class="text-danger">(Visa, Master)</b>,
+                                  @endif
+
+                                  @if($j == 3)
+                                  <b class="text-warning">(Alipay)</b>,
+                                  @endif
+
+                                  @if($j == 4)
+                                  <b class="text-success">(WeChat)</b>,
+                                  @endif
+
+                                @endforeach
+                              @endif
                             </td>
                             <td>
                             @if($u->status_v2 == 0)

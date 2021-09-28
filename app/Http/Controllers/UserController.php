@@ -179,6 +179,17 @@ class UserController extends Controller
             ->Orderby('api_requests.id', 'desc')
             ->paginate(15);
 
+            if(isset($bill)){
+                foreach($bill as $u){
+
+                    $u->one_my_type = unserialize($u->api_type);
+
+
+                }
+            }
+
+          //  dd($bill);
+
 
             $data['currentPage'] = $bill->currentPage();
         $data['perPage'] = $bill->perPage();
