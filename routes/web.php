@@ -52,6 +52,8 @@ Route::get('/get_document_page/{id}', 'HomeController@get_document_page')->name(
 Route::get('oauth/{driver}', 'Auth\SocialAuthController@redirectToProvider')->name('social.oauth');
 Route::get('oauth/{driver}/callback', 'Auth\SocialAuthController@handleProviderCallback')->name('social.callback');
 
+Route::get('oauth/robotel/callback', 'UUAuthController@handleProviderCallback');
+
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/call_user', 'HomeController@call_user')->name('call_user');
 
