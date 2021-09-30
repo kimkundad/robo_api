@@ -22,6 +22,8 @@ Auth::routes();
 
 Route::post('oauth/robotel/callback', 'UUAuthController@handleProviderCallback');
 Route::get('oauth/robotel/callback', 'UUAuthController@handleProviderCallback');
+Route::get('uu/redirectToProvider1', 'UUAuthController@redirectToProvider1');
+
 
 Route::get('api/get_file_version', 'GetFileVersionController@get_file_version_api');
 Route::get('admin/get_file_version', 'GetFileVersionController@index');
