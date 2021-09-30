@@ -8,13 +8,32 @@
                 <div class="card-header">Dashboard</div>
 
                 <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
+                    
 
-                    You are logged in!
+
+        <form class="forms-sample" method="POST" action="https://siamtheatre.com/connect/authorize" enctype="multipart/form-data">
+            <div class="form-group">
+            
+                <input type="text" class="form-control"  name="redirect_uri" value="https://api.robotel.co.th/oauth/robotel/callback">
+                <input type="text" class="form-control"  name="client_id" value="robotel_web">
+                <input type="text" class="form-control"  name="client_secret" value="robotel_web">
+                <input type="text" class="form-control"  name="scope" value="openid profile IdentityServerApi">
+                <input type="text" class="form-control"  name="code_challenge" value="l0gl43mF9SzmCdttZQaKWKERf1VyRMC0CdPPbz1E8no">
+                <input type="text" class="form-control"  name="code_challenge_method" value="S256">
+                <input type="text" class="form-control"  name="response_type" value="code">
+
+            </div>
+
+        
+
+
+        <div style="text-align: right;">
+        <br /><br /><br />
+        <button type="submit" class="btn btn-primary mr-2">บันทึก</button>
+        <button class="btn btn-light">ยกเลิก</button>
+        </div>
+
+      </form>
                 </div>
             </div>
         </div>
