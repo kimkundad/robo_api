@@ -20,6 +20,7 @@ class UUAuthController extends Controller
             'code_challenge' => 'l0gl43mF9SzmCdttZQaKWKERf1VyRMC0CdPPbz1E8no',
             'code_challenge_method' => 'S256',
             'response_type' => 'code',
+            'grant_type' => 'authorization_code',
             'redirect_uri' => 'https://api.robotel.co.th/oauth/robotel/callback',
         ]); 
         
