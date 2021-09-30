@@ -17,7 +17,6 @@ class UUAuthController extends Controller
             'session_state' => $request['session_state'],
             'client_id' => 'postman',
             'client_secret' => 'postman',
-            'scope' => 'openid profile IdentityServerApi',
             'code_challenge' => 'l0gl43mF9SzmCdttZQaKWKERf1VyRMC0CdPPbz1E8no',
             'code_challenge_method' => 'S256',
             'response_type' => 'code',
