@@ -18,7 +18,7 @@
                 <input type="text" class="form-control"  name="client_id" value="robotel_web">
                 <input type="text" class="form-control"  name="client_secret" value="robotel_web">
                 <input type="text" class="form-control"  name="scope" value="openid profile IdentityServerApi">
-                <input type="text" class="form-control"  name="code_challenge" value="l0gl43mF9SzmCdttZQaKWKERf1VyRMC0CdPPbz1E8no">
+                <input type="text" class="form-control"  name="code_challenge" value="{{ $codeChallenge }}">
                 <input type="text" class="form-control"  name="code_challenge_method" value="S256">
                 <input type="text" class="form-control"  name="response_type" value="code">
 
