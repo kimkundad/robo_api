@@ -11,6 +11,12 @@ class UUAuthController extends Controller
     //
     public function handleProviderCallback(Request $request){
 
+        $request->session()->put('code_verifier', $code_verifier = Str::random(128));
+
+        $codeChallenge = strtr(rtrim(
+            base64_encode(hash('sha256', $code_verifier, true))
+        , '='), '+/', '-_');
+
         $response = Http::asForm()->post('https://siamtheatre.com/connect/token', [
             'code' => $request['code'],
             'scope' => $request['scope'],
@@ -21,6 +27,7 @@ class UUAuthController extends Controller
             'code_challenge_method' => 'S256',
             'response_type' => 'code',
             'grant_type' => 'authorization_code',
+            'code_verifier' => $code_verifie,
             'redirect_uri' => 'https://api.robotel.co.th/oauth/robotel/callback',
         ]); 
         
