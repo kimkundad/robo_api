@@ -15,11 +15,12 @@ class UUAuthController extends Controller
             'code' => $request['code'],
             'scope' => $request['scope'],
             'session_state' => $request['session_state'],
-            'client_id' => 'postman',
-            'client_secret' => 'postman',
+            'client_id' => 'robotel_web',
+            'client_secret' => 'robotel_web',
             'code_challenge' => 'l0gl43mF9SzmCdttZQaKWKERf1VyRMC0CdPPbz1E8no',
             'code_challenge_method' => 'S256',
             'response_type' => 'code',
+            'redirect_uri' => 'https://api.robotel.co.th/oauth/robotel/callback',
         ]); 
         
 
