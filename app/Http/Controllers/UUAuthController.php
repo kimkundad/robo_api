@@ -11,6 +11,7 @@ class UUAuthController extends Controller
     //
     public function handleProviderCallback(Request $request){
 
+      //  $code_verifier = Str::random(128);
         $request->session()->put('code_verifier', $code_verifier = Str::random(128));
 
         $codeChallenge = strtr(rtrim(
@@ -27,7 +28,7 @@ class UUAuthController extends Controller
             'code_challenge_method' => 'S256',
             'response_type' => 'code',
             'grant_type' => 'authorization_code',
-            'code_verifier' => $code_verifie,
+            'code_verifier' => $code_verifier,
             'redirect_uri' => 'https://api.robotel.co.th/oauth/robotel/callback',
         ]); 
         
