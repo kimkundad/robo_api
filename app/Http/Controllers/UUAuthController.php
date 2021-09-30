@@ -11,12 +11,7 @@ class UUAuthController extends Controller
     //
     public function handleProviderCallback(Request $request){
 
-      //  $code_verifier = Str::random(128);
-        $request->session()->put('code_verifier', $code_verifier = Str::random(128));
-
-        $codeChallenge = strtr(rtrim(
-            base64_encode(hash('sha256', $code_verifier, true))
-        , '='), '+/', '-_');
+        $codeVerifier = $request->session()->pull('code_verifier');
 
         $response = Http::asForm()->post('https://siamtheatre.com/connect/token', [
             'code' => $request['code'],
@@ -24,14 +19,13 @@ class UUAuthController extends Controller
             'session_state' => $request['session_state'],
             'client_id' => 'robotel_web',
             'client_secret' => 'robotel_web',
-            'code_challenge' => $request['code'],
+            'code_challenge' => 'l0gl43mF9SzmCdttZQaKWKERf1VyRMC0CdPPbz1E8no',
             'code_challenge_method' => 'S256',
             'response_type' => 'code',
             'grant_type' => 'authorization_code',
-            'code_verifier' => $request['code'],
+            'code_verifier' => $codeVerifier,
             'redirect_uri' => 'https://api.robotel.co.th/oauth/robotel/callback',
         ]); 
-        
 
         return $response->json();
         
@@ -58,7 +52,21 @@ class UUAuthController extends Controller
         
        // return $response->json();
 
-       return view('home');
+       $request->session()->put('state', $state = Str::random(40));
+
+       $request->session()->put(
+        'code_verifier', $code_verifier = Str::random(128)
+    );
+
+    $codeChallenge = strtr(rtrim(
+        base64_encode(hash('sha256', $code_verifier, true))
+    , '='), '+/', '-_');
+
+
+
+       $data['codeChallenge'] = $codeChallenge;
+
+       return view('home', $data);
 
     }
 }
