@@ -1,6 +1,6 @@
 <style>
     .hidden{
-        display:none;
+      /*  display:none; */
     }
     .data-background-image-login {
     background-image: url('{{ url('img/BG@2x.png') }}');
@@ -30,7 +30,6 @@
                 <input type="text" class="form-control"  name="code_challenge_method" value="S256">
                 <input type="text" class="form-control"  name="response_type" value="code">
                 
-
             </div>
 
         
