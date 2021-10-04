@@ -50,7 +50,41 @@ class UUAuthController extends Controller
 
      }else{
 
-        return 'error';
+        $randomSixDigitInt = 'RBT-'.(\random_int(10000, 99999)).'-'.(\random_int(10000, 99999)).'-'.(\random_int(10000, 99999));
+        $ran = array("1483537975.png","1483556517.png","1483556686.png");
+
+            $user = User::create([
+                'name' => $response1['username'],
+                'email' => $response1['email'],
+                'first_name' => $response1['firstname'],
+                'last_name' => $response1['lastname'],
+                'phone' => $response1['phoneNumber'],
+                'avatar' => $ran[array_rand($ran, 1)],
+                'provider' => 'UU',
+                'provider_id' => (\random_int(100000000, 999999999)),
+                'access_token' => $response['access_token'],
+                'code_user' => $randomSixDigitInt,
+                // user can use reset password to create a password
+                'password' => ''
+            ]);
+
+            $objs = DB::table('role_user')
+            ->where('user_id', $user->id)
+            ->first();
+
+            if($objs != null){
+
+            }else{
+    
+              DB::table('role_user')->insert(
+                  ['role_id' => 3, 'user_id' => $user->id]
+              );
+    
+            }
+
+            $user = Auth::guard('api')->login($user, true);
+        
+            return redirect()->intended('https://www.robotel.co.th/get_api/socialauth?id='.$user);
 
      }
      
