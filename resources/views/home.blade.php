@@ -43,7 +43,7 @@
 
       </form>
 
-      <input type="text" class="form-control"  name="data_token" value="{{ $data_token }}">
+     
                 </div>
             </div>
         </div>
