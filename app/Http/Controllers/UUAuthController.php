@@ -36,7 +36,7 @@ class UUAuthController extends Controller
 
      $response1 = Http::withToken($response['access_token'])->get('https://siamtheatre.com/api/v1/user_control/info');
 
-     $user = User::where('email', $response['email'])->first();
+     $user = User::where('email', $response1['email'])->first();
 
      if( $user ) {
 
