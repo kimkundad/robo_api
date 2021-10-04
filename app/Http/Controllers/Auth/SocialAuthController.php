@@ -13,6 +13,7 @@ use Laravel\Socialite\Facades\Socialite;
 use Jenssegers\Agent\Agent;
 use App\logsys;
 
+
 class SocialAuthController extends Controller
 {
     //

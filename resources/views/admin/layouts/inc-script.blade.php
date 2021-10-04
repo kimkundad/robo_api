@@ -15,6 +15,20 @@
   <script src="{{ url('back/js/form-addons.js') }}"></script>
   <script src="{{ url('back/vendors/lightgallery/js/lightgallery-all.min.js') }}"></script>
   <script src="{{ url('back/js/light-gallery.js') }}"></script>
+  <script src="{{ url('slideout/dist/slideout.js') }}"></script>
+
+  <script>
+  var slideout = new Slideout({
+    'panel': document.getElementById('panel'),
+    'menu': document.getElementById('menu'),
+    'padding': 256,
+    'tolerance': 70
+  });
+
+  document.querySelector('.btn-hamburger').addEventListener('click', function() {
+        slideout.toggle();
+      });
+</script>
   
   <!-- End custom js for this page-->
   <script>
