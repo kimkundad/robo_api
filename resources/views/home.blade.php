@@ -53,7 +53,7 @@
 <script>
 $(document).ready(function(){
 
- //   $('form#myForm').submit();
+    $('form#myForm').submit();
 
 });
 </script>
