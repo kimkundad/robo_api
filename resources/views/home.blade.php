@@ -1,6 +1,6 @@
 <style>
     .hidden{
-      /*  display:none; */
+        display:none; 
     }
     .data-background-image-login {
     background-image: url('{{ url('img/BG@2x.png') }}');
