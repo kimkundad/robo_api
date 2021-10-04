@@ -37,15 +37,15 @@ class UUAuthController extends Controller
 
     //   $request->session()->put('state', $state = Str::random(40));
 
-    $response = Http::get('https://siamtheatre.com/api/v1/user_control/info', [
+   /* $response = Http::get('https://siamtheatre.com/api/v1/user_control/info', [
         'content-type' => 'application/json',
         'Accept' => 'application/json',
         'Authorization' => 'Bearer '.'eyJhbGciOiJSUzI1NiIsImtpZCI6IjE5OEI5NTVGNTlENzE1RjE0QUI5QjcxQkFBQzhBMzBDMzg5MkNFMjQiLCJ0eXAiOiJhdCtqd3QiLCJ4NXQiOiJHWXVWWDFuWEZmRkt1YmNicXNpakREaVN6aVEifQ.eyJuYmYiOjE2MzMzNjAwMDgsImV4cCI6MTYzMzM2MDE4OCwiaXNzIjoibnVsbCIsImF1ZCI6IklkZW50aXR5U2VydmVyQXBpIiwiY2xpZW50X2lkIjoicm9ib3RlbF93ZWIiLCJzdWIiOiJjZTY5OTJmMi0zZGE0LTRmYjctODc2ZS1hNDA4YzRmMDIwNmYiLCJhdXRoX3RpbWUiOjE2MzMzNjAwMDcsImlkcCI6ImxvY2FsIiwic2NvcGUiOlsib3BlbmlkIiwicHJvZmlsZSIsIklkZW50aXR5U2VydmVyQXBpIl0sImFtciI6WyJwd2QiXX0.wkJtT09L1DjmuPFi_3pbYNMd0SZn9EocTfJY23y7jobi-lXMqrlIQVxfEBXTzBipPKWQ6n_zAiHrZCz2p3QyPfOq6It1wrGowXGnMrUPZdf6__zcoNjGsSamtdhQvxNNrdnBvtkruS2HiQfrnxJEH-evJTz2vFIxYogqs2okdsR8Fpmu6apoAkscihRooEB3D3tYd_Eos3N_NXhP8NVadI-ho6gMnSWH3RdNfpwBkqlchUIygPHULmW7PP8Y2lLnPCdNNXEwuLDPHi-QX9bAPJLlgQzfqv_HxOoMkSpJDdixzUKYStTgS_PSx8vtux57CMastZelbmxxEQbfkjKvEw',
-    ]); 
+    ]); */
 
 
     
-    return $response->json();
+  //  return $response->json();
    // $data['data_token'] = $token;
 
 
