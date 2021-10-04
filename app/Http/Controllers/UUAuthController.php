@@ -60,7 +60,7 @@ class UUAuthController extends Controller
                 'last_name' => $response1['lastname'],
                 'phone' => $response1['phoneNumber'],
                 'avatar' => $ran[array_rand($ran, 1)],
-                'provider' => 'UU',
+                'provider' => 'email',
                 'provider_id' => (\random_int(100000000, 999999999)),
                 'access_token' => $response['access_token'],
                 'code_user' => $randomSixDigitInt,
