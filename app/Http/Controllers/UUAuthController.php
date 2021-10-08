@@ -99,9 +99,6 @@ class UUAuthController extends Controller
 
     
   //  $response = Http::withToken('eyJhbGciOiJSUzI1NiIsImtpZCI6IjE5OEI5NTVGNTlENzE1RjE0QUI5QjcxQkFBQzhBMzBDMzg5MkNFMjQiLCJ0eXAiOiJhdCtqd3QiLCJ4NXQiOiJHWXVWWDFuWEZmRkt1YmNicXNpakREaVN6aVEifQ.eyJuYmYiOjE2MzMzNjIxMjcsImV4cCI6MTYzMzM2MjMwNywiaXNzIjoibnVsbCIsImF1ZCI6IklkZW50aXR5U2VydmVyQXBpIiwiY2xpZW50X2lkIjoicm9ib3RlbF93ZWIiLCJzdWIiOiJjZTY5OTJmMi0zZGE0LTRmYjctODc2ZS1hNDA4YzRmMDIwNmYiLCJhdXRoX3RpbWUiOjE2MzMzNjIxMjcsImlkcCI6ImxvY2FsIiwic2NvcGUiOlsib3BlbmlkIiwicHJvZmlsZSIsIklkZW50aXR5U2VydmVyQXBpIl0sImFtciI6WyJwd2QiXX0.kG8IgNc7wsWAFa_rq_zXFB-E16TrhPSMknBi-UrNpdHeuFsdo9AznE7LfDrgxvZkCghdUuNEy6v_ckcWzONdYYPyEKW8qh9oegq4z6-i9ZssC0RvN2M7TVL4cAcC6wC76ZeQFTMvIlXs4mXHCK8kuddYQw_R01L5mAwmnPaOsvQ5Sw1GCqq9xpoWFSNxJJ3aS9RfGmKkPIVK2YZnLcHhyeUJHDsywyBK7Qb5e8jP4lA8bOqhjD7-oZq9mkIsyviS9SOmbokATVhswGnCnScVP3FgQyqLost5Zmun8ZSrN_8Sl3OL0usowq3J2mduGnNHCdmMBJHlEs5TA0iATkESbA')->get('https://siamtheatre.com/api/v1/user_control/info');
-
-   
-
     
      //   return $response->json();
    // $data['data_token'] = $token;
