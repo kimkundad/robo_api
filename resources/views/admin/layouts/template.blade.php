@@ -63,6 +63,7 @@
               <div class="submenu">
                 <ul class="submenu-item">
                   <li class="nav-item2"> <a href="{{ url('admin/setting') }}" class="nav-link2"> ตั้งค่าเว็บไซต์ </a></li>
+                  <li class="nav-item2"> <a href="{{ url('admin/thai_day') }}" class="nav-link2"> ตั้งค่าวันสำคัญ </a></li>
                   <li class="nav-item2"> <a href="{{ url('admin/banner') }}" class="nav-link2"> รองรับการชำระ </a></li>
                   <li class="nav-item2"><a class="nav-link2" href="{{ url('admin/cat_file') }}"> หมวดหมู่ไฟล์</a></li>
                   <li class="nav-item2"><a class="nav-link2" href="{{ url('admin/get_file') }}"> ไฟล์เอกสาร </a></li>
