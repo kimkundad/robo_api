@@ -13,6 +13,7 @@ use Response;
 use App\logsys;
 use App\cat_file;
 use App\get_file;
+use App\thiday;
 use App\bank;
 use App\qr_code_type;
 use Intervention\Image\ImageManagerStatic as Image;
@@ -95,6 +96,18 @@ class HomeController extends Controller
     public function get_qr_type(){
 
         $cat = qr_code_type::where('status', 1)->Orderby('id', 'desc')->paginate(15);
+        return response()->json($cat);
+        
+    }
+
+    public function get_thai_day(){
+
+        $cat = thiday::where('status', 1)->Orderby('id', 'desc')->first();
+        if(isset($cat)){
+            $cat->desktop_img = 'https://api.robotel.co.th/assets/img/thaiday/'.$cat->desktop_img;
+            $cat->mobile_img = 'https://api.robotel.co.th/public/assets/img/thaiday/'.$cat->mobile_img;
+        }
+        
         return response()->json($cat);
         
     }

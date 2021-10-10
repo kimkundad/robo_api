@@ -45,6 +45,7 @@ class VerifyCsrfToken extends Middleware
         'edit_my_address',
         'del_my_address',
         'add_my_biller_file2',
-        'oauth/robotel/callback'
+        'oauth/robotel/callback',
+        'get_thai_day'
     ];
 }
