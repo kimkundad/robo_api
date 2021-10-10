@@ -30,6 +30,7 @@ Route::get('admin/get_file_version', 'GetFileVersionController@index');
 Route::get('admin/get_file_version/create', 'GetFileVersionController@create');
 
 Route::get('get_qr_type/', 'HomeController@get_qr_type')->name('get_qr_type');
+Route::get('get_thai_day/', 'HomeController@get_thai_day')->name('get_thai_day');
 
 Route::get('admin/get_file_version/{id}/edit', 'GetFileVersionController@edit');
 Route::get('api/get_file_version/{id}/edit', 'GetFileVersionController@api_edit');
@@ -208,6 +209,10 @@ Route::group(['middleware' => ['UserRole:manager|employee']], function() {
     Route::resource('admin/get_qr_type', 'QrTypeController');
     Route::get('api/del_get_qr_type/{id}', 'QrTypeController@del_get_qr_type')->name('del_get_qr_type');
     Route::post('api/qr_type_status', 'QrTypeController@qr_type_status')->name('qr_type_status');
+
+    Route::resource('admin/thai_day', 'ThaiDayController');
+    Route::get('api/del_thai_day/{id}', 'ThaiDayController@del_thai_day')->name('del_thai_day');
+    Route::post('api/thai_day_status', 'ThaiDayController@thai_day_status')->name('thai_day_status');
 
 });
 
