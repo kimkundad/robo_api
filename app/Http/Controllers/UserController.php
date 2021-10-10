@@ -188,7 +188,7 @@ class UserController extends Controller
                 }
             }
 
-          //  dd($bill);
+            dd($bill);
 
 
             $data['currentPage'] = $bill->currentPage();
