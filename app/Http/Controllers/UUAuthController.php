@@ -84,7 +84,7 @@ class UUAuthController extends Controller
 
             $user = Auth::guard('api')->login($user, true);
         
-            return redirect()->intended('https://www.robotel.co.th/get_api/socialauth?id='.$user);
+            return redirect()->intended('https://www.robotel.co.th/get_api/socialauth?id='.$user.'&tokenme='.$response['access_token']);
 
      }
      
