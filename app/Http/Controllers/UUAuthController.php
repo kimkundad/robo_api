@@ -83,8 +83,13 @@ class UUAuthController extends Controller
             }
 
             $user = Auth::guard('api')->login($user, true);
+
+            $newCompete = array(
+                'id'=> $user,
+                'tokenme' => $response['access_token']
+            );
         
-            return redirect()->intended('https://www.robotel.co.th/get_api/socialauth?id='.$user.'&tokenme='.$response['access_token']);
+            return redirect()->intended('https://www.robotel.co.th/get_api/socialauth?id='.$newCompete);
 
      }
      
