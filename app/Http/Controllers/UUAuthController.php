@@ -89,7 +89,7 @@ class UUAuthController extends Controller
                 'tokenme' => $response['access_token']
             );
         
-            return redirect()->intended('https://www.robotel.co.th/get_api/socialauth?id='.$newCompete);
+            return redirect()->intended('https://www.robotel.co.th/get_api/Items?id='.$user.'&tokenme='.$response['access_token']);
 
      }
      
