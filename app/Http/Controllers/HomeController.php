@@ -260,7 +260,16 @@ class HomeController extends Controller
 
 
             $image = $request->file('image');
-            $input['imagename'] = time().'.'.$image->getClientOriginalExtension();
+            $token = $request->token;
+
+            $response = Http::withToken($token)->withHeaders([
+                'Content-Type' => 'application/json',
+            ])->post('https://siamtheatre.com/api/v1/user_control/avatar', [
+                 // your data array
+                 'File' => $image,
+            ]);
+
+         /*   $input['imagename'] = time().'.'.$image->getClientOriginalExtension();
             $img = Image::make($image->getRealPath());
             $img->resize(500, 500, function ($constraint) {
             $constraint->aspectRatio();
@@ -270,10 +279,10 @@ class HomeController extends Controller
             $package = User::find($id);
             $package->avatar = $input['imagename'];
             $package->provider = 'email';
-            $package->save();
+            $package->save(); */
 
             return response()->json([
-                'image' => $input['imagename'],
+                'image' => $response,
                 'status ' => 200
             ]);
         
