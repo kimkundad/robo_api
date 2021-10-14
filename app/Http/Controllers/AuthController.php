@@ -359,7 +359,7 @@ class AuthController extends Controller
                 $package->career = $request->career;
                 $package->save();
 
-                $response = Http::withToken($request->token);
+                $response = Http::withToken($request->mytoken);
                 $response = $response->post('https://siamtheatre.com/api/v1/user_control/profile', [
                     'firstname' => $request->first_name,
                     'lastname' => $request->last_name,
