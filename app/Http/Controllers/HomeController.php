@@ -257,19 +257,26 @@ class HomeController extends Controller
         return response()->json(["msg" => 'Reset password link sent on your email id.']); */
     }
 
+    public function avatar(){
+        return view('avatar');
+    }
+
     public function update_profile_avatar(Request $request){
 
 
             $image = $request->file('image');
             $token = $request->token;
 
-            $response = Http::withToken($token)->withHeaders([
-                'Content-Type' => 'multipart/form-data',
-                'Authorization' => 'Bearer '.$token
-            ])->post('https://siamtheatre.com/api/v1/user_control/avatar', [
-                 // your data array
-                 'File' => $image,
+            
+
+            $response = Http::withToken($token);
+            $response = $response->attach('File', $image);
+            $response = $response->post('https://siamtheatre.com/api/v1/user_control/avatar', [
+                'File' => $image,
+                'uu' => $token,
             ]);
+
+            dd($response);
 
          /*   $input['imagename'] = time().'.'.$image->getClientOriginalExtension();
             $img = Image::make($image->getRealPath());
@@ -282,6 +289,8 @@ class HomeController extends Controller
             $package->avatar = $input['imagename'];
             $package->provider = 'email';
             $package->save(); */
+
+            return $response->json();
 
             return response()->json([
                 'image' => $response,
