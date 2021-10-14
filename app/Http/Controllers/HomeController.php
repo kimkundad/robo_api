@@ -277,7 +277,6 @@ class HomeController extends Controller
             $response1 = Http::withToken($token)->get('https://siamtheatre.com/api/v1/user_control/info');
 
 
-
            // dd($response);
 
          /*   $input['imagename'] = time().'.'.$image->getClientOriginalExtension();

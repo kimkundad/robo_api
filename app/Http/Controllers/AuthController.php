@@ -332,6 +332,17 @@ class AuthController extends Controller
             }else{
                 $age = 0;
             }
+
+            if($request->sex == 1){
+                $sexx = 'ไม่ระบุ';
+            }
+            if($request->sex == 2){
+                $sexx = 'ชาย';
+            }
+            if($request->sex == 3){
+                $sexx = 'หญิง';
+            }
+
         
 
         //    $input = $request->all();
@@ -346,6 +357,15 @@ class AuthController extends Controller
                 $package->sex = $request->sex;
                 $package->career = $request->career;
                 $package->save();
+
+                $response = Http::withToken($token);
+                $response = $response->post('https://siamtheatre.com/api/v1/user_control/profile', [
+                    'firstname' => $request->first_name,
+                    'lastname' => $request->last_name,
+                    'gender' => $sexx,
+                    'phoneNumber' => $request->phone,
+                    'email' => $request->email,
+                ]);
 
 
            // DB::table('users')->where('id', auth('api')->user()->id)->update($input);
