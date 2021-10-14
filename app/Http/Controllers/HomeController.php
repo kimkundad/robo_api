@@ -270,13 +270,15 @@ class HomeController extends Controller
             
 
             $response = Http::withToken($token);
-            $response = $response->attach('File', $image);
-            $response = $response->post('https://siamtheatre.com/api/v1/user_control/avatar', [
-                'File' => $image,
-                'uu' => $token,
-            ]);
+            $response = $response->attach('File', file_get_contents($image), 'image.jpg');
+            $response = $response->post('https://siamtheatre.com/api/v1/user_control/avatar', $request->all());
 
-            dd($response);
+
+            $response1 = Http::withToken($token)->get('https://siamtheatre.com/api/v1/user_control/info');
+
+
+
+           // dd($response);
 
          /*   $input['imagename'] = time().'.'.$image->getClientOriginalExtension();
             $img = Image::make($image->getRealPath());
@@ -290,10 +292,10 @@ class HomeController extends Controller
             $package->provider = 'email';
             $package->save(); */
 
-            return $response->json();
+          //  return $response->json();
 
             return response()->json([
-                'image' => $response,
+                'image' => $response1['avatar'],
                 'status ' => 200
             ]);
         
