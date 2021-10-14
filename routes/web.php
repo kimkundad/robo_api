@@ -60,6 +60,7 @@ Route::get('oauth/{driver}/callback', 'Auth\SocialAuthController@handleProviderC
 
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/avatar', 'HomeController@avatar')->name('avatar');
 Route::get('/call_user', 'HomeController@call_user')->name('call_user');
 
 Route::get('/get_cat_menu', 'HomeController@get_cat_menu')->name('get_cat_menu');
