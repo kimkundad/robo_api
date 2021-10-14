@@ -17,6 +17,7 @@ use App\biller_file2;
 use App\mydevice;
 use App\api_request;
 use App\qr_code_type;
+use Illuminate\Support\Facades\Http;
 
 
 class AuthController extends Controller
