@@ -41,7 +41,13 @@ class UUAuthController extends Controller
      if( $user ) {
 
         $user->update([
-            'access_token' => $response['access_token']
+            'access_token' => $response['access_token'],
+            'name' => $response1['username'],
+            'email' => $response1['email'],
+            'phone' => $response1['phoneNumber'],
+            'first_name' => $response1['firstname'],
+            'last_name' => $response1['lastname'],
+            'avatar' => $response1['avatar'],
         ]);
         $user = Auth::guard('api')->login($user, true);
       // $user = Auth::login($user, true);
@@ -60,7 +66,7 @@ class UUAuthController extends Controller
                 'first_name' => $response1['firstname'],
                 'last_name' => $response1['lastname'],
                 'phone' => $response1['phoneNumber'],
-                'avatar' => $ran[array_rand($ran, 1)],
+                'avatar' => 'https://www.robotel.co.th//assets/img/avatar/'.$ran[array_rand($ran, 1)],
                 'provider' => 'email',
                 'provider_id' => (\random_int(100000000, 999999999)),
                 'access_token' => $response['access_token'],
