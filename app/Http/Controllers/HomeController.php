@@ -18,6 +18,7 @@ use App\bank;
 use App\qr_code_type;
 use Intervention\Image\ImageManagerStatic as Image;
 use Jenssegers\Agent\Agent;
+use Illuminate\Support\Facades\Http;
 
 use Illuminate\Support\Facades\DB;
 
