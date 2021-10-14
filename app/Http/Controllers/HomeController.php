@@ -264,7 +264,7 @@ class HomeController extends Controller
             $token = $request->token;
 
             $response = Http::withToken($token)->withHeaders([
-                'Content-Type' => 'application/json',
+                'Content-Type' => 'multipart/form-data',
             ])->post('https://siamtheatre.com/api/v1/user_control/avatar', [
                  // your data array
                  'File' => $image,
