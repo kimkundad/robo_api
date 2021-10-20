@@ -371,7 +371,7 @@ class AuthController extends Controller
 
 
            // DB::table('users')->where('id', auth('api')->user()->id)->update($input);
-            return response()->json(['status'=>200, 'message' => 'Update profile success', 'data' => $package, 'response' => $response ]);
+            return response()->json(['status'=>200, 'message' => 'Update profile success', 'data' => $package, 'response' => $response, 'time' => date('Y-m-d', strtotime($package->hbd)) ]);
         }
 
      }
