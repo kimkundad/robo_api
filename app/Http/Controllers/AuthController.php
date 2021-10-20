@@ -365,7 +365,7 @@ class AuthController extends Controller
                     'lastname' => $request->last_name,
                     'gender' => $sexx,
                     'phoneNumber' => $request->phone,
-                    'dateOfBirth' => $request->hbd;
+                    'dateOfBirth' => $request->hbd,
                     'email' => $request->email,
                 ]);
 
