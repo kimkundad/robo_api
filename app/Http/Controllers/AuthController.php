@@ -360,7 +360,7 @@ class AuthController extends Controller
                 $package->save();
 
                 $response = Http::withToken($request->mytoken);
-                $response = $response->post('https://siamtheatre.com/api/v1/user_control/profile', [
+                $response = $response->post('https://siamtheatre.com/api/v1/user_control/sign_up', [
                     'firstname' => $request->first_name,
                     'lastname' => $request->last_name,
                     'gender' => $sexx,
