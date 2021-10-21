@@ -366,6 +366,7 @@ class AuthController extends Controller
                     'gender' => $sexx,
                     'phoneNumber' => $request->phone,
                     'dateOfBirth' => date('Y-m-d', strtotime($package->hbd)),
+                    'avatar' => $request->avatar,
                     'email' => $request->email,
                 ]);
 
