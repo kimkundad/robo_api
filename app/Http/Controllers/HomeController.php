@@ -96,7 +96,7 @@ class HomeController extends Controller
 
     public function get_qr_type(){
 
-        $cat = qr_code_type::where('status', 1)->Orderby('id', 'desc')->paginate(15);
+        $cat = qr_code_type::where('status', 1)->Orderby('id', 'asc')->paginate(15);
         return response()->json($cat);
         
     }
