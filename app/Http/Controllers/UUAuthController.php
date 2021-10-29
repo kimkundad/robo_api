@@ -38,17 +38,37 @@ class UUAuthController extends Controller
 
      $user = User::where('email', $response1['email'])->first();
 
-     if( $user ) {
+     $randomSixDigitInt = 'RBT-'.(\random_int(10000, 99999)).'-'.(\random_int(10000, 99999)).'-'.(\random_int(10000, 99999));
+     $ran = array("1483537975.png","1483556517.png","1483556686.png");
 
-        $user->update([
-            'access_token' => $response['access_token'],
-            'name' => $response1['username'],
-            'email' => $response1['email'],
-            'phone' => $response1['phoneNumber'],
-            'first_name' => $response1['firstname'],
-            'last_name' => $response1['lastname'],
-            'avatar' => $response1['avatar'],
-        ]);
+     if( $user ) {
+        if($response1['avatar'] == null){
+
+            $user->update([
+                'access_token' => $response['access_token'],
+                'name' => $response1['username'],
+                'email' => $response1['email'],
+                'phone' => $response1['phoneNumber'],
+                'first_name' => $response1['firstname'],
+                'last_name' => $response1['lastname'],
+                'avatar' => 'https://www.robotel.co.th/img/avatar/'.$ran[array_rand($ran, 1)],
+            ]);
+
+        }else{
+
+            $user->update([
+                'access_token' => $response['access_token'],
+                'name' => $response1['username'],
+                'email' => $response1['email'],
+                'phone' => $response1['phoneNumber'],
+                'first_name' => $response1['firstname'],
+                'last_name' => $response1['lastname'],
+                'avatar' => $response1['avatar'],
+            ]);
+
+        }
+        
+
         $user = Auth::guard('api')->login($user, true);
       // $user = Auth::login($user, true);
        // dd($user);
@@ -57,8 +77,7 @@ class UUAuthController extends Controller
 
      }else{
 
-        $randomSixDigitInt = 'RBT-'.(\random_int(10000, 99999)).'-'.(\random_int(10000, 99999)).'-'.(\random_int(10000, 99999));
-        $ran = array("1483537975.png","1483556517.png","1483556686.png");
+        
 
             $user = User::create([
                 'name' => $response1['username'],
@@ -66,7 +85,7 @@ class UUAuthController extends Controller
                 'first_name' => $response1['firstname'],
                 'last_name' => $response1['lastname'],
                 'phone' => $response1['phoneNumber'],
-                'avatar' => 'https://www.robotel.co.th/assets/img/avatar/'.$ran[array_rand($ran, 1)],
+                'avatar' => 'https://www.robotel.co.th/img/avatar/'.$ran[array_rand($ran, 1)],
                 'provider' => 'email',
                 'provider_id' => (\random_int(100000000, 999999999)),
                 'access_token' => $response['access_token'],
