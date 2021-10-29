@@ -66,7 +66,7 @@ class UUAuthController extends Controller
                 'first_name' => $response1['firstname'],
                 'last_name' => $response1['lastname'],
                 'phone' => $response1['phoneNumber'],
-                'avatar' => 'https://www.robotel.co.th//assets/img/avatar/'.$ran[array_rand($ran, 1)],
+                'avatar' => 'https://www.robotel.co.th/assets/img/avatar/'.$ran[array_rand($ran, 1)],
                 'provider' => 'email',
                 'provider_id' => (\random_int(100000000, 999999999)),
                 'access_token' => $response['access_token'],
