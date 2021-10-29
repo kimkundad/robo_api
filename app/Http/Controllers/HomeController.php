@@ -91,7 +91,6 @@ class HomeController extends Controller
         ]
         );
     
-    
 }
 
     public function get_qr_type(){
