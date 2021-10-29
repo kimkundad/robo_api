@@ -334,6 +334,10 @@ class AuthController extends Controller
                 $age = 0;
             }
 
+            if($request->sex == 0){
+                $sexx = 'ไม่ระบุ';
+            }
+
             if($request->sex == 1){
                 $sexx = 'ไม่ระบุ';
             }
