@@ -276,6 +276,36 @@ class HomeController extends Controller
 
             $response1 = Http::withToken($token)->get('https://siamtheatre.com/api/v1/user_control/info');
 
+            $user = User::where('email', $response1['email'])->first();
+
+
+            if( $user ) {
+                if($response1['avatar'] == null){
+        
+                    $user->update([
+                        'name' => $response1['username'],
+                        'email' => $response1['email'],
+                        'phone' => $response1['phoneNumber'],
+                        'first_name' => $response1['firstname'],
+                        'last_name' => $response1['lastname'],
+                        'avatar' => 'https://www.robotel.co.th/img/avatar/'.$ran[array_rand($ran, 1)],
+                    ]);
+        
+                }else{
+        
+                    $user->update([
+                        'name' => $response1['username'],
+                        'email' => $response1['email'],
+                        'phone' => $response1['phoneNumber'],
+                        'first_name' => $response1['firstname'],
+                        'last_name' => $response1['lastname'],
+                        'avatar' => $response1['avatar'],
+                    ]);
+        
+                }
+              
+        
+             }
 
            // dd($response);
 
