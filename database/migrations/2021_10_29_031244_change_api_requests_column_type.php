@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class ChangeTokenToUsersTable extends Migration
+class ChangeApiRequestsColumnType extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class ChangeTokenToUsersTable extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
+        Schema::table('api_requests', function (Blueprint $table) {
             //
-            $table->text('access_token')->change();
+            $table->text('address_id')->change();
         });
     }
 
@@ -26,9 +26,9 @@ class ChangeTokenToUsersTable extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
+        //
+        Schema::table('api_requests', function (Blueprint $table) {
             //
         });
     }
 }
-
