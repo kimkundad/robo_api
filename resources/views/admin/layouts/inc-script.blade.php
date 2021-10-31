@@ -13,7 +13,6 @@
 <script src="{{ url('back/js/dropify.js') }}"></script>
 <script src="{{ url('back/js/formpickers.js') }}"></script>
   <script src="{{ url('back/js/form-addons.js') }}"></script>
-  <script src="{{ url('back/vendors/lightgallery/js/lightgallery-all.min.js') }}"></script>
   <script src="{{ url('slideout/dist/slideout.js') }}"></script>
 
   <script>
