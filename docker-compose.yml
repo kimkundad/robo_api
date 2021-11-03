@@ -2,9 +2,6 @@ version: "3.7"
 services:
   app:
     build:
-      args:
-        user: sammy
-        uid: 1000
       context: ./
       dockerfile: Dockerfile
     image: travellist
@@ -51,8 +48,8 @@ services:
     ports:
         - 8890:80
     environment:
-        - PMA_ARBITRARY=1
-        - PMA_HOST=database
+        MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+        PMA_HOST: db
     restart: always
     depends_on:
         - db
