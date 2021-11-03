@@ -5,7 +5,8 @@ ARG user
 ARG uid
 
 # Install system dependencies
-RUN apt-get update && apt-get install -y \
+RUN apt-get update && \
+    apt-get -y install sudo\
     git \
     curl \
     libpng-dev \
@@ -31,6 +32,6 @@ RUN mkdir -p /home/$user/.composer && \
 # Set working directory
 WORKDIR /var/www
 ADD . /var/www
-RUN chown -R www-data:www-data /var/www
+RUN chown -R $user:$user /var/www
 
 USER $user
