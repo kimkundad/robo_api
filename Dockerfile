@@ -30,7 +30,7 @@ RUN mkdir -p /home/$user/.composer && \
 
 # Set working directory
 WORKDIR /var/www
-ADD . /var/www
+COPY . /var/www
 RUN chown -R $user:$user /var/www
 
 USER $user
