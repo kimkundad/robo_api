@@ -41,6 +41,7 @@ class UUAuthController extends Controller
      $randomSixDigitInt = 'RBT-'.(\random_int(10000, 99999)).'-'.(\random_int(10000, 99999)).'-'.(\random_int(10000, 99999));
      $ran = array("1483537975.png","1483556517.png","1483556686.png");
 
+     
      if( $user ) {
         if($response1['avatar'] == null){
 

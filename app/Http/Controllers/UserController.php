@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Intervention\Image\ImageManagerStatic as Image;
 use App\User;
 use App\api_request;
+use Illuminate\Support\Facades\Http;
 
 
 class UserController extends Controller
@@ -20,15 +21,24 @@ class UserController extends Controller
     {
         //
       //  dd(User::all());
+        $response = Http::accept('application/json')->get('https://siamtheatre.com/api/v1/user_control',
+        [
+            'Page' => 1,
+            'PageSize' => 10
+        ]);
+        $collection = collect(json_decode($response, true));
+        //return ($collection);
         $objs = DB::table('users')
                 ->Orderby('id', 'desc')
                 ->paginate(15);
 
-        $data['currentPage'] = $objs->currentPage();
-        $data['perPage'] = $objs->perPage();
-        $data['total'] = $objs->total();
+        $data['currentPage'] = $collection['currentPage'];
+        $data['perPage'] = $collection['pageSize'];
+        $data['total'] = $collection['totalPages'];
+        $data['count'] = $collection['totalCount'];
 
-        $data['objs'] = $objs;
+
+        $data['objs'] = $collection['items'];
         return view('admin.user.index', $data);
     }
 

@@ -3,6 +3,7 @@
 /public/img/*
 /public/storage
 /storage/*.key
+/mysql
 /vendor
 .env
 .env.backup
