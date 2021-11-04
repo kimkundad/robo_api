@@ -29,7 +29,7 @@ class UUAuthController extends Controller
             'response_type' => 'code',
             'grant_type' => 'authorization_code',
             'code_verifier' => $codeVerifier,
-            'redirect_uri' => 'https://api.robotel.co.th/oauth/robotel/callback',
+            'redirect_uri' => 'https://admin.robotel.co.th/oauth/robotel/callback',
         ]); 
 
      //   return $response->json();
