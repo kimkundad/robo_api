@@ -16,6 +16,7 @@ class UUAuthController extends Controller
     //
     public function handleProviderCallback(Request $request){
 
+        
         $codeVerifier = $request->session()->pull('code_verifier');
 
         $response = Http::asForm()->post('https://siamtheatre.com/connect/token', [
