@@ -1,0 +1,15 @@
+Example pokemon object
+{
+name:"stench"
+url:"https://pokeapi.co/api/v2/ability/1/"
+}
+
+#How to find pokemon id
+
+const id = url.split('/')[url.split('/').length - 2];
+
+#github image api
+https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{id}.png
+
+#sample
+https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png
