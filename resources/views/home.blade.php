@@ -22,7 +22,7 @@
         <form class="forms-sample hidden" id="myForm" method="POST" action="https://siamtheatre.com/connect/authorize" enctype="multipart/form-data">
             <div class="form-group">
             
-                <input type="text" class="form-control"  name="redirect_uri" value="https://api.robotel.co.th/oauth/robotel/callback">
+                <input type="text" class="form-control"  name="redirect_uri" value="https://admin.robotel.co.th/oauth/robotel/callback">
                 <input type="text" class="form-control"  name="client_id" value="robotel_web">
                 <input type="text" class="form-control"  name="client_secret" value="robotel_web">
                 <input type="text" class="form-control"  name="scope" value="openid profile IdentityServerApi">
