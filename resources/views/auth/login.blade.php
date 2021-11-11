@@ -83,8 +83,8 @@
                     </div>
                     <input type="text" class="form-control" name="email" placeholder="Email Address"><br>
                     <input type="text" class="form-control"  name="redirect_uri" value="https://admin.robotel.co.th/oauth/admin/callback">
-                    <input type="text" class="form-control"  name="client_id" value="robotel_web">
-                    <input type="text" class="form-control"  name="client_secret" value="robotel_web">
+                    <input type="text" class="form-control"  name="client_id" value="robotel_admin_web">
+                    <input type="text" class="form-control"  name="client_secret" value="robotel_admin_web">
                     <input type="text" class="form-control"  name="scope" value="openid profile IdentityServerApi">
                     <input type="text" class="form-control"  name="code_challenge" value="{{ $codeChallenge }}">
                     <input type="text" class="form-control"  name="code_challenge_method" value="S256">
