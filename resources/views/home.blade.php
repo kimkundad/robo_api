@@ -16,7 +16,7 @@
                 <div class="card-header hidden">Dashboard</div>
 
                 <div class="card-body">
-                    
+            
 
 
         <form class="forms-sample hidden" id="myForm" method="POST" action="https://siamtheatre.com/connect/authorize" enctype="multipart/form-data">

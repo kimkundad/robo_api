@@ -14,9 +14,51 @@ class UUAuthController extends Controller
 {
     public $successStatus = 200;
     //
+
+    public function adminhandleProviderCallback(Request $request){
+
+        $codeVerifier = $request->session()->pull('code_verifier');
+
+        $response = Http::asForm()->post('https://siamtheatre.com/connect/token', [
+            'code' => $request['code'],
+            'scope' => $request['scope'],
+            'session_state' => $request['session_state'],
+            'client_id' => 'robotel_web',
+            'client_secret' => 'robotel_web',
+            'code_challenge' => 'l0gl43mF9SzmCdttZQaKWKERf1VyRMC0CdPPbz1E8no',
+            'code_challenge_method' => 'S256',
+            'response_type' => 'code',
+            'grant_type' => 'authorization_code',
+            'code_verifier' => $codeVerifier,
+            'redirect_uri' => 'https://admin.robotel.co.th/oauth/admin/callback',
+        ]); 
+
+        $response1 = Http::withToken($response['access_token'])->get('https://siamtheatre.com/api/v1/user_control/info');
+
+        $user = User::where('email', $response1['email'])->first();
+
+        $objs = DB::table('role_user')
+               ->where('user_id', $user->id)
+               ->first();
+
+        if(isset($objs)){
+
+        if($objs->role_id == 1){
+            Auth::login($user);
+            return redirect('/admin/dashboard');
+        }else{
+            return redirect('/login')->withErrors('คุณไม่สามารถใช้งานในส่วนี้ได้');
+        }
+
+        }else{
+            return redirect('/login')->withErrors('คุณไม่สามารถใช้งานในส่วนี้ได้');
+        }
+
+
+    }
     public function handleProviderCallback(Request $request){
 
-        
+
         $codeVerifier = $request->session()->pull('code_verifier');
 
         $response = Http::asForm()->post('https://siamtheatre.com/connect/token', [
@@ -114,12 +156,29 @@ class UUAuthController extends Controller
 
             
         
-            return redirect()->intended('https://www.robotel.co.th/get_api/socialauth?id='.$user.'&tokenme='.$response['access_token']);
+            return redirect()->intended('https://robotel.co.th/get_api/socialauth?id='.$user.'&tokenme='.$response['access_token']);
 
      }
-     
-
         
+    }
+
+
+    public function admin_login(Request $request){
+        
+        $user = User::where('email', $request['email'])->first();
+        $objs = DB::table('role_user')
+               ->where('user_id', $user->id)
+               ->first();
+
+       
+        if($objs->role_id == 1){
+            Auth::login($user);
+            return redirect('/admin/dashboard');
+        }else{
+            return redirect('/login')->withErrors('คุณไม่สามารถใช้งานในส่วนี้ได้');
+        }
+      /*  Auth::login($user);
+        return redirect('/admin/dashboard');*/
     }
 
 

@@ -8,6 +8,10 @@ use Intervention\Image\ImageManagerStatic as Image;
 use App\User;
 use App\api_request;
 use Illuminate\Support\Facades\Http;
+use GuzzleHttp\Client;
+use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Collection;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 
 class UserController extends Controller
@@ -24,22 +28,42 @@ class UserController extends Controller
         $response = Http::accept('application/json')->get('https://siamtheatre.com/api/v1/user_control',
         [
             'Page' => 1,
-            'PageSize' => 10
+            'PageSize' => 100
         ]);
+        $perPage = 10;
         $collection = collect(json_decode($response, true));
-        //return ($collection);
-        $objs = DB::table('users')
-                ->Orderby('id', 'desc')
-                ->paginate(15);
+        $search = '';
+        $data = $this->paginate($collection['items'], $perPage);
+        $data_tatal = $collection['items'];
+        return view('admin.user.index', compact('data', 'data_tatal', 'search'));
+    }
 
-        $data['currentPage'] = $collection['currentPage'];
-        $data['perPage'] = $collection['pageSize'];
-        $data['total'] = $collection['totalPages'];
-        $data['count'] = $collection['totalCount'];
+    public function users(Request $request){
+        $response = Http::accept('application/json')->get('https://siamtheatre.com/api/v1/user_control',
+        [
+            'Page' => 1,
+            'PageSize' => 100,
+            'Keyword' => $request->search
+        ]);
+        if(isset($request->totalshow)){
+            $perPage = $request->totalshow;
+        }else{
+            $perPage = 10;
+        }
+        
+        $collection = collect(json_decode($response, true));
+        
+        $data = $this->paginate($collection['items'], $perPage);
+        $data_tatal = $collection['items'];
+        $search = $request->search;
+        return view('admin.user.index', compact('data', 'data_tatal', 'search'));
+    }
 
-
-        $data['objs'] = $collection['items'];
-        return view('admin.user.index', $data);
+    public function paginate($items, $perPage, $page = null, $options = [])
+    {
+        $page = $page ?: (Paginator::resolveCurrentPage() ?: 1);
+        $items = $items instanceof Collection ? $items : Collection::make($items);
+        return new LengthAwarePaginator($items->forPage($page, $perPage), $items->count(), $perPage, $page, $options);
     }
 
 
@@ -333,94 +357,22 @@ class UserController extends Controller
     public function edit($id)
     {
         //name_bank
-
-
-
-
-
-
-        $objs = User::find($id);
-
-        $add = DB::table('text_addresses')->where('company', $objs->code_user)->paginate(15);
-
-        if(isset($add)){
-            foreach($add as $get_address){
-
-          $province = DB::table('provinces')
-               ->where('id', $get_address->province)
-               ->first();
-               if(isset($province->name)){
-                $get_address->p_name = $province->name;
-               }else{
-                $get_address->p_name = null;
-               }
-
-           $district = DB::table('districts')
-                ->where('id', $get_address->county)
-                ->first();
-
-            if(isset($district->name)){
-                $get_address->d_name = $district->name;
-               }else{
-                $get_address->d_name = null;
-               }
-
-            $subdistricts = DB::table('sub_districts')
-                 ->where('id', $get_address->district)
-                 ->first();
-
-                 if(isset($subdistricts->name)){
-                    $get_address->sub_name = $subdistricts->name;
-                   }else{
-                    $get_address->sub_name = null;
-                   }
-
-         }
-        }
-
-        
-        
-        $data['add'] = $add;   
-
-        $bill = DB::table('billers')->select(
-            'billers.*',
-            'billers.created_at as create',
-            'billers.id as idb',
-            'users.*',
-            'users.phone as phone1',
-            'banks.*',
-            'users.id as idu',
-            )
-            ->leftjoin('users', 'users.code_user',  'billers.user_id')
-            ->leftjoin('banks', 'banks.id',  'billers.bank_id')
-            ->where('billers.user_id', $objs->code_user)
-            ->Orderby('billers.id', 'desc')
-            ->paginate(15);
-
-        $data['currentPage'] = $bill->currentPage();
-        $data['perPage'] = $bill->perPage();
-        $data['total'] = $bill->total();
-        
-        $data['bill'] = $bill;   
-
-
-        $log = DB::table('logsys')->select(
-            'logsys.*',
-            'logsys.created_at as create',
-            'users.*'
-            )
-            ->leftjoin('users', 'users.id',  'logsys.user_id')
-            ->where('users.id',  $id)
-            ->paginate(10);
-
-            $data['log'] = $log;
-
-        
-
         $data['url'] = url('admin/user/'.$id);
         $data['method'] = "put";
-        $data['objs'] = $objs;
-        return view('admin.user.edit', $data);
+
+        $response = Http::withToken('eyJhbGciOiJSUzI1NiIsImtpZCI6IjE5OEI5NTVGNTlENzE1RjE0QUI5QjcxQkFBQzhBMzBDMzg5MkNFMjQiLCJ0eXAiOiJhdCtqd3QiLCJ4NXQiOiJHWXVWWDFuWEZmRkt1YmNicXNpakREaVN6aVEifQ.eyJuYmYiOjE2MzY1OTA0NDksImV4cCI6MTYzNjYwODQ0OSwiaXNzIjoibnVsbCIsImF1ZCI6IklkZW50aXR5U2VydmVyQXBpIiwiY2xpZW50X2lkIjoicm9ib3RlbF93ZWIiLCJzdWIiOiJjZTY5OTJmMi0zZGE0LTRmYjctODc2ZS1hNDA4YzRmMDIwNmYiLCJhdXRoX3RpbWUiOjE2MzY1OTA0NDgsImlkcCI6ImxvY2FsIiwic2NvcGUiOlsib3BlbmlkIiwicHJvZmlsZSIsIklkZW50aXR5U2VydmVyQXBpIl0sImFtciI6WyJwd2QiXX0.EbfagFMAmMECkHMZCXffmWR7HeH5ouR6uH50uVcdi-9HqRmDOr41iGNGxvoXDWMXEHfQQwVqaH-3upPYjdozi_cVyJ4nKFReqyDLyh0_LMG7xptJtUuQdQzGEENC-sfYOZyrm54a8LEVP_3srVhqlhLRji8e2kT-FUI3R3wOEq3NSRuckNCMJKPG9gKlu-K53DzvJTr_aGKpU4AD-sPtTMQ9-WK910TuBMpFv8QmjDG66FVKOdFMWW2rTCQA4zfXqtyCD3OEcpunLBF5-lAiF2XCmOqvcOiWpucfaIp2Cd5NSyGrpflB3AC36gKItahzbCIHBL1DEd0C9RHQwADMTQ')
+        ->get('https://siamtheatre.com/api/v1/user_control/'.$id.'/info',
+        [
+            'Page' => 1,
+            'PageSize' => 100
+        ]);
+
+        $collection = collect(json_decode($response, true));
+      //
+
+
+        $data['objs'] = $collection;
+        return view('admin.user.edit2', $data);
     }
 
     /**
@@ -434,21 +386,41 @@ class UserController extends Controller
     {
         //
 
+        
+
         $this->validate($request, [
-            'name' => 'required'
+            'firstname' => 'required',
+            'lastname' => 'required',
+            'phoneNumber' => 'required',
+            'email' => 'required',
+            'dateOfBirth' => 'required',
+            'gender' => 'required'
         ]);
 
-        if($request->hbd != null){
+       // dd($request->all());
+
+        $response = Http::withToken('eyJhbGciOiJSUzI1NiIsImtpZCI6IjE5OEI5NTVGNTlENzE1RjE0QUI5QjcxQkFBQzhBMzBDMzg5MkNFMjQiLCJ0eXAiOiJhdCtqd3QiLCJ4NXQiOiJHWXVWWDFuWEZmRkt1YmNicXNpakREaVN6aVEifQ.eyJuYmYiOjE2MzY1MzY5MzEsImV4cCI6MTYzNjU1NDkzMSwiaXNzIjoibnVsbCIsImF1ZCI6IklkZW50aXR5U2VydmVyQXBpIiwiY2xpZW50X2lkIjoicm9ib3RlbF93ZWIiLCJzdWIiOiJjZTY5OTJmMi0zZGE0LTRmYjctODc2ZS1hNDA4YzRmMDIwNmYiLCJhdXRoX3RpbWUiOjE2MzY1MzY5MzEsImlkcCI6ImxvY2FsIiwic2NvcGUiOlsib3BlbmlkIiwicHJvZmlsZSIsIklkZW50aXR5U2VydmVyQXBpIl0sImFtciI6WyJwd2QiXX0.LdIHLgbqL8DkuosKkTB_JLKUZo02W5ySkgMbV8Li2aMZu8w5gVn3PLceXOrjJgjPjyuPqN8rzQnlZwht46YfTD1orYnZI1D-Kqs5r-_H-uzUiqsiDoNF87Ax2VdWbl4wl9z0dILwLtErJi9_ocwm-IlPkfJihJJyuzdms8GQHiKkJVCJ82_EfiR4ZWE5iD3MHY1u9-rIPxiyBJmOQ_PFlOIA8eem0gh1SGEXh9WEMub_a2eibBkUrarlaovx-K1d65srDFyD42wj9cweE0O5bBdnlFX9ZukUq9ikYNW-jRdUKepuTw6Pli18lp0RPtbXegmaBiUCfJYge4O_k-sj8Q')
+        ->put('https://siamtheatre.com/api/v1/user_control/'.$request->userId.'/profile', [
+            'firstname' => $request->firstname,
+            'lastname' => $request->lastname,
+            'gender' => $request->gender,
+            'phoneNumber' => $request->phoneNumber,
+            'dateOfBirth' => $request->dateOfBirth,
+            'email' => $request->email
+        ]);
+
+
+     /*   if($request->hbd != null){
             $pieces = explode("-", $request->hbd);
             $age = date("Y") - $pieces[0];
             $age += 543;
         }else{
             $age = 0;
-        }
+        } */
 
 
 
-            $package = User::find($id);
+           /* $package = User::find($id);
             $package->age = $age;
             $package->first_name = $request->first_name;
             $package->hbd = $request->hbd;
@@ -458,9 +430,9 @@ class UserController extends Controller
             $package->sex = $request->sex;
             $package->career = $request->career;
             $package->code_user = $request->code_user;
-            $package->save();
+            $package->save(); */
 
-            return redirect(url('admin/user/'.$id.'/edit'))->with('edit_success','Edit successful');
+            return redirect(url('admin/user/'.$request->userId.'/edit'))->with('edit_success','Edit successful');
 
 
     }

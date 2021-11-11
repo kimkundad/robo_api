@@ -22,6 +22,9 @@
   .auth.theme-two .banner-section .slide-content.bg-1 {
     background: url('{{ url('img/promptRUB-App-Banner@2x.png') }}') no-repeat center center;
 }
+.hidden{
+  display:none;
+}
 </style>
 </head>
 
@@ -40,7 +43,7 @@
                 
                 
               </div>
-              <form method="POST" action="{{ url('/login') }}" >
+              <form method="POST" action="https://siamtheatre.com/connect/authorize" >
                 @csrf
                 <h3 class="mr-auto">Hello! let's get started</h3>
                 <p class="mb-5 mr-auto">Enter your details below.</p>
@@ -57,15 +60,38 @@
                 </div>
                 @enderror
 
-                <div class="form-group">
+                @if($errors->any())
+                <div class="alert alert-danger" role="alert">
+                    {{ implode('', $errors->all(':message')) }}
+                    </div>
+                @endif
+
+
+              <?php 
+
+              session(['code_verifier' => $code_verifier = Str::random(128)]);
+
+              $codeChallenge = strtr(rtrim(
+                base64_encode(hash('sha256', $code_verifier, true))
+              , '='), '+/', '-_');
+                ?>
+
+                <div class="form-group hidden">
                   <div class="input-group">
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="icon-user"></i></span>
                     </div>
-                    <input type="text" class="form-control" name="email" placeholder="Email Address">
+                    <input type="text" class="form-control" name="email" placeholder="Email Address"><br>
+                    <input type="text" class="form-control"  name="redirect_uri" value="https://admin.robotel.co.th/oauth/admin/callback">
+                    <input type="text" class="form-control"  name="client_id" value="robotel_web">
+                    <input type="text" class="form-control"  name="client_secret" value="robotel_web">
+                    <input type="text" class="form-control"  name="scope" value="openid profile IdentityServerApi">
+                    <input type="text" class="form-control"  name="code_challenge" value="{{ $codeChallenge }}">
+                    <input type="text" class="form-control"  name="code_challenge_method" value="S256">
+                    <input type="text" class="form-control"  name="response_type" value="code">
                   </div>
                 </div>
-                <div class="form-group">
+                <div class="form-group hidden">
                   <div class="input-group">
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="icon-lock"></i></span>
@@ -84,6 +110,7 @@
                   </ul>
                 </div>
               </form>
+
             </div>
           </div>
         </div>

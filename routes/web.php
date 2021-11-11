@@ -22,8 +22,13 @@ Auth::routes();
 
 Route::post('oauth/robotel/callback', 'UUAuthController@handleProviderCallback');
 Route::get('oauth/robotel/callback', 'UUAuthController@handleProviderCallback');
-Route::get('uu/redirectToProvider1', 'UUAuthController@redirectToProvider1');
 
+Route::post('oauth/admin/callback', 'UUAuthController@adminhandleProviderCallback');
+Route::get('oauth/admin/callback', 'UUAuthController@adminhandleProviderCallback');
+
+Route::post('admin_login', 'UUAuthController@admin_login');
+
+Route::get('uu/redirectToProvider1', 'UUAuthController@redirectToProvider1');
 
 Route::get('api/get_file_version', 'GetFileVersionController@get_file_version_api');
 Route::get('admin/get_file_version', 'GetFileVersionController@index');
@@ -123,10 +128,13 @@ Route::get('/del_my_address/{id}', [AuthController::class, 'del_my_address']);
 
 Route::group(['middleware' => ['UserRole:manager|employee']], function() {
 
+    Route::resource('admin/company', 'CompanyController');
+
     Route::get('admin/dashboard', 'DashboardController@index');
     Route::get('admin/blog', 'DashboardController@blog');
 
     Route::resource('admin/user', 'UserController');
+    Route::get('admin/users', 'UserController@users');
 
     Route::get('admin/user_search', 'UserController@user_search');
     Route::get('admin/biller_search', 'UserController@biller_search');

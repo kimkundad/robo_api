@@ -9,6 +9,7 @@
 .table td img{
   margin-right:5px;
 }
+
 </style>
 @stop('stylesheet')
 
@@ -18,13 +19,14 @@
 
 <div class="row">
                 
-                <div class="col-md-6">
+                <div class="col-md-4">
                     
                             <div class="form-group">
                               <form class="form-horizontal" action="{{ url('admin/users') }}" method="GET" enctype="multipart/form-data">
                                   {{ csrf_field() }}
-                                <div class="input-group">
-                                    <input type="text" class="form-control" name="search" value="{{ $search }}" placeholder="ชื่อ-นามสกุล, อีเมล, เบอร์โทร" aria-label="Recipient's username">
+                                  <label>ค้นหา</label>
+                                    <div class="input-group">
+                                    <input type="text" class="form-control" name="search" value="{{ $search }}" placeholder="ชื่อ-นามสกุล ผู้ติดต่อ, ชื่อร้านค้า, เบอร์โทร" >
                                     <div class="input-group-append">
                                       <button class="btn btn-sm btn-primary" type="submit">ค้นหา</button>
                                     </div>
@@ -33,13 +35,63 @@
                             </div>
                        
                 </div>
-                <div class="col-md-6"> </div>
+                <div class="col-md-2"> 
+                  <div class="form-group">
+                    <label for="exampleFormControlSelect2">ช่องทางการชำระเงิน</label>
+                    <select class="form-control" id="exampleFormControlSelect2">
+                      <option>ทั้งหมด</option>
+                      <option>2</option>
+                      <option>3</option>
+                      <option>4</option>
+                      <option>5</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-md-2"> 
+                  <div class="form-group">
+                    <label for="exampleFormControlSelect2">สถานะ</label>
+                    <select class="form-control" id="exampleFormControlSelect2">
+                      <option>ทั้งหมด1</option>
+                      <option>2</option>
+                      <option>3</option>
+                      <option>4</option>
+                      <option>5</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="col-md-2"> 
+                <div class="form-group row">
+                          <label >วันที่เริ่มต้น</label>
+                        
+                          <div id="datepicker-popup" class="input-group date datepicker" >
+                                <input type="text" class="form-control" name="dateOfBirth" > 
+                                <span class="input-group-addon input-group-append border-left">
+                                <span class="icon-calendar input-group-text"></span>
+                                </span>
+                            </div>
+                      
+                        </div>
+                </div>
+                <div class="col-md-2"> 
+                <div class="form-group row">
+                          <label >วันที่สิ้นสุด</label>
+                       
+                          <div id="datepicker-popup" class="input-group date datepicker" >
+                                <input type="text" class="form-control" name="dateOfBirth2" > 
+                                <span class="input-group-addon input-group-append border-left">
+                                <span class="icon-calendar input-group-text"></span>
+                                </span>
+                            </div>
+                      
+                        </div>
+                </div>
 
                 <div class="col-md-12 grid-margin stretch-card">
                   <div class="card">
                     <div class="card-body">
                
-                      <h4 class="card-title">ผู้ใช้งานทั้งหมด ( {{ count($data_tatal) }} )</h4>
+                      <h4 class="card-title">การสมัครของร้านค้า</h4>
 
                       <div class="table-responsive">
 
@@ -47,14 +99,14 @@
                         <thead>
 
                           <tr>
-                            <th>#</th>
-                            <th>บัญชีผู้ใช้</th>
-                            <th>ชื่อ-นามสกุล</th>
-							              <th>อีเมล</th>
+                     
+                            <th>วันที่</th>
+                            <th>ชื่อผู้ติดต่อ</th>
+							<th>ร้านค้า</th>
                             <th>เบอร์โทร</th>
-                            <th>เพศ</th>
-                            <th>วันที่สมัคร</th>
-                            <th>การใช้งาน</th>
+                            <th>ประเภทการสมัคร</th>
+                            <th>ช่องทางการชำระเงินที่สมัคร</th>
+                            <th>สถานะ</th>
                             <th>ดำเนินการ</th>
                           </tr>
                         </thead>
@@ -63,43 +115,30 @@
 						          @if(isset($data))
                         @foreach($data as $u)
                    
-                          <tr access_id="{{$u['userId']}}">
-                            <td>1</td>
+                          <tr>
+                            <td>ขาดวันที่</td>
                             <td>
-                            @if($u['avatar'] == null)
-                            <img src="{{ url('back/avatar/profile-pic.png') }}">  {{ $u['username'] }}
-                            @else
-                            <img src="{{ $u['avatar'] }}">  {{ $u['username'] }}
-                            @endif
-                              
+                              {{ $u['contractFirstname'] }} {{$u['contractLastname']}} 
                             </td>
                             <td>
-                              {{$u['firstname']}} {{$u['lastname']}} 
+                              {{$u['companyName']}} 
                             </td>
                             <td>
-                               {{$u['email']}}
+                                ขาดเบอร์ติดต่อ
                             </td>
-							              <td>
-                               {{$u['phoneNumber']}}
-                            </td>
-                            <td>
-                              {{$u['gender']}}
+							<td>
+                            {{$u['companyType']}}
                             </td>
                             <td>
-                             {{$u['createdDate']}}
+                            ช่องทางการชำระเงิน
+                            </td>
+                            
+                            <td>
+                                <label class="badge badge-warning">รอการติดต่อ</label>
                             </td>
                             <td>
-                            <label class="switch">
-                                <input type="checkbox" class="checkbox"
-                                @if($u['isActive'] == true)
-                                checked
-                                @endif
-                                >
-                                <span class="slider round"></span>
-                            </label>
-                            </td>
-                            <td>
-                              <a href="{{ url('admin/user/'.$u['userId'].'/edit') }}" class="btn btn-outline-primary btn-sm">ดู</a>
+                              <a href="{{ url('admin/company/'.$u['companyId'].'/edit') }}" class="btn btn-outline-primary btn-sm">แก้ไข</a>
+                              <a href="{{ url('api/del_company/') }}" onclick="return confirm('Are you sure?')" class="btn btn-outline-danger btn-sm">ลบ</a>
                             </td>
                           </tr>
                        
@@ -161,43 +200,7 @@
 @section('scripts')
 
 
-<script>
 
-$(document).ready(function(){
-
-
-$("input.checkbox").change(function(event) {
-
-var course_id = $(this).closest('tr').attr('access_id');
-
-console.log('fea : '+course_id);
-
-$.ajax({
-        type:'PUT',
-        url:'https://siamtheatre.com/api/v1/user_control/'+course_id+'/toggle_active',
-        data: { "user_id" : course_id },
-        success: function(data){
-          if(data.status == 204){
-
-            $.toast({
-              heading: 'Success',
-              text: 'ระบบทำการแก้ไขข้อมูลให้แล้ว.',
-              showHideTransition: 'slide',
-              icon: 'success',
-              loaderBg: '#f96868',
-              position: 'top-right'
-            })
-
-
-
-          }
-        }
-    });
-});
-
-  });
-
-</script>
 
 
 @stop('scripts')
