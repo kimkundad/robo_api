@@ -23,7 +23,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+    
       //  dd(User::all());
         $response = Http::accept('application/json')->get('https://siamtheatre.com/api/v1/user_control',
         [

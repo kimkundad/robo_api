@@ -104,8 +104,8 @@ class HomeController extends Controller
 
         $cat = thiday::where('status', 1)->Orderby('id', 'desc')->first();
         if(isset($cat)){
-            $cat->desktop_img = 'https://api.robotel.co.th/assets/img/thaiday/'.$cat->desktop_img;
-            $cat->mobile_img = 'https://api.robotel.co.th/assets/img/thaiday/'.$cat->mobile_img;
+            $cat->desktop_img = 'https://admin.robotel.co.th/assets/img/thaiday/'.$cat->desktop_img;
+            $cat->mobile_img = 'https://admin.robotel.co.th/assets/img/thaiday/'.$cat->mobile_img;
         }
         
         return response()->json($cat);
